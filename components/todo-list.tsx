@@ -13,15 +13,6 @@ import { useToast } from "@/components/ui/use-toast"
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
 
-interface Todo {
-  _id: string
-  title: string
-  completed: boolean
-  dueDate?: Date
-  priority: 'low' | 'medium' | 'high'
-  category: string
-}
-
 const categories = ["Work", "Personal", "Shopping", "Health", "Education", "Other"]
 const priorities = ["low", "medium", "high"] as const
 
@@ -44,7 +35,6 @@ export function TodoList() {
     try {
       setIsLoading(true)
       const data = await getTodos()
-      console.log('Loaded todos:', data)
       setTodos(data)
     } catch (error) {
       console.error('Error loading todos:', error)
@@ -62,7 +52,6 @@ export function TodoList() {
     if (!newTodo.trim()) return
 
     try {
-      console.log('Adding todo:', { title: newTodo, category, priority, dueDate })
       const todo = await createTodo({
         title: newTodo.trim(),
         category,
@@ -70,7 +59,6 @@ export function TodoList() {
         dueDate: dueDate || undefined,
         completed: false
       })
-      console.log('Added todo:', todo)
       setTodos(prev => [...prev, todo])
       setNewTodo("")
       setCategory("Other")
@@ -92,9 +80,7 @@ export function TodoList() {
 
   const toggleTodo = async (id: string, completed: boolean) => {
     try {
-      console.log('Toggling todo:', { id, completed })
       const updatedTodo = await updateTodo(id, { completed })
-      console.log('Updated todo:', updatedTodo)
       setTodos(prev => prev.map(todo => 
         todo._id === id ? updatedTodo : todo
       ))
@@ -110,9 +96,7 @@ export function TodoList() {
 
   const removeTodo = async (id: string) => {
     try {
-      console.log('Removing todo:', id)
       await deleteTodo(id)
-      console.log('Removed todo:', id)
       setTodos(prev => prev.filter(todo => todo._id !== id))
       toast({
         title: "Success",
@@ -148,14 +132,14 @@ export function TodoList() {
           onChange={(e) => setNewTodo(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && addTodo()}
           placeholder="Add a new todo..."
-          className="w-full"
+          className="w-full bg-white/5 backdrop-blur-md"
         />
         <div className="flex gap-4 flex-wrap">
           <Select
             value={category}
             onValueChange={setCategory}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px] bg-white/5 backdrop-blur-md">
               <SelectValue placeholder="Select category" />
             </SelectTrigger>
             <SelectContent>
@@ -166,9 +150,9 @@ export function TodoList() {
           </Select>
           <Select
             value={priority}
-            onValueChange={setPriority}
+            onValueChange={(value) => setPriority(value as typeof priorities[number])}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px] bg-white/5 backdrop-blur-md">
               <SelectValue placeholder="Select priority" />
             </SelectTrigger>
             <SelectContent>
@@ -181,7 +165,7 @@ export function TodoList() {
             type="date"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
-            className="w-[180px]"
+            className="w-[180px] bg-white/5 backdrop-blur-md"
           />
           <Button variant="gradient" onClick={addTodo} className="ml-auto">
             <Plus className="w-4 h-4 mr-2" />

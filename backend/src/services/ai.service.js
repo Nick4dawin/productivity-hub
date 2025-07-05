@@ -1,7 +1,7 @@
-const OpenAI = require('openai');
+const Groq = require('groq-sdk');
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
 });
 
 const analyzeJournalEntry = async (entry, mood, energy, activities) => {
@@ -26,9 +26,9 @@ const analyzeJournalEntry = async (entry, mood, energy, activities) => {
     }
     `;
 
-    const completion = await openai.chat.completions.create({
+    const completion = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "gpt-3.5-turbo",
+      model: "llama3-8b-8192",
       temperature: 0.7,
       max_tokens: 800,
       response_format: { type: "json_object" }
@@ -36,7 +36,7 @@ const analyzeJournalEntry = async (entry, mood, energy, activities) => {
 
     return JSON.parse(completion.choices[0].message.content);
   } catch (error) {
-    console.error('Error analyzing journal entry:', error);
+    console.error('Error analyzing journal entry with Groq:', error);
     throw new Error('Failed to analyze journal entry');
   }
 };

@@ -2,7 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { UserButton } from '@clerk/nextjs';
 import { cn } from '@/lib/utils';
+import { ModeToggle } from './mode-toggle';
 
 const navItems = [
   { href: '/', label: 'Dashboard' },
@@ -17,8 +19,8 @@ export function Navbar() {
 
   return (
     <nav className="border-b">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center space-x-4 sm:space-x-8">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+        <div className="flex items-center space-x-4 sm:space-x-8">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -33,6 +35,10 @@ export function Navbar() {
               {item.label}
             </Link>
           ))}
+        </div>
+        <div className="flex items-center space-x-4">
+          <ModeToggle />
+          <UserButton afterSignOutUrl="/" />
         </div>
       </div>
     </nav>

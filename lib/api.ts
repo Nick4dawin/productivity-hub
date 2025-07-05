@@ -1,9 +1,13 @@
+import { authStore } from './auth';
+
 const API_BASE_URL = 'http://localhost:5000/api';
 
 // Helper function to get auth token
-const getAuthHeaders = () => {
-  if (typeof window === 'undefined') return {}
-  const token = localStorage.getItem('token');
+const getAuthHeaders = async () => {
+  if (!authStore.getToken) {
+    throw new Error("AuthProvider not initialized");
+  }
+  const token = await authStore.getToken();
   return {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`
@@ -107,7 +111,7 @@ export async function login(data: { email: string; password: string }): Promise<
 export async function getHabits(): Promise<Habit[]> {
   console.log('Fetching habits');
   const response = await fetch(`${API_BASE_URL}/habits`, {
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
   });
 
   if (!response.ok) {
@@ -125,7 +129,7 @@ export async function createHabit(data: { name: string; category: string }): Pro
   console.log('Creating habit:', data);
   const response = await fetch(`${API_BASE_URL}/habits`, {
     method: 'POST',
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
     body: JSON.stringify(data),
   });
 
@@ -144,7 +148,7 @@ export async function toggleHabitDate(id: string, date: string): Promise<Habit> 
   console.log('Toggling habit date:', { id, date });
   const response = await fetch(`${API_BASE_URL}/habits/${id}/toggle/${date}`, {
     method: 'POST',
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
   });
 
   if (!response.ok) {
@@ -162,7 +166,7 @@ export async function toggleHabitDate(id: string, date: string): Promise<Habit> 
 export async function getTodos(): Promise<Todo[]> {
   console.log('Fetching todos');
   const response = await fetch(`${API_BASE_URL}/todos`, {
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
   });
 
   if (!response.ok) {
@@ -180,7 +184,7 @@ export async function createTodo(data: Omit<Todo, '_id'>): Promise<Todo> {
   console.log('Creating todo:', data);
   const response = await fetch(`${API_BASE_URL}/todos`, {
     method: 'POST',
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
     body: JSON.stringify(data),
   });
 
@@ -199,7 +203,7 @@ export async function updateTodo(id: string, data: Partial<Todo>): Promise<Todo>
   console.log('Updating todo:', { id, data });
   const response = await fetch(`${API_BASE_URL}/todos/${id}`, {
     method: 'PUT',
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
     body: JSON.stringify(data),
   });
 
@@ -218,7 +222,7 @@ export async function deleteTodo(id: string): Promise<void> {
   console.log('Deleting todo:', id);
   const response = await fetch(`${API_BASE_URL}/todos/${id}`, {
     method: 'DELETE',
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
   });
 
   if (!response.ok) {
@@ -233,7 +237,7 @@ export async function deleteTodo(id: string): Promise<void> {
 export async function getMoods(): Promise<Mood[]> {
   console.log('Fetching moods');
   const response = await fetch(`${API_BASE_URL}/moods`, {
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
   });
 
   if (!response.ok) {
@@ -251,7 +255,7 @@ export async function createMood(data: Omit<Mood, '_id'>): Promise<Mood> {
   console.log('Creating mood:', data);
   const response = await fetch(`${API_BASE_URL}/moods`, {
     method: 'POST',
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
     body: JSON.stringify(data),
   });
 
@@ -270,7 +274,7 @@ export async function createMood(data: Omit<Mood, '_id'>): Promise<Mood> {
 export async function getJournalEntries(): Promise<JournalEntry[]> {
   console.log('Fetching journal entries');
   const response = await fetch(`${API_BASE_URL}/journal`, {
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
   });
 
   if (!response.ok) {
@@ -288,7 +292,7 @@ export async function createJournalEntry(data: Omit<JournalEntry, '_id'>): Promi
   console.log('Creating journal entry:', data);
   const response = await fetch(`${API_BASE_URL}/journal`, {
     method: 'POST',
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
     body: JSON.stringify(data),
   });
 
@@ -307,7 +311,7 @@ export async function updateJournalEntry(id: string, data: Partial<JournalEntry>
   console.log('Updating journal entry:', { id, data });
   const response = await fetch(`${API_BASE_URL}/journal/${id}`, {
     method: 'PUT',
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
     body: JSON.stringify(data),
   });
 
@@ -326,7 +330,7 @@ export async function deleteJournalEntry(id: string): Promise<void> {
   console.log('Deleting journal entry:', id);
   const response = await fetch(`${API_BASE_URL}/journal/${id}`, {
     method: 'DELETE',
-    headers: getAuthHeaders(),
+    headers: await getAuthHeaders(),
   });
 
   if (!response.ok) {
