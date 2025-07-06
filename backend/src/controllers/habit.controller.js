@@ -1,11 +1,19 @@
 const Habit = require('../models/Habit');
 
+const formatHabitForClient = (habit) => {
+  const habitObject = habit.toObject ? habit.toObject() : { ...habit };
+  if (habitObject.completedDates) {
+    habitObject.completedDates = habitObject.completedDates.map(date => new Date(date).toISOString().split('T')[0]);
+  }
+  return habitObject;
+};
+
 exports.getAllHabits = async (req, res) => {
   try {
     const habits = await Habit.find({ userId: req.user._id })
       .sort({ createdAt: -1 });
     console.log('[GET] Habits fetched:', habits.length);
-    res.json(habits);
+    res.json(habits.map(formatHabitForClient));
   } catch (error) {
     console.error('[GET] Error fetching habits:', error);
     res.status(500).json({ message: 'Error fetching habits' });
@@ -20,7 +28,7 @@ exports.createHabit = async (req, res) => {
     });
     await habit.save();
     console.log('[POST] Habit created:', habit);
-    res.status(201).json(habit);
+    res.status(201).json(formatHabitForClient(habit));
   } catch (error) {
     console.error('[POST] Error creating habit:', error);
     res.status(500).json({ message: 'Error creating habit' });
@@ -40,7 +48,7 @@ exports.getHabitById = async (req, res) => {
     }
     
     console.log('[GET] Habit fetched by id:', habit._id);
-    res.json(habit);
+    res.json(formatHabitForClient(habit));
   } catch (error) {
     console.error('[GET] Error fetching habit:', error);
     res.status(500).json({ message: 'Error fetching habit' });
@@ -61,7 +69,7 @@ exports.updateHabit = async (req, res) => {
     }
 
     console.log('[PUT] Habit updated:', habit._id);
-    res.json(habit);
+    res.json(formatHabitForClient(habit));
   } catch (error) {
     console.error('[PUT] Error updating habit:', error);
     res.status(500).json({ message: 'Error updating habit' });
@@ -116,26 +124,38 @@ exports.toggleHabitDate = async (req, res) => {
     }
 
     // Calculate streak
-    const today = new Date();
-    const sortedDates = [...habit.completedDates].sort((a, b) => b - a);
-    let streak = 0;
-    let currentDate = today;
+    const sortedDates = [...new Set(habit.completedDates.map(d => d.toISOString().split('T')[0]))]
+      .map(ds => new Date(ds))
+      .sort((a, b) => b.getTime() - a.getTime());
 
-    for (const date of sortedDates) {
-      const diffDays = Math.floor((currentDate - date) / (1000 * 60 * 60 * 24));
-      if (diffDays <= 1) {
-        streak++;
-        currentDate = date;
-      } else {
-        break;
-      }
+    let streak = 0;
+    if (sortedDates.length > 0) {
+        const today = new Date();
+        today.setUTCHours(0, 0, 0, 0);
+
+        const mostRecent = sortedDates[0];
+        const diff = (today.getTime() - mostRecent.getTime()) / (1000 * 3600 * 24);
+
+        if (diff <= 1) { // Completed today or yesterday
+            streak = 1;
+            for (let i = 1; i < sortedDates.length; i++) {
+                const d1 = sortedDates[i-1];
+                const d2 = sortedDates[i];
+                const dayDifference = (d1.getTime() - d2.getTime()) / (1000 * 3600 * 24);
+                if (dayDifference === 1) {
+                    streak++;
+                } else {
+                    break;
+                }
+            }
+        }
     }
 
     habit.streak = streak;
     await habit.save();
     
     console.log('[TOGGLE] Habit updated:', habit._id, 'New streak:', streak);
-    res.json(habit);
+    res.json(formatHabitForClient(habit));
   } catch (error) {
     console.error('[TOGGLE] Error updating habit:', error);
     res.status(500).json({ message: 'Error updating habit' });

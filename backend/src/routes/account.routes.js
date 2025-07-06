@@ -1,9 +1,15 @@
 const express = require('express');
-const router = express.Router();
-const { getAccounts, createAccount, updateAccount, deleteAccount } = require('../controllers/account.controller');
-const { auth, syncUser } = require('../middleware/auth');
+const {
+  getAccounts,
+  createAccount,
+  updateAccount,
+  deleteAccount
+} = require('../controllers/account.controller');
+const { auth } = require('../middleware/auth');
 
-router.use(auth, syncUser);
+const router = express.Router();
+
+router.use(auth);
 
 router.route('/')
   .get(getAccounts)

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ClerkProvider } from "@clerk/nextjs";
-import { AuthProvider } from "@/lib/auth";
+import { AuthProvider } from "@/contexts/auth-context";
 import { cn } from "@/lib/utils";
 import { fontSans } from "@/lib/fonts";
 import { Toaster } from "@/components/ui/toaster";
@@ -19,30 +18,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
-          suppressHydrationWarning
-        >
-          <AuthProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <Providers>
-                {children}
-                <Toaster />
-              </Providers>
-            </ThemeProvider>
-          </AuthProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+        suppressHydrationWarning
+      >
+        <AuthProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Providers>
+              {children}
+              <Toaster />
+            </Providers>
+          </ThemeProvider>
+        </AuthProvider>
+      </body>
+    </html>
   );
 }

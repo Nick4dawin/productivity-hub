@@ -1,17 +1,25 @@
-import { authStore } from './auth';
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api';
 
 // Helper function to get auth token
-const getAuthHeaders = async () => {
-  if (!authStore.getToken) {
-    throw new Error("AuthProvider not initialized");
+const getAuthHeaders = async (): Promise<Record<string, string>> => {
+  try {
+    // In client components, you should use useAuth() hook directly
+    // This is a fallback for server components or utils
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+      console.warn("No authentication token available");
+      return { 'Content-Type': 'application/json' };
+    }
+    
+    return {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    };
+  } catch (error) {
+    console.error("Error getting auth headers:", error);
+    return { 'Content-Type': 'application/json' };
   }
-  const token = await authStore.getToken();
-  return {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
-  };
 };
 
 // Types

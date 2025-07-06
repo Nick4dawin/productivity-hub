@@ -33,6 +33,7 @@ export default function SignInPage() {
       <div className="absolute inset-0 bg-black/50" />
       
       <SignIn
+        fallbackRedirectUrl="/"
         appearance={{
           variables: {
             colorPrimary: "hsl(262.1 83.3% 57.8%)"

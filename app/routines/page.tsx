@@ -109,16 +109,15 @@ export default function RoutinesPage() {
         ))}
       </div>
 
-      {isBuilderOpen && (
-        <RoutineBuilder
-          routine={selectedRoutine}
-          onClose={() => setIsBuilderOpen(false)}
-          onSuccess={() => {
-            setIsBuilderOpen(false);
-            fetchRoutines();
-          }}
-        />
-      )}
+      <RoutineBuilder
+        routine={selectedRoutine}
+        isOpen={isBuilderOpen}
+        onClose={() => setIsBuilderOpen(false)}
+        onSuccess={() => {
+          setIsBuilderOpen(false);
+          fetchRoutines();
+        }}
+      />
     </div>
   );
 } 

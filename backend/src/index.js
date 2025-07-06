@@ -11,24 +11,35 @@ const journalRoutes = require('./routes/journal.routes');
 const routineRoutes = require('./routes/routine.routes');
 const goalRoutes = require('./routes/goal.routes');
 const mediaRoutes = require('./routes/media.routes');
-const webhookRoutes = require('./routes/webhook.routes');
 const financeRoutes = require('./routes/finance.routes');
 const accountRoutes = require('./routes/account.routes');
 const subscriptionRoutes = require('./routes/subscription.routes');
 const budgetRoutes = require('./routes/budget.routes');
+const authRoutes = require('./routes/auth.routes');
+const userRoutes = require('./routes/user.routes');
 
 const app = express();
 
+// CORS Configuration
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://productivity-hub.vercel.app'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(morgan('dev'));
-
-// Webhook route needs to be before express.json
-app.use('/api/webhooks', express.raw({type: 'application/json'}), webhookRoutes);
-
 app.use(express.json());
 
 // Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/todos', todoRoutes);
 app.use('/api/habits', habitRoutes);
 app.use('/api/moods', moodRoutes);
@@ -40,9 +51,6 @@ app.use('/api/finance', financeRoutes);
 app.use('/api/accounts', accountRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/budgets', budgetRoutes);
-
-// Webhook for Clerk
-app.use('/api/webhook', webhookRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

@@ -98,16 +98,15 @@ export default function GoalsPage() {
         ))}
       </div>
       
-      {isFormOpen && (
-        <GoalForm
-          goal={selectedGoal}
-          onClose={() => setIsFormOpen(false)}
-          onSuccess={() => {
-            setIsFormOpen(false);
-            fetchGoals();
-          }}
-        />
-      )}
+      <GoalForm
+        goal={selectedGoal}
+        isOpen={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+        onSuccess={() => {
+          setIsFormOpen(false);
+          fetchGoals();
+        }}
+      />
     </div>
   );
 } 

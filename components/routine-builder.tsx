@@ -8,7 +8,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
 import { createRoutine, updateRoutine, getTodos, getHabits, Routine, Todo, Habit } from '@/lib/api';
 import { Checkbox } from './ui/checkbox';
@@ -25,11 +31,12 @@ type RoutineFormData = z.infer<typeof routineSchema>;
 
 interface RoutineBuilderProps {
   routine: Routine | null;
+  isOpen: boolean;
   onClose: () => void;
   onSuccess: () => void;
 }
 
-export default function RoutineBuilder({ routine, onClose, onSuccess }: RoutineBuilderProps) {
+export default function RoutineBuilder({ routine, isOpen, onClose, onSuccess }: RoutineBuilderProps) {
   const { toast } = useToast();
   const [allTodos, setAllTodos] = useState<Todo[]>([]);
   const [allHabits, setAllHabits] = useState<Habit[]>([]);
@@ -97,108 +104,104 @@ export default function RoutineBuilder({ routine, onClose, onSuccess }: RoutineB
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-y-auto p-4">
-      <div className="relative w-full max-w-lg my-4">
-        <Card className="w-full bg-black/80 border-white/10 text-white">
-          <CardHeader>
-            <CardTitle>{routine ? 'Edit Routine' : 'Create Routine'}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <Controller
-                name="name"
-                control={control}
-                render={({ field }: { field: ControllerRenderProps<RoutineFormData, "name"> }) => <Input placeholder="Routine Name (e.g., Morning Power-up)" {...field} className="bg-white/5 border-white/10 placeholder:text-gray-400" />}
-              />
-              {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-              
-              <Controller
-                name="description"
-                control={control}
-                render={({ field }: { field: ControllerRenderProps<RoutineFormData, "description"> }) => <Textarea placeholder="A brief description of your routine" {...field} className="bg-white/5 border-white/10 placeholder:text-gray-400" />}
-              />
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="bg-white/5 border-white/10 backdrop-blur-md text-white">
+        <DialogHeader>
+          <DialogTitle>{routine ? 'Edit Routine' : 'Create Routine'}</DialogTitle>
+        </DialogHeader>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <Controller
+            name="name"
+            control={control}
+            render={({ field }: { field: ControllerRenderProps<RoutineFormData, "name"> }) => <Input placeholder="Routine Name (e.g., Morning Power-up)" {...field} className="bg-white/5 border-white/10 placeholder:text-gray-400" />}
+          />
+          {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+          
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }: { field: ControllerRenderProps<RoutineFormData, "description"> }) => <Textarea placeholder="A brief description of your routine" {...field} className="bg-white/5 border-white/10 placeholder:text-gray-400" />}
+          />
 
-              <Controller
-                  name="type"
-                  control={control}
-                  render={({ field }: { field: ControllerRenderProps<RoutineFormData, "type"> }) => (
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <SelectTrigger className="bg-white/5 border-white/10">
-                              <SelectValue placeholder="Select routine type" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-black/80 border-white/10 text-white">
-                              <SelectItem value="Morning">Morning</SelectItem>
-                              <SelectItem value="Evening">Evening</SelectItem>
-                              <SelectItem value="Custom">Custom</SelectItem>
-                          </SelectContent>
-                      </Select>
-                  )}
-              />
+          <Controller
+              name="type"
+              control={control}
+              render={({ field }: { field: ControllerRenderProps<RoutineFormData, "type"> }) => (
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <SelectTrigger className="bg-white/5 border-white/10">
+                          <SelectValue placeholder="Select routine type" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-black/80 border-white/10 text-white">
+                          <SelectItem value="Morning">Morning</SelectItem>
+                          <SelectItem value="Evening">Evening</SelectItem>
+                          <SelectItem value="Custom">Custom</SelectItem>
+                      </SelectContent>
+                  </Select>
+              )}
+          />
 
-              <div>
-                <h3 className="font-semibold mb-2">Tasks</h3>
-                <Controller
-                  name="tasks"
-                  control={control}
-                  render={({ field }: { field: ControllerRenderProps<RoutineFormData, "tasks"> }) => (
-                    <div className="space-y-2 max-h-40 overflow-y-auto border p-2 rounded-md bg-white/5 border-white/10">
-                      {allTodos.map(task => (
-                        <div key={task._id} className="flex items-center space-x-2">
-                           <Checkbox
-                              id={`task-${task._id}`}
-                              checked={field.value?.includes(task._id)}
-                              onCheckedChange={(checked) => {
-                                  const newValue = checked
-                                      ? [...(field.value || []), task._id]
-                                      : (field.value || []).filter(id => id !== task._id);
-                                  field.onChange(newValue);
-                              }}
-                            />
-                          <label htmlFor={`task-${task._id}`}>{task.title}</label>
-                        </div>
-                      ))}
+          <div>
+            <h3 className="font-semibold mb-2">Tasks</h3>
+            <Controller
+              name="tasks"
+              control={control}
+              render={({ field }: { field: ControllerRenderProps<RoutineFormData, "tasks"> }) => (
+                <div className="space-y-2 max-h-40 overflow-y-auto border p-2 rounded-md bg-white/5 border-white/10">
+                  {allTodos.map(task => (
+                    <div key={task._id} className="flex items-center space-x-2">
+                       <Checkbox
+                          id={`task-${task._id}`}
+                          checked={field.value?.includes(task._id)}
+                          onCheckedChange={(checked) => {
+                              const newValue = checked
+                                  ? [...(field.value || []), task._id]
+                                  : (field.value || []).filter(id => id !== task._id);
+                              field.onChange(newValue);
+                          }}
+                        />
+                      <label htmlFor={`task-${task._id}`}>{task.title}</label>
                     </div>
-                  )}
-                />
-              </div>
-              
-              <div>
-                <h3 className="font-semibold mb-2">Habits</h3>
-                <Controller
-                  name="habits"
-                  control={control}
-                  render={({ field }: { field: ControllerRenderProps<RoutineFormData, "habits"> }) => (
-                    <div className="space-y-2 max-h-40 overflow-y-auto border p-2 rounded-md bg-white/5 border-white/10">
-                      {allHabits.map(habit => (
-                        <div key={habit._id} className="flex items-center space-x-2">
-                          <Checkbox
-                              id={`habit-${habit._id}`}
-                              checked={field.value?.includes(habit._id)}
-                              onCheckedChange={(checked) => {
-                                  const newValue = checked
-                                      ? [...(field.value || []), habit._id]
-                                      : (field.value || []).filter(id => id !== habit._id);
-                                  field.onChange(newValue);
-                              }}
-                            />
-                          <label htmlFor={`habit-${habit._id}`}>{habit.name}</label>
-                        </div>
-                      ))}
+                  ))}
+                </div>
+              )}
+            />
+          </div>
+          
+          <div>
+            <h3 className="font-semibold mb-2">Habits</h3>
+            <Controller
+              name="habits"
+              control={control}
+              render={({ field }: { field: ControllerRenderProps<RoutineFormData, "habits"> }) => (
+                <div className="space-y-2 max-h-40 overflow-y-auto border p-2 rounded-md bg-white/5 border-white/10">
+                  {allHabits.map(habit => (
+                    <div key={habit._id} className="flex items-center space-x-2">
+                      <Checkbox
+                          id={`habit-${habit._id}`}
+                          checked={field.value?.includes(habit._id)}
+                          onCheckedChange={(checked) => {
+                              const newValue = checked
+                                  ? [...(field.value || []), habit._id]
+                                  : (field.value || []).filter(id => id !== habit._id);
+                              field.onChange(newValue);
+                          }}
+                        />
+                      <label htmlFor={`habit-${habit._id}`}>{habit.name}</label>
                     </div>
-                  )}
-                />
-              </div>
+                  ))}
+                </div>
+              )}
+            />
+          </div>
 
-              <div className="flex justify-end gap-2">
-                <Button type="button" variant="outline" onClick={onClose} className="bg-white/10 border-white/20">Cancel</Button>
-                <Button type="submit" disabled={isSubmitting} variant="gradient">
-                  {isSubmitting ? 'Saving...' : 'Save Routine'}
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+          <DialogFooter>
+            <Button type="button" variant="outline" onClick={onClose} className="bg-white/10 border-white/20">Cancel</Button>
+            <Button type="submit" disabled={isSubmitting} variant="gradient">
+              {isSubmitting ? 'Saving...' : 'Save Routine'}
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 } 

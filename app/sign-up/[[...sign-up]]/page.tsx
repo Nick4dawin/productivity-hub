@@ -33,6 +33,7 @@ export default function SignUpPage() {
       <div className="absolute inset-0 bg-black/50" />
       
       <SignUp
+        fallbackRedirectUrl="/"
         appearance={{
           variables: {
             colorPrimary: "hsl(262.1 83.3% 57.8%)"
