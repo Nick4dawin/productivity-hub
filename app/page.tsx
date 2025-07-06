@@ -1,18 +1,22 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useUser, useClerk } from "@clerk/clerk-react";
+import { useRouter, usePathname } from "next/navigation";
+import { useUser } from "@clerk/clerk-react";
 import { UserButton } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import {
   Search,
-  LayoutGrid,
-  BookText,
   Smile,
-  XCircle,
   Shuffle,
-  LogOut,
+  ClipboardList,
+  Target,
+  ListTodo,
+  Clapperboard,
+  Activity,
+  CalendarCheck,
+  BrainCircuit,
+  Wallet,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -20,24 +24,46 @@ import { HabitTracker } from "@/components/habit-tracker";
 import { MoodTracker } from "@/components/mood-tracker";
 import { Journal } from "@/components/journal";
 import { TodoList } from "@/components/todo-list";
+import RoutinesPage from "./routines/page";
+import GoalsPage from "./goals/page";
+import MediaPage from "./media/page";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { GlassCard } from "@/components/GlassCard";
+import { Analytics } from "@/components/analytics";
+import { Toaster } from "@/components/ui/toaster";
+import { FinanceTracker } from "@/components/finance-tracker";
+
+interface SidebarItem {
+  id: string;
+  label: string;
+  icon: React.ElementType;
+  isPage?: boolean;
+}
+
+const SIDEBAR_ITEMS: SidebarItem[] = [
+  { id: "dashboard", label: "Dashboard", icon: Activity },
+  { id: "habits", label: "Habits", icon: CalendarCheck },
+  { id: "mood", label: "Mood", icon: Smile },
+  { id: "journal", label: "Journal", icon: BrainCircuit },
+  { id: "todo", label: "To-Do", icon: ListTodo },
+  { id: "media", label: "Media", icon: Clapperboard },
+  { id: "routines", label: "Routines", icon: ClipboardList },
+  { id: "goals", label: "Goals", icon: Target },
+  { id: "finance", label: "Finance", icon: Wallet },
+];
 
 export default function DashboardPage() {
-  const { user } = useUser();
-  const { signOut } = useClerk();
+  const { isLoaded, user } = useUser();
   const router = useRouter();
+  const pathname = usePathname();
   const { theme } = useTheme();
   const [activeView, setActiveView] = useState("dashboard");
   const [wallpaperUrl, setWallpaperUrl] = useState("");
   const [isShuffling, setIsShuffling] = useState(false);
 
-  const handleSignOut = async () => {
-    await signOut();
-    router.push("/sign-in");
-  };
-
   const fetchNewWallpaper = async () => {
+    if (isShuffling) return;
     setIsShuffling(true);
     try {
       const accessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
@@ -60,6 +86,7 @@ export default function DashboardPage() {
       const data = await response.json();
       if (response.ok && data.urls && data.urls.regular) {
         setWallpaperUrl(data.urls.regular);
+        localStorage.setItem('dashboard-wallpaper', data.urls.regular);
       } else {
         console.error("Failed to fetch wallpaper from Unsplash API:", data);
       }
@@ -71,77 +98,53 @@ export default function DashboardPage() {
   };
 
   useEffect(() => {
+    const savedWallpaper = localStorage.getItem('dashboard-wallpaper');
+    if (savedWallpaper) {
+      document.body.style.backgroundImage = `url(${savedWallpaper})`;
+    } else {
     fetchNewWallpaper();
-  }, [theme]);
+    }
+  }, []);
+
+  const handleNavigation = (item: SidebarItem) => {
+    if (item.isPage) {
+      router.push(`/${item.id}`);
+    } else {
+      setActiveView(item.id);
+    }
+  };
 
   const renderContent = () => {
     switch (activeView) {
       case "habits":
-        return <HabitTracker />;
+        return <GlassCard><HabitTracker /></GlassCard>;
       case "mood":
-        return <MoodTracker />;
+        return <GlassCard><MoodTracker /></GlassCard>;
       case "journal":
-        return <Journal />;
+        return <GlassCard><Journal /></GlassCard>;
+      case "routines":
+        return <GlassCard><RoutinesPage /></GlassCard>;
+      case "goals":
+        return <GlassCard><GoalsPage /></GlassCard>;
+      case "todo":
+        return <GlassCard><TodoList /></GlassCard>;
+      case "media":
+        return <MediaPage />;
+      case "finance":
+        return <GlassCard><FinanceTracker /></GlassCard>;
       case "dashboard":
       default:
         return (
-          <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="rounded-lg border border-white/10 bg-white/5 backdrop-blur-md text-card-foreground shadow-lg">
-                <div className="p-6 flex flex-row items-center justify-between pb-2">
-                  <h3 className="tracking-tight text-sm font-medium">
-                    Today's Habits
-                  </h3>
-                  <XCircle className="h-4 w-4 text-muted-foreground" />
-                </div>
-                <div className="p-6">
-                  <div className="text-2xl font-bold">+2</div>
-                  <p className="text-xs text-muted-foreground">
-                    +10% from yesterday
-                  </p>
-                </div>
-              </div>
-              <div className="rounded-lg border border-white/10 bg-white/5 backdrop-blur-md text-card-foreground shadow-lg">
-                <div className="p-6 flex flex-row items-center justify-between pb-2">
-                  <h3 className="tracking-tight text-sm font-medium">
-                    Current Mood
-                  </h3>
-                  <Smile className="h-4 w-4 text-muted-foreground" />
-                </div>
-                <div className="p-6">
-                  <div className="text-2xl font-bold">😊</div>
-                  <p className="text-xs text-muted-foreground">
-                    Feeling great today!
-                  </p>
-                </div>
-              </div>
-              <div className="rounded-lg border border-white/10 bg-white/5 backdrop-blur-md text-card-foreground shadow-lg">
-                <div className="p-6 flex flex-row items-center justify-between pb-2">
-                  <h3 className="tracking-tight text-sm font-medium">
-                    Journal Entry
-                  </h3>
-                  <BookText className="h-4 w-4 text-muted-foreground" />
-                </div>
-                <div className="p-6">
-                  <div className="text-2xl font-bold">View</div>
-                  <p className="text-xs text-muted-foreground">
-                    Write about your day
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="rounded-lg border border-white/10 bg-white/5 backdrop-blur-md text-card-foreground shadow-lg">
-              <div className="p-6">
-                <h3 className="tracking-tight text-sm font-medium">To-Do</h3>
-              </div>
-              <div className="p-6">
-                <TodoList />
-              </div>
-            </div>
-          </>
+          <GlassCard>
+            <Analytics />
+          </GlassCard>
         );
     }
   };
+
+  if (!isLoaded) {
+    return null; // or a loading spinner
+  }
 
   return (
     <>
@@ -176,56 +179,28 @@ export default function DashboardPage() {
               </a>
             </div>
             <div className="flex-1 overflow-auto py-2">
-              <nav className="grid items-start px-4 text-sm font-medium">
-                <button
-                  onClick={() => setActiveView("dashboard")}
-                  className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-3 text-base transition-all hover:bg-white/10",
-                    {
-                      "bg-white/20": activeView === "dashboard",
-                    }
-                  )}
-                >
-                  <LayoutGrid className="h-5 w-5" />
-                  Dashboard
-                </button>
-                <button
-                  onClick={() => setActiveView("habits")}
-                  className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-3 text-base transition-all hover:bg-white/10",
-                    {
-                      "bg-white/20": activeView === "habits",
-                    }
-                  )}
-                >
-                  <XCircle className="h-5 w-5" />
-                  Habits
-                </button>
-                <button
-                  onClick={() => setActiveView("mood")}
-                  className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-3 text-base transition-all hover:bg-white/10",
-                    {
-                      "bg-white/20": activeView === "mood",
-                    }
-                  )}
-                >
-                  <Smile className="h-5 w-5" />
-                  Mood
-                </button>
-                <button
-                  onClick={() => setActiveView("journal")}
-                  className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-3 text-base transition-all hover:bg-white/10",
-                    {
-                      "bg-white/20": activeView === "journal",
-                    }
-                  )}
-                >
-                  <BookText className="h-5 w-5" />
-                  Journal
-                </button>
-              </nav>
+              <div className="flex-1">
+                <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+                  {SIDEBAR_ITEMS.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavigation(item)}
+                      className={cn(
+                        "flex items-center gap-3 rounded-lg px-3 py-3 text-base transition-all hover:bg-white/10",
+                        {
+                          "bg-white/20": item.isPage ? pathname === `/${item.id}` : activeView === item.id,
+                        }
+                      )}
+                    >
+                      <item.icon className="h-5 w-5" />
+                      {item.label}
+                    </button>
+                  ))}
+                </nav>
+              </div>
+              <div className="mt-auto p-4">
+                {/* User button was here, now moved to header */}
+              </div>
             </div>
           </div>
         </div>
@@ -266,29 +241,17 @@ export default function DashboardPage() {
                   />
                 </div>
               </form>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={fetchNewWallpaper}
-                className="bg-transparent hover:bg-white/10"
-                disabled={isShuffling}
-              >
-                <Shuffle
-                  className={cn("h-[1.2rem] w-[1.2rem]", {
-                    "animate-spin": isShuffling,
-                  })}
-                />
-              </Button>
               <ModeToggle />
-              <UserButton afterSignOutUrl="/sign-in" />
               <Button
-                variant="outline"
+                variant="ghost"
                 size="icon"
-                onClick={handleSignOut}
-                className="bg-transparent hover:bg-red-500/10 hover:text-red-500"
+                className="rounded-full"
+                onClick={fetchNewWallpaper}
               >
-                <LogOut className="h-[1.2rem] w-[1.2rem]" />
+                <Shuffle className={`h-5 w-5 ${isShuffling ? "animate-spin" : ""}`} />
+                <span className="sr-only">Shuffle Wallpaper</span>
               </Button>
+              <UserButton afterSignOutUrl="/sign-in" />
             </div>
           </header>
           <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
@@ -296,6 +259,7 @@ export default function DashboardPage() {
           </main>
         </div>
       </div>
+      <Toaster />
     </>
   );
 }

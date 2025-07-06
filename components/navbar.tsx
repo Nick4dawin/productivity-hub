@@ -12,6 +12,8 @@ const navItems = [
   { href: '/habits', label: 'Habits' },
   { href: '/moods', label: 'Mood Tracker' },
   { href: '/journal', label: 'Journal' },
+  { href: '/routines', label: 'Routines' },
+  { href: '/goals', label: 'Goals' },
 ];
 
 export function Navbar() {

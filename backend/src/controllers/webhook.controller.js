@@ -66,8 +66,12 @@ const handleWebhook = async (req, res) => {
 
   if (eventType === 'user.deleted') {
     try {
-      await User.findOneAndDelete({ clerkId: id });
-      console.log('User deleted from DB:', id);
+      if (id) {
+        await User.findOneAndDelete({ clerkId: id });
+        console.log('User deleted from DB:', id);
+      } else {
+        console.warn('Received user.deleted event with null id. Skipping.');
+      }
     } catch (error) {
       console.error('Error deleting user from DB:', error);
       return res.status(500).json({ message: 'Error deleting user' });

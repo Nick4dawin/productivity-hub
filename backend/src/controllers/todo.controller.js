@@ -2,7 +2,7 @@ const Todo = require('../models/Todo');
 
 exports.getAllTodos = async (req, res) => {
   try {
-    const todos = await Todo.find({ userId: req.userId })
+    const todos = await Todo.find({ userId: req.user._id })
       .sort({ createdAt: -1 });
     res.json(todos);
   } catch (error) {
@@ -14,7 +14,7 @@ exports.createTodo = async (req, res) => {
   try {
     const todo = new Todo({
       ...req.body,
-      userId: req.userId
+      userId: req.user._id
     });
     await todo.save();
     res.status(201).json(todo);
@@ -27,7 +27,7 @@ exports.getTodoById = async (req, res) => {
   try {
     const todo = await Todo.findOne({
       _id: req.params.id,
-      userId: req.userId
+      userId: req.user._id
     });
     
     if (!todo) {
@@ -43,7 +43,7 @@ exports.getTodoById = async (req, res) => {
 exports.updateTodo = async (req, res) => {
   try {
     const todo = await Todo.findOneAndUpdate(
-      { _id: req.params.id, userId: req.userId },
+      { _id: req.params.id, userId: req.user._id },
       req.body,
       { new: true }
     );
@@ -62,7 +62,7 @@ exports.deleteTodo = async (req, res) => {
   try {
     const todo = await Todo.findOneAndDelete({
       _id: req.params.id,
-      userId: req.userId
+      userId: req.user._id
     });
 
     if (!todo) {

@@ -1,7 +1,7 @@
 const express = require('express');
 const { body } = require('express-validator');
 const todoController = require('../controllers/todo.controller');
-const auth = require('../middleware/auth');
+const { auth, syncUser } = require('../middleware/auth');
 const validate = require('../middleware/validate');
 
 const router = express.Router();
@@ -14,7 +14,7 @@ const todoValidation = [
 ];
 
 // Routes
-router.use(auth); // Protect all todo routes
+router.use(auth, syncUser); // Protect all todo routes
 
 router.get('/', todoController.getAllTodos);
 router.post('/', todoValidation, validate, todoController.createTodo);

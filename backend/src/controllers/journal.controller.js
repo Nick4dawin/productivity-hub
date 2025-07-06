@@ -5,7 +5,7 @@ const journalController = {
   // Get all journal entries for a user
   getEntries: async (req, res) => {
     try {
-      const entries = await Journal.find({ user: req.userId })
+      const entries = await Journal.find({ user: req.user._id })
         .sort({ date: -1 })
         .limit(30);
       res.json(entries);
@@ -15,26 +15,25 @@ const journalController = {
     }
   },
 
-  // Create a new journal entry with AI analysis
+  // Create a new journal entry
   createEntry: async (req, res) => {
     try {
-      const { content, mood, energy, activities, date } = req.body;
+      const { title, content, category, date } = req.body;
 
       // Get AI analysis
-      const analysis = await analyzeJournalEntry(content, mood, energy, activities);
+      const analysis = await analyzeJournalEntry(content);
 
       const newEntry = new Journal({
-        user: req.userId,
+        user: req.user._id,
+        title,
         content,
-        mood,
-        energy,
-        activities,
+        category,
+        date: date ? new Date(date) : new Date(),
         analysis,
-        date: date ? new Date(date) : new Date()
       });
 
-      const savedEntry = await newEntry.save();
-      res.status(201).json(savedEntry);
+      await newEntry.save();
+      res.status(201).json(newEntry);
     } catch (error) {
       console.error('Error creating journal entry:', error);
       res.status(400).json({ message: 'Error creating journal entry' });
@@ -60,7 +59,7 @@ const journalController = {
       };
 
       const updatedEntry = await Journal.findOneAndUpdate(
-        { _id: req.params.id, user: req.userId },
+        { _id: req.params.id, user: req.user._id },
         { $set: updateData },
         { new: true }
       );
@@ -81,7 +80,7 @@ const journalController = {
     try {
       const deletedEntry = await Journal.findOneAndDelete({
         _id: req.params.id,
-        user: req.userId
+        user: req.user._id
       });
 
       if (!deletedEntry) {

@@ -4,8 +4,8 @@ const moodController = {
   // Get all moods for a user
   getMoods: async (req, res) => {
     try {
-      console.log('Getting moods for user:', req.userId);
-      const moods = await Mood.find({ user: req.userId })
+      console.log('Getting moods for user:', req.user._id);
+      const moods = await Mood.find({ user: req.user._id })
         .sort({ date: -1 })
         .limit(30); // Limit to last 30 entries
       console.log('Found moods:', moods.length);
@@ -23,7 +23,7 @@ const moodController = {
       console.log('Creating mood:', { mood, energy, activities, note, date });
 
       const newMood = new Mood({
-        user: req.userId,
+        user: req.user._id,
         mood,
         energy,
         activities,
@@ -47,7 +47,7 @@ const moodController = {
       console.log('Updating mood:', req.params.id, { mood, energy, activities, note });
 
       const updatedMood = await Mood.findOneAndUpdate(
-        { _id: req.params.id, user: req.userId },
+        { _id: req.params.id, user: req.user._id },
         { $set: { mood, energy, activities, note } },
         { new: true }
       );
@@ -71,7 +71,7 @@ const moodController = {
       console.log('Deleting mood:', req.params.id);
       const deletedMood = await Mood.findOneAndDelete({
         _id: req.params.id,
-        user: req.userId
+        user: req.user._id
       });
 
       if (!deletedMood) {

@@ -6,29 +6,33 @@ const journalSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  title: {
+    type: String,
+    required: true,
+  },
   content: {
     type: String,
     required: true
   },
+  category: {
+    type: String,
+    required: true,
+  },
   mood: {
     type: String,
-    required: true
   },
   energy: {
     type: String,
-    required: true
   },
   activities: [{
     type: String
   }],
   analysis: {
     summary: String,
-    insights: String,
+    sentiment: String,
+    keywords: [String],
     suggestions: [String],
-    activities: [String],
-    affirmations: [String],
-    motivation: String,
-    consolation: String
+    insights: String,
   },
   date: {
     type: Date,

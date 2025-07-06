@@ -1,91 +1,187 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Button } from "./ui/button"
-import { format, startOfWeek, startOfMonth, startOfYear, addDays, subDays } from "date-fns"
+import { format, subDays, subMonths } from "date-fns"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts'
+import { GlassCard } from "./GlassCard"
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
 
-export function Analytics() {
-  const [timeRange, setTimeRange] = useState<'day' | 'week' | 'month' | 'year'>('week')
+const RADIAN = Math.PI / 180;
 
-  const mockData = {
-    tasks: {
-      completed: 15,
-      total: 20,
-      completionRate: "75%",
-      history: Array.from({ length: 7 }, (_, i) => ({
-        date: format(subDays(new Date(), 6 - i), 'MMM dd'),
-        completed: Math.floor(Math.random() * 8),
-        total: 8
-      }))
-    },
-    habits: {
-      streaks: 5,
-      bestStreak: 7,
-      completionRate: "80%",
-      byCategory: [
-        { name: 'Health', value: 8 },
-        { name: 'Productivity', value: 6 },
-        { name: 'Learning', value: 4 },
-        { name: 'Mindfulness', value: 3 }
-      ]
-    },
-    mood: {
-      average: "😊",
-      topMood: "🤗",
-      entries: 14,
-      history: Array.from({ length: 7 }, (_, i) => ({
-        date: format(subDays(new Date(), 6 - i), 'MMM dd'),
-        value: Math.floor(Math.random() * 5) + 1
-      }))
-    },
-    journal: {
-      entries: 10,
-      wordsWritten: 2500,
-      averageLength: 250
-    }
-  }
+interface CustomizedLabelProps {
+  cx: number;
+  cy: number;
+  midAngle: number;
+  innerRadius: number;
+  outerRadius: number;
+  percent: number;
+  index: number;
+  payload: {
+    name: string;
+  };
+}
+
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, payload }: CustomizedLabelProps) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  const textAnchor = x > cx ? 'start' : 'end';
 
   return (
-    <div className="space-y-8">
+    <g>
+      <text x={x} y={y} fill="white" textAnchor={textAnchor} dominantBaseline="central">
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+      <text x={cx + (outerRadius + 30) * Math.cos(-midAngle * RADIAN)} y={cy + (outerRadius + 30) * Math.sin(-midAngle * RADIAN)} fill="white" textAnchor={textAnchor} dominantBaseline="central">
+        {payload.name}
+      </text>
+    </g>
+  );
+};
+
+export function Analytics() {
+  const [timeRange, setTimeRange] = useState<'day' | 'week' | 'month' | 'year'>('week')
+  
+  // Generate dynamic data based on timeRange
+  const mockData = useMemo(() => {
+    // Create date ranges based on selected time period
+    let historyLength = 0;
+    let dateFormat = "";
+    let tasksHistoryData = [];
+    let moodHistoryData = [];
+    
+    switch(timeRange) {
+      case 'day':
+        historyLength = 24; // 24 hours
+        dateFormat = 'HH:mm';
+        // Generate hourly data for the day
+        tasksHistoryData = Array.from({ length: historyLength }, (_, i) => ({
+          date: format(new Date(new Date().setHours(i, 0, 0, 0)), dateFormat),
+          completed: Math.floor(Math.random() * 3),
+          total: Math.floor(Math.random() * 5) + 1
+        }));
+        moodHistoryData = Array.from({ length: historyLength }, (_, i) => ({
+          date: format(new Date(new Date().setHours(i, 0, 0, 0)), dateFormat),
+          value: Math.floor(Math.random() * 5) + 1
+        }));
+        break;
+      case 'week':
+        historyLength = 7; // 7 days
+        dateFormat = 'EEE dd';
+        // Generate daily data for the week
+        tasksHistoryData = Array.from({ length: historyLength }, (_, i) => ({
+          date: format(subDays(new Date(), 6 - i), dateFormat),
+          completed: Math.floor(Math.random() * 8),
+          total: 8
+        }));
+        moodHistoryData = Array.from({ length: historyLength }, (_, i) => ({
+          date: format(subDays(new Date(), 6 - i), dateFormat),
+          value: Math.floor(Math.random() * 5) + 1
+        }));
+        break;
+      case 'month':
+        historyLength = 30; // ~30 days
+        dateFormat = 'MMM dd';
+        // Generate daily data for the month
+        tasksHistoryData = Array.from({ length: historyLength }, (_, i) => ({
+          date: format(subDays(new Date(), historyLength - 1 - i), dateFormat),
+          completed: Math.floor(Math.random() * 10),
+          total: 10
+        }));
+        moodHistoryData = Array.from({ length: historyLength }, (_, i) => ({
+          date: format(subDays(new Date(), historyLength - 1 - i), dateFormat),
+          value: Math.floor(Math.random() * 5) + 1
+        }));
+        break;
+      case 'year':
+        historyLength = 12; // 12 months
+        dateFormat = 'MMM';
+        // Generate monthly data for the year
+        tasksHistoryData = Array.from({ length: historyLength }, (_, i) => ({
+          date: format(subMonths(new Date(), historyLength - 1 - i), dateFormat),
+          completed: Math.floor(Math.random() * 30),
+          total: 40
+        }));
+        moodHistoryData = Array.from({ length: historyLength }, (_, i) => ({
+          date: format(subMonths(new Date(), historyLength - 1 - i), dateFormat),
+          value: Math.floor(Math.random() * 5) + 1
+        }));
+        break;
+    }
+    
+    return {
+      tasks: {
+        completed: 15,
+        total: 20,
+        completionRate: "75%",
+        history: tasksHistoryData
+      },
+      habits: {
+        streaks: 5,
+        bestStreak: 7,
+        completionRate: "80%",
+        byCategory: [
+          { name: 'Health', value: 8 },
+          { name: 'Productivity', value: 6 },
+          { name: 'Learning', value: 4 },
+          { name: 'Mindfulness', value: 3 }
+        ]
+      },
+      mood: {
+        average: "😊",
+        topMood: "🤗",
+        entries: 14,
+        history: moodHistoryData
+      },
+      journal: {
+        entries: 10,
+        wordsWritten: 2500,
+        averageLength: 250
+      }
+    };
+  }, [timeRange]);
+
+  return (
+    <div className="space-y-8 p-4 md:p-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Tasks Card */}
-        <div className="p-4 border rounded-lg space-y-2 bg-card">
+        <GlassCard>
           <h3 className="font-medium">Tasks</h3>
           <div className="text-2xl font-bold">{mockData.tasks.completionRate}</div>
           <p className="text-sm text-muted-foreground">
             {mockData.tasks.completed} of {mockData.tasks.total} tasks completed
           </p>
-        </div>
+        </GlassCard>
 
         {/* Habits Card */}
-        <div className="p-4 border rounded-lg space-y-2 bg-card">
+        <GlassCard>
           <h3 className="font-medium">Habits</h3>
           <div className="text-2xl font-bold">{mockData.habits.streaks} days</div>
           <p className="text-sm text-muted-foreground">
             Current streak (Best: {mockData.habits.bestStreak})
           </p>
-        </div>
+        </GlassCard>
 
         {/* Mood Card */}
-        <div className="p-4 border rounded-lg space-y-2 bg-card">
+        <GlassCard>
           <h3 className="font-medium">Mood</h3>
           <div className="text-2xl">{mockData.mood.average}</div>
           <p className="text-sm text-muted-foreground">
             Average mood from {mockData.mood.entries} entries
           </p>
-        </div>
+        </GlassCard>
 
         {/* Journal Card */}
-        <div className="p-4 border rounded-lg space-y-2 bg-card">
+        <GlassCard>
           <h3 className="font-medium">Journal</h3>
           <div className="text-2xl font-bold">{mockData.journal.entries}</div>
           <p className="text-sm text-muted-foreground">
             Entries ({mockData.journal.wordsWritten} words)
           </p>
-        </div>
+        </GlassCard>
       </div>
 
       <div className="space-y-4">
@@ -118,7 +214,7 @@ export function Analytics() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Task Completion Chart */}
-          <div className="border rounded-lg p-4 bg-card">
+          <GlassCard>
             <h3 className="font-medium mb-4">Task Completion</h3>
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -132,10 +228,10 @@ export function Analytics() {
                 </BarChart>
               </ResponsiveContainer>
             </div>
-          </div>
+          </GlassCard>
 
           {/* Mood Tracking Chart */}
-          <div className="border rounded-lg p-4 bg-card">
+          <GlassCard>
             <h3 className="font-medium mb-4">Mood Tracking</h3>
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -154,10 +250,10 @@ export function Analytics() {
                 </LineChart>
               </ResponsiveContainer>
             </div>
-          </div>
+          </GlassCard>
 
           {/* Habits by Category */}
-          <div className="border rounded-lg p-4 bg-card">
+          <GlassCard>
             <h3 className="font-medium mb-4">Habits by Category</h3>
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -167,7 +263,7 @@ export function Analytics() {
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    label={renderCustomizedLabel}
                     outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"
@@ -180,7 +276,7 @@ export function Analytics() {
                 </PieChart>
               </ResponsiveContainer>
             </div>
-          </div>
+          </GlassCard>
         </div>
       </div>
     </div>

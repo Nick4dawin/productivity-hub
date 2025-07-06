@@ -2,7 +2,7 @@ const Habit = require('../models/Habit');
 
 exports.getAllHabits = async (req, res) => {
   try {
-    const habits = await Habit.find({ userId: req.userId })
+    const habits = await Habit.find({ userId: req.user._id })
       .sort({ createdAt: -1 });
     console.log('[GET] Habits fetched:', habits.length);
     res.json(habits);
@@ -16,7 +16,7 @@ exports.createHabit = async (req, res) => {
   try {
     const habit = new Habit({
       ...req.body,
-      userId: req.userId
+      userId: req.user._id
     });
     await habit.save();
     console.log('[POST] Habit created:', habit);
@@ -31,7 +31,7 @@ exports.getHabitById = async (req, res) => {
   try {
     const habit = await Habit.findOne({
       _id: req.params.id,
-      userId: req.userId
+      userId: req.user._id
     });
     
     if (!habit) {
@@ -50,7 +50,7 @@ exports.getHabitById = async (req, res) => {
 exports.updateHabit = async (req, res) => {
   try {
     const habit = await Habit.findOneAndUpdate(
-      { _id: req.params.id, userId: req.userId },
+      { _id: req.params.id, userId: req.user._id },
       req.body,
       { new: true }
     );
@@ -72,7 +72,7 @@ exports.deleteHabit = async (req, res) => {
   try {
     const habit = await Habit.findOneAndDelete({
       _id: req.params.id,
-      userId: req.userId
+      userId: req.user._id
     });
 
     if (!habit) {
@@ -92,7 +92,7 @@ exports.toggleHabitDate = async (req, res) => {
   try {
     const habit = await Habit.findOne({
       _id: req.params.id,
-      userId: req.userId
+      userId: req.user._id
     });
 
     if (!habit) {

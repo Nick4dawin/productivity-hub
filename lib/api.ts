@@ -54,10 +54,66 @@ export interface Mood {
 
 export interface JournalEntry {
   _id: string;
+  user: string;
   title: string;
   content: string;
   category: string;
   date: string;
+  analysis?: {
+    summary: string;
+    sentiment: string;
+    keywords: string[];
+    suggestions: string[];
+    insights: string;
+  };
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface Media {
+  _id: string;
+  user: string;
+  title: string;
+  type: 'Movie' | 'TV Show' | 'Book' | 'Game';
+  genre?: string;
+  status?: 'Completed' | 'In Progress' | 'Planned';
+  rating?: number;
+  review?: string;
+  imageUrl?: string;
+  episodesWatched?: number;
+  totalEpisodes?: number;
+  pagesRead?: number;
+  totalPages?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface Routine {
+  _id: string;
+  name: string;
+  description?: string;
+  tasks: Todo[];
+  habits: Habit[];
+  type: 'Morning' | 'Evening' | 'Custom';
+}
+
+export interface Milestone {
+  _id: string;
+  title: string;
+  completed: boolean;
+  dueDate?: string;
+}
+
+export interface Goal {
+  _id: string;
+  title: string;
+  specific?: string;
+  measurable?: string;
+  achievable?: string;
+  relevant?: string;
+  timeBound?: string;
+  status: 'Not Started' | 'In Progress' | 'Completed' | 'On Hold';
+  milestones: Milestone[];
 }
 
 // Auth API calls
@@ -160,6 +216,41 @@ export async function toggleHabitDate(id: string, date: string): Promise<Habit> 
   const result = await response.json();
   console.log('Toggled habit:', result);
   return result;
+}
+
+export async function updateHabit(id: string, data: Partial<Omit<Habit, '_id'>>): Promise<Habit> {
+  console.log('Updating habit:', { id, data });
+  const response = await fetch(`${API_BASE_URL}/habits/${id}`, {
+    method: 'PUT',
+    headers: await getAuthHeaders(),
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Failed to update habit:', error);
+    throw new Error(error.message || 'Failed to update habit');
+  }
+
+  const result = await response.json();
+  console.log('Updated habit:', result);
+  return result;
+}
+
+export async function deleteHabit(id: string): Promise<void> {
+  console.log('Deleting habit:', id);
+  const response = await fetch(`${API_BASE_URL}/habits/${id}`, {
+    method: 'DELETE',
+    headers: await getAuthHeaders(),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Failed to delete habit:', error);
+    throw new Error(error.message || 'Failed to delete habit');
+  }
+
+  console.log('Deleted habit:', id);
 }
 
 // Todo API calls
@@ -270,6 +361,41 @@ export async function createMood(data: Omit<Mood, '_id'>): Promise<Mood> {
   return result;
 }
 
+export async function updateMood(id: string, data: Partial<Mood>): Promise<Mood> {
+  console.log('Updating mood:', { id, data });
+  const response = await fetch(`${API_BASE_URL}/moods/${id}`, {
+    method: 'PUT',
+    headers: await getAuthHeaders(),
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Failed to update mood:', error);
+    throw new Error(error.message || 'Failed to update mood');
+  }
+
+  const result = await response.json();
+  console.log('Updated mood:', result);
+  return result;
+}
+
+export async function deleteMood(id: string): Promise<void> {
+  console.log('Deleting mood:', id);
+  const response = await fetch(`${API_BASE_URL}/moods/${id}`, {
+    method: 'DELETE',
+    headers: await getAuthHeaders(),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Failed to delete mood:', error);
+    throw new Error(error.message || 'Failed to delete mood');
+  }
+
+  console.log('Deleted mood:', id);
+}
+
 // Journal API calls
 export async function getJournalEntries(): Promise<JournalEntry[]> {
   console.log('Fetching journal entries');
@@ -340,3 +466,345 @@ export async function deleteJournalEntry(id: string): Promise<void> {
   }
   console.log('Deleted journal entry:', id);
 }
+
+// Routine API calls
+export async function getRoutines(): Promise<Routine[]> {
+  console.log('Fetching routines');
+  const response = await fetch(`${API_BASE_URL}/routines`, {
+    headers: await getAuthHeaders(),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Failed to fetch routines:', error);
+    throw new Error(error.message || 'Failed to fetch routines');
+  }
+
+  const data = await response.json();
+  console.log('Fetched routines:', data);
+  return data;
+}
+
+export async function createRoutine(data: Omit<Routine, '_id' | 'tasks' | 'habits'> & { tasks?: string[], habits?: string[] }): Promise<Routine> {
+  console.log('Creating routine:', data);
+  const response = await fetch(`${API_BASE_URL}/routines`, {
+    method: 'POST',
+    headers: await getAuthHeaders(),
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Failed to create routine:', error);
+    throw new Error(error.message || 'Failed to create routine');
+  }
+
+  const result = await response.json();
+  console.log('Created routine:', result);
+  return result;
+}
+
+export async function updateRoutine(id: string, data: Partial<Omit<Routine, '_id' | 'tasks' | 'habits'>> & { tasks?: string[], habits?: string[] }): Promise<Routine> {
+  console.log('Updating routine:', id, data);
+  const response = await fetch(`${API_BASE_URL}/routines/${id}`, {
+    method: 'PUT',
+    headers: await getAuthHeaders(),
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Failed to update routine:', error);
+    throw new Error(error.message || 'Failed to update routine');
+  }
+
+  const result = await response.json();
+  console.log('Updated routine:', result);
+  return result;
+}
+
+export async function deleteRoutine(id: string): Promise<void> {
+  console.log('Deleting routine:', id);
+  const response = await fetch(`${API_BASE_URL}/routines/${id}`, {
+    method: 'DELETE',
+    headers: await getAuthHeaders(),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Failed to delete routine:', error);
+    throw new Error(error.message || 'Failed to delete routine');
+  }
+
+  console.log('Deleted routine');
+}
+
+// Goal API calls
+export async function getGoals(): Promise<Goal[]> {
+  const response = await fetch(`${API_BASE_URL}/goals`, {
+    headers: await getAuthHeaders(),
+  });
+  if (!response.ok) throw new Error('Failed to fetch goals');
+  return response.json();
+}
+
+export async function createGoal(data: Omit<Goal, '_id' | 'milestones'> & { milestones?: Omit<Milestone, '_id'>[] }): Promise<Goal> {
+  const response = await fetch(`${API_BASE_URL}/goals`, {
+    method: 'POST',
+    headers: await getAuthHeaders(),
+    body: JSON.stringify(data),
+  });
+  if (!response.ok) throw new Error('Failed to create goal');
+  return response.json();
+}
+
+export async function updateGoal(id: string, data: Partial<Omit<Goal, '_id' | 'milestones'>> & { milestones?: Partial<Milestone>[] }): Promise<Goal> {
+    const response = await fetch(`${API_BASE_URL}/goals/${id}`, {
+    method: 'PUT',
+    headers: await getAuthHeaders(),
+    body: JSON.stringify(data),
+  });
+  if (!response.ok) throw new Error('Failed to update goal');
+  return response.json();
+}
+
+export async function deleteGoal(id: string): Promise<void> {
+  const response = await fetch(`${API_BASE_URL}/goals/${id}`, {
+    method: 'DELETE',
+    headers: await getAuthHeaders(),
+  });
+  if (!response.ok) throw new Error('Failed to delete goal');
+}
+
+// Media API
+export async function getMedia(): Promise<Media[]> {
+  const res = await fetch(`${API_BASE_URL}/media`, { headers: await getAuthHeaders() });
+  if (!res.ok) throw new Error('Failed to fetch media');
+  return res.json();
+}
+
+export async function createMedia(mediaData: Partial<Media>): Promise<Media> {
+  const res = await fetch(`${API_BASE_URL}/media`, {
+    method: 'POST',
+    headers: await getAuthHeaders(),
+    body: JSON.stringify(mediaData),
+  });
+  if (!res.ok) throw new Error('Failed to create media entry');
+  return res.json();
+}
+
+export async function updateMedia(id: string, mediaData: Partial<Media>): Promise<Media> {
+  const res = await fetch(`${API_BASE_URL}/media/${id}`, {
+    method: 'PUT',
+    headers: await getAuthHeaders(),
+    body: JSON.stringify(mediaData),
+  });
+  if (!res.ok) throw new Error('Failed to update media entry');
+  return res.json();
+}
+
+export async function deleteMedia(id: string): Promise<void> {
+  const res = await fetch(`${API_BASE_URL}/media/${id}`, {
+    method: 'DELETE',
+    headers: await getAuthHeaders(),
+  });
+  if (!res.ok) throw new Error('Failed to delete media entry');
+}
+
+export const searchExternalMedia = async (type: string, query: string) => {
+    const url = new URL(`${API_BASE_URL}/media/search`);
+    url.searchParams.append('type', type);
+    url.searchParams.append('query', query);
+    
+    const response = await fetch(url.toString(), {
+        method: 'GET',
+        headers: await getAuthHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to search external media');
+    return response.json();
+};
+
+// Account API
+export interface Account {
+  _id: string;
+  name: string;
+  type: 'Checking' | 'Savings' | 'Investment' | 'Credit Card' | 'Cash' | 'Other';
+  balance: number;
+}
+
+export const getAccounts = async (): Promise<Account[]> => {
+  const response = await fetch(`${API_BASE_URL}/accounts`, { headers: await getAuthHeaders() });
+  const data = await response.json();
+  return data;
+};
+
+export const createAccount = async (account: Omit<Account, '_id'>): Promise<Account> => {
+  const response = await fetch(`${API_BASE_URL}/accounts`, { 
+    method: 'POST', 
+    headers: await getAuthHeaders(), 
+    body: JSON.stringify(account) 
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const updateAccount = async (id: string, account: Partial<Account>): Promise<Account> => {
+  const response = await fetch(`${API_BASE_URL}/accounts/${id}`, { 
+    method: 'PUT', 
+    headers: await getAuthHeaders(), 
+    body: JSON.stringify(account) 
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const deleteAccount = async (id: string): Promise<{ msg: string }> => {
+  const response = await fetch(`${API_BASE_URL}/accounts/${id}`, { 
+    method: 'DELETE', 
+    headers: await getAuthHeaders() 
+  });
+  const data = await response.json();
+  return data;
+};
+
+// Finance API
+export interface FinanceEntry {
+  _id: string;
+  type: 'income' | 'expense';
+  category: string;
+  amount: number;
+  description?: string;
+  date: string;
+  account: {
+    _id: string;
+    name: string;
+    type: string;
+  } | string;
+}
+
+export const getFinances = async (): Promise<FinanceEntry[]> => {
+  const response = await fetch(`${API_BASE_URL}/finance`, { headers: await getAuthHeaders() });
+  const data = await response.json();
+  return data;
+};
+
+export const createFinance = async (entry: Omit<FinanceEntry, '_id'>): Promise<FinanceEntry> => {
+  const response = await fetch(`${API_BASE_URL}/finance`, { 
+    method: 'POST', 
+    headers: await getAuthHeaders(), 
+    body: JSON.stringify(entry) 
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const updateFinance = async (id: string, entry: Partial<FinanceEntry>): Promise<FinanceEntry> => {
+  const response = await fetch(`${API_BASE_URL}/finance/${id}`, { 
+    method: 'PUT', 
+    headers: await getAuthHeaders(), 
+    body: JSON.stringify(entry) 
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const deleteFinance = async (id: string): Promise<{ msg: string }> => {
+  const response = await fetch(`${API_BASE_URL}/finance/${id}`, { 
+    method: 'DELETE', 
+    headers: await getAuthHeaders() 
+  });
+  const data = await response.json();
+  return data;
+};
+
+// Subscription API
+export interface Subscription {
+  _id: string;
+  name: string;
+  amount: number;
+  billingCycle: 'monthly' | 'yearly' | 'weekly' | 'quarterly';
+  category: string;
+  nextBillingDate: string;
+  description?: string;
+  active: boolean;
+}
+
+export const getSubscriptions = async (): Promise<Subscription[]> => {
+  const response = await fetch(`${API_BASE_URL}/subscriptions`, { headers: await getAuthHeaders() });
+  const data = await response.json();
+  return data;
+};
+
+export const createSubscription = async (subscription: Omit<Subscription, '_id'>): Promise<Subscription> => {
+  const response = await fetch(`${API_BASE_URL}/subscriptions`, { 
+    method: 'POST', 
+    headers: await getAuthHeaders(), 
+    body: JSON.stringify(subscription) 
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const updateSubscription = async (id: string, subscription: Partial<Subscription>): Promise<Subscription> => {
+  const response = await fetch(`${API_BASE_URL}/subscriptions/${id}`, { 
+    method: 'PUT', 
+    headers: await getAuthHeaders(), 
+    body: JSON.stringify(subscription) 
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const deleteSubscription = async (id: string): Promise<{ msg: string }> => {
+  const response = await fetch(`${API_BASE_URL}/subscriptions/${id}`, { 
+    method: 'DELETE', 
+    headers: await getAuthHeaders() 
+  });
+  const data = await response.json();
+  return data;
+};
+
+// Budget API
+export interface Budget {
+  _id: string;
+  category: string;
+  amount: number;
+  period: 'monthly' | 'yearly' | 'weekly';
+  description?: string;
+  color?: string;
+}
+
+export const getBudgets = async (): Promise<Budget[]> => {
+  const response = await fetch(`${API_BASE_URL}/budgets`, { headers: await getAuthHeaders() });
+  const data = await response.json();
+  return data;
+};
+
+export const createBudget = async (budget: Omit<Budget, '_id'>): Promise<Budget> => {
+  const response = await fetch(`${API_BASE_URL}/budgets`, { 
+    method: 'POST', 
+    headers: await getAuthHeaders(), 
+    body: JSON.stringify(budget) 
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const updateBudget = async (id: string, budget: Partial<Budget>): Promise<Budget> => {
+  const response = await fetch(`${API_BASE_URL}/budgets/${id}`, { 
+    method: 'PUT', 
+    headers: await getAuthHeaders(), 
+    body: JSON.stringify(budget) 
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const deleteBudget = async (id: string): Promise<{ msg: string }> => {
+  const response = await fetch(`${API_BASE_URL}/budgets/${id}`, { 
+    method: 'DELETE', 
+    headers: await getAuthHeaders() 
+  });
+  const data = await response.json();
+  return data;
+};

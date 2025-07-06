@@ -1,7 +1,7 @@
 const express = require('express');
 const { body } = require('express-validator');
 const habitController = require('../controllers/habit.controller');
-const auth = require('../middleware/auth');
+const { auth, syncUser } = require('../middleware/auth');
 const validate = require('../middleware/validate');
 
 const router = express.Router();
@@ -14,7 +14,7 @@ const habitValidation = [
 ];
 
 // Routes
-router.use(auth); // Protect all habit routes
+router.use(auth, syncUser); // Protect all habit routes
 
 router.get('/', habitController.getAllHabits);
 router.post('/', habitValidation, validate, habitController.createHabit);

@@ -4,27 +4,24 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
-const analyzeJournalEntry = async (entry, mood, energy, activities) => {
+const analyzeJournalEntry = async (content, mood, energy, activities) => {
   try {
-    const prompt = `
-    As an empathetic AI counselor, analyze this journal entry and provide insights:
-    
-    Journal Entry: "${entry}"
-    Current Mood: ${mood}
-    Energy Level: ${energy}
-    Activities: ${activities.join(', ')}
+    let prompt = `As an empathetic AI counselor, analyze this journal entry and provide insights.
+    Journal Entry: "${content}"`;
 
+    if (mood) prompt += `\nCurrent Mood: ${mood}`;
+    if (energy) prompt += `\nEnergy Level: ${energy}`;
+    if (activities && activities.length > 0) prompt += `\nActivities: ${activities.join(', ')}`;
+    
+    prompt += `
     Please provide a response in the following JSON format:
     {
-      "summary": "Brief summary of the key points and emotions expressed",
-      "insights": "Psychological insights and patterns noticed",
-      "suggestions": ["List of 2-3 actionable suggestions for improvement"],
-      "activities": ["List of 2-3 recommended activities based on the entry"],
-      "affirmations": ["List of 2-3 personalized affirmations"],
-      "motivation": "A motivational message based on the entry",
-      "consolation": "An empathetic message addressing any negative emotions (if present)"
-    }
-    `;
+      "summary": "Brief summary of the key points and emotions expressed.",
+      "sentiment": "A single word describing the sentiment (e.g., 'Positive', 'Negative', 'Neutral').",
+      "keywords": ["An array of 3-5 relevant keywords."],
+      "suggestions": ["A list of 2-3 actionable suggestions for improvement based on the entry."],
+      "insights": "Provide deeper insights, underlying patterns, or potential long-term reflections based on the content. Be empathetic and constructive."
+    }`;
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
@@ -37,7 +34,13 @@ const analyzeJournalEntry = async (entry, mood, energy, activities) => {
     return JSON.parse(completion.choices[0].message.content);
   } catch (error) {
     console.error('Error analyzing journal entry with Groq:', error);
-    throw new Error('Failed to analyze journal entry');
+    return {
+      summary: 'Could not analyze entry.',
+      sentiment: 'Neutral',
+      keywords: [],
+      suggestions: [],
+      insights: 'No insights available.'
+    };
   }
 };
 

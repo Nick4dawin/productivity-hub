@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@clerk/nextjs";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface AuthStore {
   getToken: (() => Promise<string | null>) | null;
@@ -12,11 +12,19 @@ export const authStore: AuthStore = {
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const { getToken } = useAuth();
+  const { getToken, isLoaded } = useAuth();
+  const [authReady, setAuthReady] = useState(false);
 
   useEffect(() => {
-    authStore.getToken = getToken;
-  }, [getToken]);
+    if (isLoaded) {
+      authStore.getToken = getToken;
+      setAuthReady(true);
+    }
+  }, [getToken, isLoaded]);
 
-  return <div>{children}</div>;
+  if (!authReady) {
+    return null; // Or a loading spinner
+  }
+
+  return <>{children}</>;
 }; 

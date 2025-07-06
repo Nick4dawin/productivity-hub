@@ -5,10 +5,13 @@ import { Button } from "./ui/button"
 import { Textarea } from "./ui/textarea"
 import { Input } from "./ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-import { Plus, Calendar } from "lucide-react"
-import { getJournalEntries, createJournalEntry, type JournalEntry } from "@/lib/api"
+import { Plus, Calendar, BrainCircuit, Edit, Trash, MoreHorizontal } from "lucide-react"
+import { getJournalEntries, createJournalEntry, updateJournalEntry, deleteJournalEntry, type JournalEntry } from "@/lib/api"
 import { useToast } from "./ui/use-toast"
 import { format } from "date-fns"
+import { JournalAnalysis } from "./journal-analysis"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "./ui/dialog"
 
 const categories = ["Personal", "Work", "Health", "Learning", "Other"]
 
@@ -19,7 +22,12 @@ export function Journal() {
   const [content, setContent] = useState("")
   const [category, setCategory] = useState("Personal")
   const [isLoading, setIsLoading] = useState(true)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
+  const [isAnalysisModalOpen, setIsAnalysisModalOpen] = useState(false);
+  const [selectedEntry, setSelectedEntry] = useState<JournalEntry | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [editingEntry, setEditingEntry] = useState<JournalEntry | null>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -55,6 +63,7 @@ export function Journal() {
     }
 
     try {
+      setIsSubmitting(true)
       console.log('Adding journal entry:', { title, content, category })
       const entry = await createJournalEntry({
         title: title.trim(),
@@ -63,7 +72,7 @@ export function Journal() {
         date: format(new Date(), "yyyy-MM-dd"),
       })
       console.log('Added journal entry:', entry)
-      setEntries(prev => [...prev, entry])
+      setEntries(prev => [entry, ...prev])
       setTitle("")
       setContent("")
       setCategory("Personal")
@@ -78,7 +87,88 @@ export function Journal() {
         description: "Failed to create journal entry",
         variant: "destructive",
       })
+    } finally {
+      setIsSubmitting(false)
     }
+  }
+  
+  const handleEditEntry = (entry: JournalEntry) => {
+    setEditingEntry(entry)
+    setTitle(entry.title)
+    setContent(entry.content)
+    setCategory(entry.category)
+    setIsEditModalOpen(true)
+  }
+  
+  const handleUpdateEntry = async () => {
+    if (!editingEntry || !title.trim() || !content.trim()) {
+      toast({
+        title: "Error",
+        description: "Please fill in both title and content",
+        variant: "destructive",
+      })
+      return
+    }
+
+    try {
+      setIsSubmitting(true)
+      const updatedEntry = await updateJournalEntry(editingEntry._id, {
+        title: title.trim(),
+        content: content.trim(),
+        category,
+        // Request new AI analysis since content changed
+        requestAnalysis: true
+      })
+
+      setEntries(prev => prev.map(entry => 
+        entry._id === updatedEntry._id ? updatedEntry : entry
+      ))
+      
+      setIsEditModalOpen(false)
+      setEditingEntry(null)
+      setTitle("")
+      setContent("")
+      setCategory("Personal")
+      
+      toast({
+        title: "Success",
+        description: "Journal entry updated successfully",
+      })
+    } catch (error) {
+      console.error('Error updating journal entry:', error)
+      toast({
+        title: "Error",
+        description: "Failed to update journal entry",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+  
+  const handleDeleteEntry = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this journal entry?")) return
+
+    try {
+      await deleteJournalEntry(id)
+      setEntries(prev => prev.filter(entry => entry._id !== id))
+      toast({
+        title: "Success",
+        description: "Journal entry deleted successfully",
+      })
+    } catch (error) {
+      console.error('Error deleting journal entry:', error)
+      toast({
+        title: "Error",
+        description: "Failed to delete journal entry",
+        variant: "destructive",
+      })
+    }
+  }
+
+  const handleOpenAnalysis = (entry: JournalEntry) => {
+    setSelectedEntry(entry);
+    setIsAnalysisModalOpen(true);
   }
 
   // Don't render until mounted to prevent hydration issues
@@ -92,42 +182,49 @@ export function Journal() {
     )
   }
 
+  const renderJournalForm = () => (
+    <div className="space-y-4">
+      <div className="flex gap-4">
+        <Input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Entry title..."
+          className="flex-1 bg-white/5 border-white/10 placeholder:text-gray-400"
+        />
+        <Select
+          value={category}
+          onValueChange={setCategory}
+        >
+          <SelectTrigger className="w-[180px] bg-white/5 border-white/10">
+            <SelectValue placeholder="Select category" />
+          </SelectTrigger>
+          <SelectContent className="bg-black/80 border-white/10 text-white">
+            {categories.map(cat => (
+              <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <Textarea
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        placeholder="Write your thoughts..."
+        className="min-h-[200px] bg-white/5 border-white/10 placeholder:text-gray-400"
+      />
+    </div>
+  )
+
   return (
+    <>
     <div className="space-y-6">
       <div className="space-y-4">
-        <div className="flex gap-4">
-          <Input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Entry title..."
-            className="flex-1"
-          />
-          <Select
-            value={category}
-            onValueChange={setCategory}
-          >
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select category" />
-            </SelectTrigger>
-            <SelectContent>
-              {categories.map(cat => (
-                <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <Textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Write your thoughts..."
-          className="min-h-[200px]"
-        />
+        {renderJournalForm()}
         <Button
           variant="gradient"
           className="w-full"
           onClick={addEntry}
-          disabled={!title.trim() || !content.trim()}
+          disabled={!title.trim() || !content.trim() || isSubmitting}
         >
           <Plus className="w-4 h-4 mr-2" />
           Add Entry
@@ -138,7 +235,7 @@ export function Journal() {
         {entries.map(entry => (
           <div
             key={entry._id}
-            className="p-6 border rounded-lg space-y-4"
+            className="p-6 border rounded-lg space-y-4 bg-white/5 border-white/10"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -153,6 +250,31 @@ export function Journal() {
                   </span>
                 </div>
               </div>
+              <div className="flex items-center">
+                {entry.analysis && (
+                  <Button variant="ghost" size="icon" onClick={() => handleOpenAnalysis(entry)}
+                    className="mr-1">
+                    <BrainCircuit className="w-5 h-5 text-primary" />
+                  </Button>
+                )}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                      <MoreHorizontal className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="bg-white/10 border-white/10 backdrop-blur-md">
+                    <DropdownMenuItem onClick={() => handleEditEntry(entry)} className="cursor-pointer flex items-center gap-2">
+                      <Edit className="h-4 w-4" />
+                      <span>Edit</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleDeleteEntry(entry._id)} className="cursor-pointer flex items-center gap-2 text-red-500">
+                      <Trash className="h-4 w-4" />
+                      <span>Delete</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </div>
             <p className="text-muted-foreground whitespace-pre-wrap">
               {entry.content}
@@ -161,5 +283,33 @@ export function Journal() {
         ))}
       </div>
     </div>
+    <JournalAnalysis 
+        isOpen={isAnalysisModalOpen}
+        onClose={() => setIsAnalysisModalOpen(false)}
+        analysis={selectedEntry?.analysis || null}
+    />
+    
+    <Dialog open={isEditModalOpen} onOpenChange={setIsEditModalOpen}>
+      <DialogContent className="bg-white/5 border-white/10 backdrop-blur-md text-white max-w-3xl">
+        <DialogHeader>
+          <DialogTitle>Edit Journal Entry</DialogTitle>
+          <DialogDescription className="text-gray-400">
+            Make changes to your journal entry below.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="space-y-4 py-4">
+          {renderJournalForm()}
+        </div>
+        <DialogFooter>
+          <Button variant="outline" onClick={() => setIsEditModalOpen(false)} className="bg-white/10 border-white/20">
+            Cancel
+          </Button>
+          <Button variant="gradient" onClick={handleUpdateEntry} disabled={isSubmitting}>
+            {isSubmitting ? "Saving..." : "Save Changes"}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+    </>
   )
 }
