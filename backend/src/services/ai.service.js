@@ -44,6 +44,37 @@ const analyzeJournalEntry = async (content, mood, energy, activities) => {
   }
 };
 
+const getCoachSummary = async (data) => {
+  try {
+    const { todos, completedTasks, moodLog, habitProgress, goals } = data;
+
+    const prompt = `You are an AI life coach. The user has shared their productivity data for the day/week. Give personalized, motivational insights and focus tips. Encourage them kindly, reflect patterns, and recommend 1 new action they can take tomorrow.
+    
+    Here is the user's data:
+    - Todo List: ${JSON.stringify(todos)}
+    - Completed Tasks: ${JSON.stringify(completedTasks)}
+    - Mood Log: ${JSON.stringify(moodLog)}
+    - Habit Progress: ${JSON.stringify(habitProgress)}
+    - Goals: ${JSON.stringify(goals)}
+
+    Please provide a response in a clear, encouraging, and actionable format.
+    `;
+
+    const completion = await groq.chat.completions.create({
+      messages: [{ role: "user", content: prompt }],
+      model: "llama3-8b-8192",
+      temperature: 0.7,
+      max_tokens: 1000,
+    });
+
+    return completion.choices[0].message.content;
+  } catch (error) {
+    console.error('Error getting coach summary from Groq:', error);
+    return 'There was an error getting your coaching summary. Please try again later.';
+  }
+}
+
 module.exports = {
-  analyzeJournalEntry
+  analyzeJournalEntry,
+  getCoachSummary,
 };

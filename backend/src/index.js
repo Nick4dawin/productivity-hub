@@ -17,6 +17,7 @@ const subscriptionRoutes = require('./routes/subscription.routes');
 const budgetRoutes = require('./routes/budget.routes');
 const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
+const coachRoutes = require('./routes/coach.routes');
 
 const app = express();
 
@@ -54,6 +55,7 @@ app.use('/api/finance', financeRoutes);
 app.use('/api/accounts', accountRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/budgets', budgetRoutes);
+app.use('/api/coach', coachRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
