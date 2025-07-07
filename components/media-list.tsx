@@ -2,12 +2,13 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
-import { Media, getMedia, deleteMedia } from '@/lib/api';
+import { Media, getMedia, deleteMedia, AuthHeaders } from '@/lib/api';
 import { useToast } from '@/components/ui/use-toast';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { useAuth } from '@/contexts/auth-context';
 
 interface MediaListProps {
   type: 'Movie' | 'TV Show' | 'Book' | 'Game';
@@ -19,11 +20,14 @@ export default function MediaList({ type, onEdit, refreshKey }: MediaListProps) 
   const [mediaItems, setMediaItems] = useState<Media[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
+  const { getAuthHeaders, isAuthenticated } = useAuth();
 
   const fetchMedia = useCallback(async () => {
+    if (!isAuthenticated) return;
     try {
       setLoading(true);
-      const allMedia = await getMedia();
+      const headers = getAuthHeaders();
+      const allMedia = await getMedia(headers);
       setMediaItems(allMedia.filter(item => item.type === type));
     } catch (error) {
       console.error(`Error fetching ${type}:`, error);
@@ -31,7 +35,7 @@ export default function MediaList({ type, onEdit, refreshKey }: MediaListProps) 
     } finally {
       setLoading(false);
     }
-  }, [type, toast]);
+  }, [type, toast, isAuthenticated, getAuthHeaders]);
 
   useEffect(() => {
     fetchMedia();
@@ -39,7 +43,8 @@ export default function MediaList({ type, onEdit, refreshKey }: MediaListProps) 
   
   const handleDelete = async (id: string) => {
     try {
-      await deleteMedia(id);
+      const headers = getAuthHeaders();
+      await deleteMedia(headers, id);
       toast({ title: 'Media deleted' });
       fetchMedia();
     } catch {

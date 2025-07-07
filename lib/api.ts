@@ -809,10 +809,93 @@ export const updateBudget = async (id: string, budget: Partial<Budget>): Promise
 };
 
 export const deleteBudget = async (id: string): Promise<{ msg: string }> => {
-  const response = await fetch(`${API_BASE_URL}/budgets/${id}`, { 
-    method: 'DELETE', 
-    headers: await getAuthHeaders() 
+  const response = await fetch(`${API_BASE_URL}/budgets/${id}`, {
+    method: 'DELETE',
+    headers: await getAuthHeaders(),
   });
-  const data = await response.json();
-  return data;
+  if (!response.ok) throw new Error('Failed to delete budget');
+  return await response.json();
 };
+
+export interface CoachData {
+  todos: Todo[];
+  completedTasks: Todo[];
+  moodLog: Mood[];
+  habitProgress: Habit[];
+  goals: {
+    shortTerm: Goal[];
+    longTerm: Goal[];
+  };
+}
+
+// Coach API
+export const getCoachSummary = async (data: CoachData): Promise<{ summary: string }> => {
+  console.log('Getting coach summary for data:', data);
+  const response = await fetch(`${API_BASE_URL}/coach/summary`, {
+    method: 'POST',
+    headers: await getAuthHeaders(),
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Failed to get coach summary:', error);
+    throw new Error(error.message || 'Failed to get coach summary');
+  }
+
+  const result = await response.json();
+  console.log('Got coach summary:', result);
+  return result;
+};
+
+export interface ChatMessage {
+  sender: 'user' | 'ai';
+  text: string;
+}
+
+export const getCoachResponse = async (messages: ChatMessage[]): Promise<{ response: string }> => {
+  console.log('Getting coach response for messages:', messages);
+  const response = await fetch(`${API_BASE_URL}/coach/chat`, {
+    method: 'POST',
+    headers: await getAuthHeaders(),
+    body: JSON.stringify({ messages }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Failed to get coach response:', error);
+    throw new Error(error.message || 'Failed to get coach response');
+  }
+
+  const result = await response.json();
+  console.log('Got coach response:', result);
+  return result;
+};
+
+export async function getMilestoneSuggestions(title: string, description?: string): Promise<{ suggestions: string[] }> {
+    const headers = await getAuthHeaders();
+    const response = await fetch(`${API_BASE_URL}/goals/suggest-milestones`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ title, description }),
+    });
+
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to get milestone suggestions');
+    }
+
+    return await response.json();
+}
+
+export async function completeOnboarding(): Promise<{ user: User }> {
+    const headers = await getAuthHeaders();
+    const response = await fetch(`${API_BASE_URL}/user/complete-onboarding`, {
+        method: 'PUT',
+        headers,
+    });
+    if (!response.ok) {
+        throw new Error('Failed to complete onboarding');
+    }
+    return response.json();
+}

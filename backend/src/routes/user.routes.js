@@ -3,7 +3,8 @@ const {
   getProfile, 
   updateProfile, 
   updateAvatar,
-  deleteAccount 
+  deleteAccount,
+  completeOnboarding
 } = require('../controllers/user.controller');
 const { auth } = require('../middleware/auth');
 
@@ -15,6 +16,7 @@ router.use(auth);
 router.get('/', getProfile);
 router.put('/', updateProfile);
 router.put('/avatar', updateAvatar);
+router.put('/complete-onboarding', completeOnboarding);
 router.delete('/', deleteAccount);
 
 module.exports = router; 

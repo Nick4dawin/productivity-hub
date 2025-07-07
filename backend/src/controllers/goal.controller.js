@@ -1,4 +1,5 @@
 const Goal = require('../models/Goal');
+const { getMilestoneSuggestions } = require('../services/ai.service');
 
 // @desc    Create a new goal
 // @route   POST /api/goals
@@ -86,10 +87,27 @@ const deleteGoal = async (req, res) => {
   }
 };
 
+// @desc    Get AI-powered milestone suggestions
+// @route   POST /api/goals/suggest-milestones
+// @access  Private
+const suggestMilestones = async (req, res) => {
+    try {
+        const { title, description } = req.body;
+        if (!title) {
+            return res.status(400).json({ message: 'Goal title is required' });
+        }
+        const suggestions = await getMilestoneSuggestions(title, description);
+        res.json({ suggestions });
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error', error: error.message });
+    }
+};
+
 module.exports = {
   createGoal,
   getGoals,
   getGoalById,
   updateGoal,
   deleteGoal,
+  suggestMilestones
 }; 

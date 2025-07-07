@@ -76,4 +76,22 @@ exports.deleteAccount = async (req, res) => {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
+};
+
+// @desc    Mark user onboarding as complete
+// @route   PUT /api/user/complete-onboarding
+// @access  Private
+exports.completeOnboarding = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        if (!user) {
+            return res.status(404).json({ msg: 'User not found' });
+        }
+        user.onboarded = true;
+        await user.save();
+        res.json({ msg: 'Onboarding completed successfully', user });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
 }; 

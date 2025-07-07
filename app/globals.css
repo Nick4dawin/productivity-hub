@@ -90,3 +90,67 @@
   background: linear-gradient(135deg, rgb(147, 51, 234) 0%, rgb(79, 70, 229) 100%);
   box-shadow: 0 0 15px rgba(147, 51, 234, 0.3);
 }
+
+/* Custom styles for react-joyride/intro.js */
+.customTooltip {
+    @apply bg-black/20 backdrop-blur-md border border-white/10 rounded-lg text-white;
+}
+
+.customTooltip .introjs-tooltiptext {
+    @apply text-base text-white;
+}
+
+.customTooltip .introjs-button {
+    @apply bg-white/10 border border-white/20 rounded-md px-4 py-2 text-white transition-colors hover:bg-white/20;
+}
+
+.customTooltip .introjs-button.introjs-disabled {
+    @apply bg-white/5 text-gray-400 cursor-not-allowed;
+}
+
+.customTooltip .introjs-nextbutton {
+    @apply bg-purple-600/50 hover:bg-purple-600/70;
+}
+
+.customTooltip .introjs-progressbar {
+    @apply bg-purple-500;
+}
+
+/* Custom styles for intro.js tour */
+.introjs-tooltip.customTooltip {
+    @apply bg-black/20 backdrop-blur-lg border border-white/10 rounded-lg text-white shadow-2xl;
+}
+
+.introjs-tooltip.customTooltip .introjs-tooltiptext {
+    @apply text-base font-light text-white/90;
+}
+
+.introjs-tooltip.customTooltip .introjs-tooltipbuttons {
+    @apply border-t-0 pt-3;
+}
+
+.introjs-tooltip.customTooltip .introjs-button {
+    @apply bg-white/10 border border-transparent rounded-md px-4 py-2 text-white transition-colors hover:bg-white/20 hover:border-white/20;
+    text-shadow: none;
+}
+
+.introjs-tooltip.customTooltip .introjs-button.introjs-disabled {
+    @apply bg-white/5 text-gray-400 cursor-not-allowed hover:bg-white/5;
+}
+
+.introjs-tooltip.customTooltip .introjs-nextbutton {
+    @apply bg-purple-600/50 hover:bg-purple-600/70 text-white;
+}
+
+.introjs-tooltip.customTooltip .introjs-progress {
+    @apply bg-white/10 rounded-full;
+}
+
+.introjs-tooltip.customTooltip .introjs-progressbar {
+    @apply bg-purple-500;
+}
+
+.customHighlight {
+    @apply bg-purple-500/20 border-2 border-purple-500 rounded-lg shadow-2xl;
+    box-shadow: 0 0 0 9999px rgba(0,0,0,0.5), 0 0 15px rgba(147, 51, 234, 0.5) !important;
+}

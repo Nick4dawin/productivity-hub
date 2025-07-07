@@ -42,26 +42,32 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, Settings, Trash2 } from "lucide-react";
+import { LogOut, Settings } from "lucide-react";
 import { DeleteAccountDialog } from "@/components/delete-account-dialog";
 import Link from "next/link";
+import dynamic from 'next/dynamic';
+
+const AppTour = dynamic(() => import('@/components/app-tour').then(mod => mod.AppTour), {
+  ssr: false,
+});
 
 interface SidebarItem {
   id: string;
   label: string;
   icon: React.ElementType;
   isPage?: boolean;
+  tourId?: string;
 }
 
 const SIDEBAR_ITEMS: SidebarItem[] = [
   { id: "dashboard", label: "Dashboard", icon: Activity },
   { id: "habits", label: "Habits", icon: CalendarCheck },
   { id: "mood", label: "Mood", icon: Smile },
-  { id: "journal", label: "Journal", icon: BrainCircuit },
-  { id: "todo", label: "To-Do", icon: ListTodo },
+  { id: "journal", label: "Journal", icon: BrainCircuit, tourId: "tour-step-5" },
+  { id: "todo", label: "To-Do", icon: ListTodo, tourId: "tour-step-3" },
   { id: "media", label: "Media", icon: Clapperboard },
   { id: "routines", label: "Routines", icon: ClipboardList },
-  { id: "goals", label: "Goals", icon: Target },
+  { id: "goals", label: "Goals", icon: Target, tourId: "tour-step-4" },
   { id: "finance", label: "Finance", icon: Wallet },
 ];
 
@@ -200,8 +206,9 @@ export default function DashboardPage() {
       >
         <div className="absolute inset-0 bg-black/50" />
       </div>
+      <AppTour />
       <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
-        <div className="hidden border-r border-white/10 bg-black/10 backdrop-blur-md lg:block">
+        <div id="tour-step-2" className="hidden border-r border-white/10 bg-black/10 backdrop-blur-md lg:block">
           <div className="flex h-full max-h-screen flex-col gap-2">
             <div className="flex h-[60px] items-center border-b border-white/10 px-6">
               <a className="flex items-center gap-2 font-semibold" href="#">
@@ -230,6 +237,7 @@ export default function DashboardPage() {
                   {SIDEBAR_ITEMS.map((item) => (
                     <button
                       key={item.id}
+                      id={item.tourId}
                       onClick={() => handleNavigation(item)}
                       className={cn(
                         "flex items-center gap-3 rounded-lg px-3 py-3 text-base transition-all hover:bg-white/10",
@@ -250,30 +258,40 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col">
-          <header className="flex h-14 lg:h-[60px] items-center justify-between gap-4 border-b border-white/10 bg-black/10 backdrop-blur-md px-6">
+        <div id="tour-step-1" className="flex flex-col">
+          <header className="flex h-14 items-center gap-4 border-b border-white/10 bg-black/10 px-6 backdrop-blur-md lg:h-[60px] lg:px-6">
             <div className="lg:hidden">
               <DropdownMenu open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="rounded-full">
-                    <Menu className="h-6 w-6" />
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    id="tour-step-mobile-1"
+                    className="shrink-0"
+                  >
+                    <Menu className="h-5 w-5" />
                     <span className="sr-only">Toggle navigation menu</span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent 
-                  side="bottom" 
+                <DropdownMenuContent
+                  side="bottom"
                   align="start"
+                  id="tour-step-mobile-2"
                   className="bg-black/20 border-white/10 backdrop-blur-lg text-white"
                 >
                   <nav className="grid gap-2 text-lg font-medium">
                     {SIDEBAR_ITEMS.map((item) => (
                       <button
                         key={item.id}
+                        id={item.tourId}
                         onClick={() => handleNavigation(item)}
                         className={cn(
                           "flex items-center gap-4 rounded-lg px-3 py-2 transition-all hover:bg-white/10",
                           {
-                            "bg-white/20": item.isPage ? pathname === `/${item.id}` : activeView === item.id,
+                            "bg-white/20":
+                              item.isPage
+                                ? pathname === `/${item.id}`
+                                : activeView === item.id,
                           }
                         )}
                       >
@@ -285,115 +303,92 @@ export default function DashboardPage() {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-            <div className="flex-1 lg:hidden">
-              <a className="flex items-center gap-2 font-semibold" href="#">
-                  <svg
-                    className=" h-6 w-6"
-                    fill="none"
-                    height="24"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M15 6v12a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3z" />
-                    <path d="M12 6v12" />
-                    <path d="M9 6v12a3 3 0 0 0-3 3V9a3 3 0 0 0 3-3z" />
-                  </svg>
-                  <span>Produktiv</span>
-                </a>
+
+            <div className="hidden lg:block">
+              <h1 className="text-lg font-semibold">Welcome back, {user?.name?.split(" ")[0]}!</h1>
             </div>
-            <div className="hidden flex-1 lg:block">
-              <h1 className="text-lg font-semibold">
-                Welcome back, {user?.name?.split(' ')[0] || 'User'}
-              </h1>
-            </div>
-            <div className="flex items-center gap-2 md:gap-4">
-              <form className="hidden sm:block">
+
+            <div className="flex-1" />
+
+            <div className="flex items-center gap-4">
+              <form className="hidden lg:block">
                 <div className="relative">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400" />
                   <Input
                     type="search"
                     placeholder="Search..."
-                    className="pl-8 w-full sm:w-[200px] lg:w-[300px] bg-transparent"
+                    className="w-full appearance-none bg-white/5 pl-8 shadow-none md:w-2/3 lg:w-1/3"
                   />
                 </div>
               </form>
               <Button
-                variant="ghost"
+                variant="outline"
                 size="icon"
-                className="rounded-full"
+                className="h-10 w-10 shrink-0"
                 onClick={fetchNewWallpaper}
-                disabled={isShuffling}
               >
-                <Shuffle className="h-5 w-5" />
+                <Shuffle className={`h-5 w-5 transition-transform duration-500 ${isShuffling ? "animate-spin" : ""}`} />
                 <span className="sr-only">Shuffle Wallpaper</span>
               </Button>
               <ModeToggle />
-              {isAuthenticated && user ? (
-                <div onMouseEnter={() => setIsMenuOpen(true)} onMouseLeave={() => setIsMenuOpen(false)}>
-                  <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-                        <Avatar className="h-10 w-10">
-                          <AvatarImage src={user.profilePicture} alt={user.name} />
-                          <AvatarFallback>{user.name?.[0]?.toUpperCase() || 'U'}</AvatarFallback>
-                        </Avatar>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      align="end"
-                      className="w-64 bg-white/5 border-white/10 backdrop-blur-md text-white"
-                    >
-                      <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
-                      <DropdownMenuLabel className="text-xs font-normal text-white/60">{user.email}</DropdownMenuLabel>
-                      <DropdownMenuSeparator className="bg-white/10" />
-                      <DropdownMenuItem asChild>
-                        <Link href="/settings" className="flex items-center cursor-pointer">
-                          <Settings className="mr-2 h-4 w-4" />
-                          <span>Settings</span>
-                        </Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator className="bg-white/10" />
-                      <DropdownMenuItem 
-                        onClick={() => setIsDeleteDialogOpen(true)} 
-                        className="text-red-400 focus:text-red-400 focus:bg-red-500/10 cursor-pointer"
-                      >
-                        <Trash2 className="mr-2 h-4 w-4" />
-                        <span>Delete Account</span>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem 
-                        onClick={logout}
-                        className="text-red-400 focus:text-red-400 focus:bg-red-500/10 cursor-pointer"
-                      >
-                        <LogOut className="mr-2 h-4 w-4" />
-                        <span>Logout</span>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-              ) : (
-                <Link href="/login">
-                  <Button>Sign In</Button>
-                </Link>
-              )}
+              <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="relative h-8 w-8 rounded-full"
+                  >
+                    <Avatar className="h-9 w-9">
+                      <AvatarImage
+                        src={user?.profilePicture || ""}
+                        alt={user?.name}
+                      />
+                      <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className="w-56 border-white/10 bg-black/80 text-white"
+                  align="end"
+                  forceMount
+                >
+                  <DropdownMenuLabel className="font-normal">
+                    <div className="flex flex-col space-y-1">
+                      <p className="text-sm font-medium leading-none">
+                        {user?.name}
+                      </p>
+                      <p className="text-xs leading-none text-gray-400">
+                        {user?.email}
+                      </p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild id="tour-step-6">
+                    <Link href="/settings" className="cursor-pointer">
+                      <Settings className="mr-2 h-4 w-4" />
+                      <span>Settings</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={logout}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </header>
-          <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
+
+          <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
             {renderContent()}
           </main>
         </div>
       </div>
+      <Toaster />
       <DeleteAccountDialog
         isOpen={isDeleteDialogOpen}
         onClose={() => setIsDeleteDialogOpen(false)}
         onConfirm={handleDeleteAccount}
         isDeleting={isDeleting}
       />
-      <Toaster />
     </>
   );
 }

@@ -9,6 +9,7 @@ interface User {
   name: string;
   email: string;
   profilePicture?: string;
+  onboarded: boolean;
 }
 
 interface AuthContextType {
@@ -23,6 +24,9 @@ interface AuthContextType {
   googleLogin: (code: string) => Promise<void>;
   logout: () => void;
   getAuthHeaders: () => Record<string, string>;
+  updateUser: (user: Partial<User>) => void;
+  completeOnboarding: () => void;
+  loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -172,6 +176,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
   };
 
+  const updateUser = (updatedFields: Partial<User>) => {
+    setUser(prevUser => (prevUser ? { ...prevUser, ...updatedFields } : null));
+  };
+
+  const completeOnboarding = () => {
+    if (user) {
+      updateUser({ onboarded: true });
+    }
+  };
+
   const value = {
     user,
     setUser,
@@ -184,6 +198,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     googleLogin,
     logout,
     getAuthHeaders,
+    updateUser,
+    completeOnboarding,
+    loading: isLoading,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -21,5 +21,6 @@ router.get('/', goalController.getGoals);
 router.get('/:id', goalController.getGoalById);
 router.put('/:id', goalValidation, validate, goalController.updateGoal);
 router.delete('/:id', goalController.deleteGoal);
+router.post('/suggest-milestones', goalController.suggestMilestones);
 
 module.exports = router; 

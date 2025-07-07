@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/contexts/auth-context";
 import { cn } from "@/lib/utils";
 import { fontSans } from "@/lib/fonts";
 import { Toaster } from "@/components/ui/toaster";
+import { CoachButton } from "@/components/coach-button";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "Produktiv",
-  description: "Your AI-powered productivity hub.",
+  title: "Productivity Hub",
+  description: "A hub for all your productivity needs.",
 };
 
 export default function RootLayout({
@@ -27,17 +27,13 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Providers>
-              {children}
-              <Toaster />
-            </Providers>
-          </ThemeProvider>
+          <Providers>
+            <div className="relative flex min-h-screen flex-col">
+              <div className="flex-1">{children}</div>
+            </div>
+            <Toaster />
+            <CoachButton />
+          </Providers>
         </AuthProvider>
       </body>
     </html>

@@ -8,11 +8,11 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
-import { createGoal, updateGoal, Goal } from '@/lib/api';
+import { createGoal, updateGoal, getMilestoneSuggestions, Goal } from '@/lib/api';
 import { Checkbox } from './ui/checkbox';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Calendar } from './ui/calendar';
-import { CalendarIcon, Plus, X } from 'lucide-react';
+import { CalendarIcon, Plus, Sparkles, X } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import {
@@ -22,11 +22,12 @@ import {
   DialogTitle,
   DialogFooter,
 } from '@/components/ui/dialog';
+import { useState } from 'react';
 
 const milestoneSchema = z.object({
     _id: z.string().optional(),
     title: z.string().min(1, 'Milestone title is required'),
-    completed: z.boolean().default(false),
+    completed: z.boolean().optional(),
 });
 
 const goalSchema = z.object({
@@ -52,7 +53,7 @@ const getDefaultValues = (goal: Goal | null): GoalFormData => ({
   status: goal?.status ?? 'Not Started',
   milestones: (goal?.milestones ?? []).map(m => ({
     title: m.title,
-    completed: m.completed === undefined ? false : m.completed,
+    completed: m.completed ?? false,
     _id: m._id,
   })),
 });
@@ -70,6 +71,7 @@ export default function GoalForm({ goal, isOpen, onClose, onSuccess }: GoalFormP
     control,
     handleSubmit,
     register,
+    watch,
     formState: { isSubmitting, errors },
   } = useForm<GoalFormData>({
     resolver: zodResolver(goalSchema),
@@ -81,9 +83,46 @@ export default function GoalForm({ goal, isOpen, onClose, onSuccess }: GoalFormP
     name: "milestones",
   });
 
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [isSuggesting, setIsSuggesting] = useState(false);
+  const goalTitle = watch('title');
+  const goalDescription = watch('specific'); // Using 'specific' as a proxy for description
+
+  const handleSuggestMilestones = async () => {
+    if (!goalTitle) {
+        toast({ title: 'Please enter a goal title first', variant: 'destructive' });
+        return;
+    }
+    setIsSuggesting(true);
+    try {
+        const data = await getMilestoneSuggestions(goalTitle, goalDescription);
+        setSuggestions(data.suggestions);
+    } catch (error) {
+        console.error('Failed to get suggestions:', error);
+        toast({ title: 'Failed to get suggestions', variant: 'destructive' });
+    } finally {
+        setIsSuggesting(false);
+    }
+  };
+
+  const handleSuggestionToggle = (suggestion: string, checked: boolean) => {
+    if (checked) {
+        append({ title: suggestion, completed: false });
+    } else {
+        const indexToRemove = fields.findIndex(field => field.title === suggestion);
+        if (indexToRemove > -1) {
+            remove(indexToRemove);
+        }
+    }
+  };
+
   const onSubmit = async (data: GoalFormData) => {
     try {
-      const apiData = { ...data, timeBound: data.timeBound?.toISOString() };
+      const apiData = { 
+        ...data,
+        timeBound: data.timeBound?.toISOString(),
+        milestones: data.milestones.map(m => ({ ...m, completed: m.completed ?? false }))
+      };
       if (goal) {
         await updateGoal(goal._id, apiData);
         toast({ title: 'Goal updated' });
@@ -92,9 +131,10 @@ export default function GoalForm({ goal, isOpen, onClose, onSuccess }: GoalFormP
         toast({ title: 'Goal created' });
       }
       onSuccess();
-    } catch (error) {
+    } catch (e) {
+        const error = e as Error;
         console.error("Error saving goal:", error);
-        toast({ title: 'Error saving goal', variant: 'destructive' });
+        toast({ title: 'Error saving goal', description: error.message || 'An unknown error occurred.', variant: 'destructive' });
     }
   };
 
@@ -159,11 +199,35 @@ export default function GoalForm({ goal, isOpen, onClose, onSuccess }: GoalFormP
                 </div>
               ))}
             </div>
-            <Button type="button" variant="outline" size="sm" onClick={() => append({ title: '', completed: false })} className="mt-2 bg-white/10 border-white/20">
-              <Plus className="h-4 w-4 mr-2" />
-              Add Milestone
-            </Button>
+            <div className="flex gap-2 mt-2">
+                <Button type="button" variant="outline" size="sm" onClick={() => append({ title: '', completed: false })} className="bg-white/10 border-white/20">
+                <Plus className="h-4 w-4 mr-2" />
+                Add Milestone
+                </Button>
+                <Button type="button" variant="outline" size="sm" onClick={handleSuggestMilestones} disabled={!goalTitle || isSuggesting} className="bg-purple-600/20 border-purple-500/30 text-purple-300 hover:bg-purple-600/30">
+                    <Sparkles className="h-4 w-4 mr-2" />
+                    {isSuggesting ? 'Thinking...' : 'Suggest Milestones'}
+                </Button>
+            </div>
           </div>
+
+          {suggestions.length > 0 && (
+            <div className="space-y-2 pt-4">
+                <h4 className="font-semibold">Suggested Milestones ✨</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    {suggestions.map((suggestion, index) => (
+                         <div key={index} className="flex items-center gap-2 p-3 rounded-md bg-white/5 border border-white/10">
+                             <Checkbox 
+                                id={`suggestion-${index}`}
+                                onCheckedChange={(checked) => handleSuggestionToggle(suggestion, !!checked)}
+                                checked={fields.some(field => field.title === suggestion)}
+                             />
+                             <label htmlFor={`suggestion-${index}`} className="text-sm cursor-pointer">{suggestion}</label>
+                         </div>
+                    ))}
+                </div>
+            </div>
+          )}
 
           <DialogFooter>
             <Button type="button" variant="outline" onClick={onClose} className="bg-white/10 border-white/20">Cancel</Button>

@@ -3,15 +3,13 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Plus, Calendar as CalendarIcon, CheckCircle2, Trash2 } from "lucide-react"
 import { getTodos, createTodo, updateTodo, deleteTodo, type Todo } from "@/lib/api"
 import { useToast } from "@/components/ui/use-toast"
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
+import { GlassCard } from "./GlassCard"
 
 const categories = ["Work", "Personal", "Shopping", "Health", "Education", "Other"]
 const priorities = ["low", "medium", "high"] as const
@@ -176,11 +174,12 @@ export function TodoList() {
 
       <div className="space-y-2">
         {todos.map(todo => (
-          <div
+          <GlassCard
             key={todo._id}
-            className={`flex items-center gap-4 p-4 rounded-lg border ${
-              todo.completed ? 'bg-muted/50' : 'bg-card'
-            }`}
+            className={cn(
+              "flex items-center gap-4 p-4",
+              todo.completed && "bg-black/20 backdrop-blur-sm"
+            )}
           >
             <Button
               variant={todo.completed ? "gradient" : "outline"}
@@ -192,7 +191,7 @@ export function TodoList() {
             </Button>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <span className={todo.completed ? 'line-through text-muted-foreground' : ''}>
+                <span className={cn(todo.completed && 'line-through text-muted-foreground')}>
                   {todo.title}
                 </span>
                 {todo.dueDate && (
@@ -225,7 +224,7 @@ export function TodoList() {
             >
               <Trash2 className="w-4 h-4" />
             </Button>
-          </div>
+          </GlassCard>
         ))}
       </div>
     </div>

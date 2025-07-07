@@ -20,7 +20,11 @@ const nextConfig: NextConfig = {
         hostname: 'images.igdb.com',
         port: '',
         pathname: '/igdb/image/upload/**',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
   },
   // Disable ESLint during builds

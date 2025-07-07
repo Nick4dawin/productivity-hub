@@ -74,7 +74,69 @@ const getCoachSummary = async (data) => {
   }
 }
 
+const getCoachChatResponse = async (messages) => {
+  try {
+    const systemMessage = {
+      role: "system",
+      content: `You are an AI life coach named Spark. Your personality is fun, inspiring, and empathetic. You are talking to a user who is trying to be more productive. 
+      - Keep your responses concise and easy to read.
+      - Use markdown for formatting (bold, italics, lists) to make your messages engaging.
+      - Use emojis to add personality. ✨
+      - Your goal is to motivate and support the user.
+      - Be personal and human-like in your responses.
+      - The user's name is not available, so don't ask for it.
+      - You can ask questions to understand the user better.`
+    };
+
+    const conversation = [systemMessage, ...messages.map(msg => ({
+        role: msg.sender === 'user' ? 'user' : 'assistant',
+        content: msg.text
+    }))];
+
+    const completion = await groq.chat.completions.create({
+      messages: conversation,
+      model: "llama3-8b-8192",
+      temperature: 0.8,
+      max_tokens: 500,
+    });
+
+    return completion.choices[0].message.content;
+  } catch (error) {
+    console.error('Error getting coach chat response from Groq:', error);
+    return 'There was an error getting your coaching response. Please try again later.';
+  }
+}
+
+const getMilestoneSuggestions = async (goalTitle, goalDescription) => {
+  try {
+    const prompt = `You are a productivity coach. A user has set a goal. Your task is to break this goal down into smaller, actionable milestones.
+    
+    Goal Title: "${goalTitle}"
+    ${goalDescription ? `Goal Description: "${goalDescription}"` : ''}
+
+    Please provide 5-7 clear, concise, and actionable milestones that would help the user achieve this goal.
+    Return the response as a JSON object with a single key "milestones" which is an array of strings.
+    For example: { "milestones": ["First milestone", "Second milestone", ...] }`;
+
+    const completion = await groq.chat.completions.create({
+      messages: [{ role: "user", content: prompt }],
+      model: "llama3-8b-8192",
+      temperature: 0.7,
+      max_tokens: 500,
+      response_format: { type: "json_object" }
+    });
+
+    const result = JSON.parse(completion.choices[0].message.content);
+    return result.milestones || [];
+  } catch (error) {
+    console.error('Error getting milestone suggestions from Groq:', error);
+    return [];
+  }
+}
+
 module.exports = {
   analyzeJournalEntry,
   getCoachSummary,
+  getCoachChatResponse,
+  getMilestoneSuggestions
 };

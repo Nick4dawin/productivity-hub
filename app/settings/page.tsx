@@ -5,6 +5,9 @@ import { useAuth } from "@/contexts/auth-context";
 import { GlassCard } from "@/components/GlassCard";
 import { AvatarSelection } from "@/components/avatar-selection";
 import { useToast } from "@/components/ui/use-toast";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export default function SettingsPage() {
   const { user, getAuthHeaders, setUser, apiUrl } = useAuth();
@@ -54,7 +57,14 @@ export default function SettingsPage() {
 
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-3xl font-bold mb-8 text-white">Account Settings</h1>
+      <div className="flex items-center gap-4 mb-8">
+        <Link href="/">
+          <Button variant="outline" size="icon" className="h-10 w-10 bg-white/10 border-white/20">
+            <ArrowLeft className="h-5 w-5 text-white" />
+          </Button>
+        </Link>
+        <h1 className="text-3xl font-bold text-white">Account Settings</h1>
+      </div>
       <GlassCard>
         <div className="p-8">
           {user && (
