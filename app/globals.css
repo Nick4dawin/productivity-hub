@@ -154,3 +154,74 @@
     @apply bg-purple-500/20 border-2 border-purple-500 rounded-lg shadow-2xl;
     box-shadow: 0 0 0 9999px rgba(0,0,0,0.5), 0 0 15px rgba(147, 51, 234, 0.5) !important;
 }
+
+/* Custom styles for modals */
+.dialog-content {
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: -1rem;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Fix for journal analysis modal */
+.journal-analysis-modal {
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.journal-analysis-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Fix for modal positioning */
+[role="dialog"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  height: 100%;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+[data-state="open"][role="dialog"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Ensure modal is centered in viewport */
+.fixed.left-\[50\%\].top-\[50\%\] {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  margin: auto !important;
+  max-height: 85vh !important;
+}

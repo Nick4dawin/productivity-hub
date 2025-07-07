@@ -4,7 +4,7 @@ import { Budget, FinanceEntry } from "@/lib/api";
 import { GlassCard } from "@/components/GlassCard";
 import { useCurrency } from "@/contexts/currency-context";
 import { useMemo } from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 interface BudgetOverviewProps {
   budgets: Budget[];
@@ -149,7 +149,7 @@ export function BudgetOverview({ budgets, finances }: BudgetOverviewProps) {
           <div className="mt-6">
             <h4 className="text-sm font-medium mb-2">Budget Allocation</h4>
             {chartData.length > 0 ? (
-              <ResponsiveContainer width="100%" height={200}>
+              <ResponsiveContainer width="100%" height={200} aspect={4/3}>
                 <PieChart>
                   <Pie
                     data={chartData}
@@ -180,7 +180,7 @@ export function BudgetOverview({ budgets, finances }: BudgetOverviewProps) {
         <div>
           <h4 className="text-sm font-medium mb-2">Spending by Category</h4>
           {spendingChartData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={200}>
+            <ResponsiveContainer width="100%" height={200} aspect={4/3}>
               <PieChart>
                 <Pie
                   data={spendingChartData}

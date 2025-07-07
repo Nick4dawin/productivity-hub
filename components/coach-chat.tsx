@@ -4,10 +4,11 @@ import { useState, useEffect, useRef } from 'react';
 import { GlassCard } from './GlassCard';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { X, Send, Sparkles } from 'lucide-react';
+import { X, Send } from 'lucide-react';
 import { getCoachResponse, ChatMessage } from '@/lib/api';
 import ReactMarkdown from 'react-markdown';
 import { useAuth } from '@/contexts/auth-context';
+import Image from 'next/image';
 
 export const CoachChat = ({ onClose }: { onClose: () => void }) => {
     const { user } = useAuth();
@@ -53,7 +54,14 @@ export const CoachChat = ({ onClose }: { onClose: () => void }) => {
             <GlassCard className="flex flex-col h-[60vh] max-h-[600px] shadow-xl">
                 <header className="flex items-center justify-between p-4 border-b border-white/20">
                     <div className="flex items-center gap-2">
-                        <Sparkles className="h-6 w-6 text-purple-400" />
+                        <div className="relative w-6 h-6">
+                            <Image 
+                                src="/logo.svg" 
+                                alt="Produktiv Logo" 
+                                fill 
+                                className="object-contain"
+                            />
+                        </div>
                         <h2 className="text-xl font-bold">AI Coach</h2>
                     </div>
                     <Button variant="ghost" size="icon" onClick={onClose}>

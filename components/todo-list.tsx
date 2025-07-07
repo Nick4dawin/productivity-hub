@@ -164,6 +164,7 @@ export function TodoList() {
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
             className="w-[180px] bg-white/5 backdrop-blur-md"
+            placeholder="Select due date"
           />
           <Button variant="gradient" onClick={addTodo} className="ml-auto">
             <Plus className="w-4 h-4 mr-2" />

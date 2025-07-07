@@ -26,8 +26,8 @@ export const JournalAnalysis = ({ isOpen, onClose, analysis }: JournalAnalysisPr
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md w-full mx-auto p-6 rounded-lg border border-white/10 bg-white/5 backdrop-blur-md text-white shadow-lg">
-        <DialogHeader>
+      <DialogContent className="max-w-md mx-auto p-6 rounded-lg border border-white/20 bg-black/50 text-white shadow-lg journal-analysis-modal">
+        <DialogHeader className="journal-analysis-header">
           <DialogTitle className="text-2xl font-bold flex items-center gap-2">
             <BrainCircuit className="w-6 h-6 text-primary" />
             AI Journal Analysis
