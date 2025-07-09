@@ -90,19 +90,6 @@ export default function DashboardPage() {
     }
   }, [isLoading, isAuthenticated, router]);
 
-  // Listen for custom events to change the active view
-  useEffect(() => {
-    const handleSetActiveView = (event: CustomEvent) => {
-      setActiveView(event.detail);
-    };
-
-    document.addEventListener('setActiveView', handleSetActiveView as EventListener);
-    
-    return () => {
-      document.removeEventListener('setActiveView', handleSetActiveView as EventListener);
-    };
-  }, []);
-
   const fetchNewWallpaper = async () => {
     if (isShuffling) return;
     setIsShuffling(true);

@@ -90,14 +90,12 @@ export default function RegisterPage() {
       <div className="z-10 max-w-md w-full px-4">
         <GlassCard className="w-full flex flex-col items-center space-y-6">
           <div className="flex flex-col items-center justify-center text-center gap-4 pt-4">
-            <div className="bg-white/10 rounded-full p-3 flex items-center justify-center">
+            <div className="w-12 h-12 relative">
               <Image 
                 src="/logo.svg" 
-                alt="Produktiv Logo" 
-                width={48}
-                height={48}
+                alt="Logo" 
+                fill 
                 className="object-contain" 
-                priority
               />
             </div>
             <div>

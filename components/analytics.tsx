@@ -8,7 +8,6 @@ import { GlassCard } from "./GlassCard"
 import { Button } from "./ui/button"
 import { LoadingSpinner } from "./ui/loading-spinner"
 import { getTodos, getHabits, getMoods, getJournalEntries, Todo, Habit, Mood, JournalEntry } from '@/lib/api'
-import Link from "next/link"
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF', '#FF1943'];
 
@@ -22,14 +21,14 @@ interface CustomizedLabelProps {
   percent: number;
 }
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: CustomizedLabelProps) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
-  return (
+    return (
         <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
         {`${(percent * 100).toFixed(0)}%`}
-      </text>
+        </text>
     );
 };
 
@@ -109,7 +108,7 @@ export function Analytics() {
         return acc;
     }, {} as Record<string, number>);
     const habitPieData = Object.entries(habitsByCategory).map(([name, value]) => ({ name, value }));
-    
+
     return {
       tasks: {
         completed: completedTasks,
@@ -152,60 +151,40 @@ export function Analytics() {
     <div className="space-y-8 p-4 md:p-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Tasks Card */}
-        <Link href="#" onClick={(e) => {
-          e.preventDefault();
-          document.dispatchEvent(new CustomEvent('setActiveView', { detail: 'todo' }));
-        }}>
-          <GlassCard className="cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg">
-            <h3 className="font-medium">Tasks</h3>
-            <div className="text-2xl font-bold">{dynamicData.tasks.completionRate}</div>
-            <p className="text-sm text-muted-foreground">
-              {dynamicData.tasks.completed} of {dynamicData.tasks.total} tasks completed
-            </p>
-          </GlassCard>
-        </Link>
+        <GlassCard>
+          <h3 className="font-medium">Tasks</h3>
+          <div className="text-2xl font-bold">{dynamicData.tasks.completionRate}</div>
+          <p className="text-sm text-muted-foreground">
+            {dynamicData.tasks.completed} of {dynamicData.tasks.total} tasks completed
+          </p>
+        </GlassCard>
 
         {/* Habits Card */}
-        <Link href="#" onClick={(e) => {
-          e.preventDefault();
-          document.dispatchEvent(new CustomEvent('setActiveView', { detail: 'habits' }));
-        }}>
-          <GlassCard className="cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg">
-            <h3 className="font-medium">Habits</h3>
-            <div className="text-2xl font-bold">{dynamicData.habits.bestStreak} days</div>
-            <p className="text-sm text-muted-foreground">
-              Longest recorded streak
-            </p>
-          </GlassCard>
-        </Link>
+        <GlassCard>
+          <h3 className="font-medium">Habits</h3>
+          <div className="text-2xl font-bold">{dynamicData.habits.bestStreak} days</div>
+          <p className="text-sm text-muted-foreground">
+            Longest recorded streak
+          </p>
+        </GlassCard>
 
         {/* Mood Card */}
-        <Link href="#" onClick={(e) => {
-          e.preventDefault();
-          document.dispatchEvent(new CustomEvent('setActiveView', { detail: 'mood' }));
-        }}>
-          <GlassCard className="cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg">
-            <h3 className="font-medium">Mood</h3>
-            <div className="text-2xl">{dynamicData.mood.average}</div>
-            <p className="text-sm text-muted-foreground">
-              Average from {dynamicData.mood.entries} entries
-            </p>
-          </GlassCard>
-        </Link>
+        <GlassCard>
+          <h3 className="font-medium">Mood</h3>
+          <div className="text-2xl">{dynamicData.mood.average}</div>
+          <p className="text-sm text-muted-foreground">
+            Average from {dynamicData.mood.entries} entries
+          </p>
+        </GlassCard>
 
         {/* Journal Card */}
-        <Link href="#" onClick={(e) => {
-          e.preventDefault();
-          document.dispatchEvent(new CustomEvent('setActiveView', { detail: 'journal' }));
-        }}>
-          <GlassCard className="cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg">
-            <h3 className="font-medium">Journal</h3>
-            <div className="text-2xl font-bold">{dynamicData.journal.entries}</div>
-            <p className="text-sm text-muted-foreground">
-              Entries ({dynamicData.journal.wordsWritten} words)
-            </p>
-          </GlassCard>
-        </Link>
+        <GlassCard>
+          <h3 className="font-medium">Journal</h3>
+          <div className="text-2xl font-bold">{dynamicData.journal.entries}</div>
+          <p className="text-sm text-muted-foreground">
+            Entries ({dynamicData.journal.wordsWritten} words)
+          </p>
+        </GlassCard>
       </div>
 
       <div className="space-y-4">
@@ -228,8 +207,8 @@ export function Analytics() {
           {/* Task Completion Chart */}
           <GlassCard>
             <h3 className="font-medium mb-4">Task Completion</h3>
-            <div className="h-[300px] md:h-[300px] w-full aspect-[4/3] md:aspect-auto">
-              <ResponsiveContainer width="100%" height="100%" aspect={4/3}>
+            <div className="h-[300px]">
+              <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={dynamicData.tasks.history}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.2)" />
                   <XAxis dataKey="date" stroke="rgba(255, 255, 255, 0.7)" />
@@ -249,8 +228,8 @@ export function Analytics() {
           {/* Mood Tracking Chart */}
           <GlassCard>
             <h3 className="font-medium mb-4">Mood History</h3>
-            <div className="h-[300px] md:h-[300px] w-full aspect-[4/3] md:aspect-auto">
-              <ResponsiveContainer width="100%" height="100%" aspect={4/3}>
+            <div className="h-[300px]">
+              <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={dynamicData.mood.history}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.2)" />
                   <XAxis dataKey="date" stroke="rgba(255, 255, 255, 0.7)" />
@@ -266,12 +245,12 @@ export function Analytics() {
               </ResponsiveContainer>
             </div>
           </GlassCard>
-
+          
           {/* Habit Distribution Chart */}
           <GlassCard className="lg:col-span-2">
             <h3 className="font-medium mb-4">Habit Category Distribution</h3>
-            <div className="h-[300px] md:h-[300px] w-full aspect-[4/3] md:aspect-auto">
-              <ResponsiveContainer width="100%" height="100%" aspect={16/9}>
+            <div className="h-[300px]">
+              <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={dynamicData.habits.byCategory}

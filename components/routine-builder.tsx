@@ -105,22 +105,22 @@ export default function RoutineBuilder({ routine, isOpen, onClose, onSuccess }: 
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-black/50 border-white/20 backdrop-blur-md text-white max-h-[85vh] overflow-y-auto">
+      <DialogContent className="bg-white/5 border-white/10 backdrop-blur-md text-white">
         <DialogHeader>
-          <DialogTitle className="text-xl">{routine ? 'Edit Routine' : 'Create Routine'}</DialogTitle>
+          <DialogTitle>{routine ? 'Edit Routine' : 'Create Routine'}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <Controller
             name="name"
             control={control}
-            render={({ field }: { field: ControllerRenderProps<RoutineFormData, "name"> }) => <Input placeholder="Routine Name (e.g., Morning Power-up)" {...field} className="bg-white/10 border-white/20 placeholder:text-gray-400" />}
+            render={({ field }: { field: ControllerRenderProps<RoutineFormData, "name"> }) => <Input placeholder="Routine Name (e.g., Morning Power-up)" {...field} className="bg-white/5 border-white/10 placeholder:text-gray-400" />}
           />
           {errors.name && <p className="text-red-500">{errors.name.message}</p>}
           
           <Controller
             name="description"
             control={control}
-            render={({ field }: { field: ControllerRenderProps<RoutineFormData, "description"> }) => <Textarea placeholder="A brief description of your routine" {...field} className="bg-white/10 border-white/20 placeholder:text-gray-400" />}
+            render={({ field }: { field: ControllerRenderProps<RoutineFormData, "description"> }) => <Textarea placeholder="A brief description of your routine" {...field} className="bg-white/5 border-white/10 placeholder:text-gray-400" />}
           />
 
           <Controller
@@ -128,10 +128,10 @@ export default function RoutineBuilder({ routine, isOpen, onClose, onSuccess }: 
               control={control}
               render={({ field }: { field: ControllerRenderProps<RoutineFormData, "type"> }) => (
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <SelectTrigger className="bg-white/10 border-white/20">
+                      <SelectTrigger className="bg-white/5 border-white/10">
                           <SelectValue placeholder="Select routine type" />
                       </SelectTrigger>
-                      <SelectContent className="bg-black/80 border-white/20 text-white">
+                      <SelectContent className="bg-black/80 border-white/10 text-white">
                           <SelectItem value="Morning">Morning</SelectItem>
                           <SelectItem value="Evening">Evening</SelectItem>
                           <SelectItem value="Custom">Custom</SelectItem>
@@ -146,7 +146,7 @@ export default function RoutineBuilder({ routine, isOpen, onClose, onSuccess }: 
               name="tasks"
               control={control}
               render={({ field }: { field: ControllerRenderProps<RoutineFormData, "tasks"> }) => (
-                <div className="space-y-2 max-h-32 overflow-y-auto border p-2 rounded-md bg-white/10 border-white/20">
+                <div className="space-y-2 max-h-40 overflow-y-auto border p-2 rounded-md bg-white/5 border-white/10">
                   {allTodos.map(task => (
                     <div key={task._id} className="flex items-center space-x-2">
                        <Checkbox
@@ -173,7 +173,7 @@ export default function RoutineBuilder({ routine, isOpen, onClose, onSuccess }: 
               name="habits"
               control={control}
               render={({ field }: { field: ControllerRenderProps<RoutineFormData, "habits"> }) => (
-                <div className="space-y-2 max-h-32 overflow-y-auto border p-2 rounded-md bg-white/10 border-white/20">
+                <div className="space-y-2 max-h-40 overflow-y-auto border p-2 rounded-md bg-white/5 border-white/10">
                   {allHabits.map(habit => (
                     <div key={habit._id} className="flex items-center space-x-2">
                       <Checkbox
