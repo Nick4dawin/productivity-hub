@@ -7,16 +7,42 @@ interface JournalEntry {
   mood: string;
   energy: string;
   activities: string[];
-  analysis: {
+  analysis?: {
     summary: string;
+    sentiment: string;
+    keywords: string[];
     insights: string;
     suggestions: string[];
-    activities: string[];
-    affirmations: string[];
-    motivation: string;
-    consolation: string;
+    extracted?: {
+      mood?: string;
+      todos?: Array<{
+        title: string;
+        time: "past" | "future";
+        dueDate?: string;
+        priority?: string;
+      }>;
+      media?: Array<{
+        title: string;
+        type: string;
+        status: string;
+      }>;
+      habits?: Array<{
+        name: string;
+        status: string;
+        frequency?: string;
+      }>;
+    };
   };
   date: string;
+}
+
+interface JournalEntryData {
+  content: string;
+  mood: string;
+  energy: string;
+  activities: string[];
+  title?: string; // Make title optional but include it
+  category?: string; // Make category optional but include it
 }
 
 export function useJournal() {
@@ -40,7 +66,7 @@ export function useJournal() {
     }
   };
 
-  const createEntry = async (entryData: Omit<JournalEntry, '_id' | 'date' | 'analysis'>) => {
+  const createEntry = async (entryData: JournalEntryData): Promise<JournalEntry> => {
     setIsLoading(true);
     try {
       const response = await fetch('/api/journal', {
@@ -60,6 +86,8 @@ export function useJournal() {
         title: 'Success',
         description: 'Journal entry saved successfully',
       });
+      
+      return newEntry;
     } catch (error) {
       console.error('Error creating journal entry:', error);
       toast({
@@ -67,12 +95,13 @@ export function useJournal() {
         description: 'Failed to save journal entry',
         variant: 'destructive',
       });
+      throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const updateEntry = async (id: string, entryData: Partial<JournalEntry>) => {
+  const updateEntry = async (id: string, entryData: Partial<JournalEntryData>): Promise<JournalEntry> => {
     setIsLoading(true);
     try {
       const response = await fetch(`/api/journal/${id}`, {
@@ -94,6 +123,8 @@ export function useJournal() {
         title: 'Success',
         description: 'Journal entry updated successfully',
       });
+      
+      return updatedEntry;
     } catch (error) {
       console.error('Error updating journal entry:', error);
       toast({
@@ -101,6 +132,7 @@ export function useJournal() {
         description: 'Failed to update journal entry',
         variant: 'destructive',
       });
+      throw error;
     } finally {
       setIsLoading(false);
     }

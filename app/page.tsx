@@ -134,6 +134,22 @@ export default function DashboardPage() {
     }
   }, []);
 
+  // Listen for navigation events from Analytics component
+  useEffect(() => {
+    const handleNavigateEvent = (e: CustomEvent) => {
+      const { view } = e.detail;
+      if (view) {
+        setActiveView(view);
+      }
+    };
+
+    window.addEventListener('navigate', handleNavigateEvent as EventListener);
+    
+    return () => {
+      window.removeEventListener('navigate', handleNavigateEvent as EventListener);
+    };
+  }, []);
+
   const handleNavigation = (item: SidebarItem) => {
     if (item.isPage) {
       router.push(`/${item.id}`);

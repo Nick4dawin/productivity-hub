@@ -13,7 +13,10 @@ export const AppTour = () => {
   const isMobile = useMediaQuery('(max-width: 1023px)');
 
   useEffect(() => {
-    if (!loading && user && !user.onboarded) {
+    // Check if the user has already seen the tour
+    const hasSeenTour = localStorage.getItem('hasSeenTour') === 'true';
+    
+    if (!loading && user && !user.onboarded && !hasSeenTour) {
       // Small delay to ensure the UI is ready for highlighting
       setTimeout(() => setEnabled(true), 1000);
     }
@@ -21,6 +24,9 @@ export const AppTour = () => {
 
   const onExit = async () => {
     setEnabled(false);
+    // Mark that the user has seen the tour in localStorage
+    localStorage.setItem('hasSeenTour', 'true');
+    
     if (!user) return;
 
     try {

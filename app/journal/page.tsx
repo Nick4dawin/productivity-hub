@@ -1,29 +1,37 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { JournalEntry } from '@/components/journal-entry';
 import { JournalAnalysis } from '@/components/journal-analysis';
 import { useJournal } from '@/hooks/use-journal';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
+import { Eye } from 'lucide-react';
 
 export default function JournalPage() {
   const { entries, isLoading, createEntry } = useJournal();
   const latestEntry = entries[0];
+  const [selectedEntryId, setSelectedEntryId] = useState<string | null>(null);
+
+  // Find the selected entry or use the latest one
+  const selectedEntry = selectedEntryId 
+    ? entries.find(e => e._id === selectedEntryId) 
+    : latestEntry;
 
   return (
     <div className="container mx-auto py-6">
       <h1 className="text-3xl font-bold mb-6">Journal</h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
           <h2 className="text-xl font-semibold mb-4">New Entry</h2>
           <JournalEntry onSave={createEntry} isLoading={isLoading} />
         </div>
 
-        {latestEntry?.analysis && (
+        {selectedEntry?.analysis && (
           <div>
             <h2 className="text-xl font-semibold mb-4">AI Insights</h2>
-            <JournalAnalysis analysis={latestEntry.analysis} />
+            <JournalAnalysis analysis={selectedEntry.analysis} />
           </div>
         )}
       </div>
@@ -47,12 +55,22 @@ export default function JournalPage() {
                           {new Date(entry.date).toLocaleDateString()}
                         </span>
                       </div>
-                      <div className="text-sm text-muted-foreground">
-                        Energy: {entry.energy}
+                      <div className="flex items-center gap-2">
+                        <div className="text-sm text-muted-foreground">
+                          Energy: {entry.energy}
+                        </div>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => setSelectedEntryId(entry._id)}
+                        >
+                          <Eye className="w-4 h-4 mr-1" />
+                          View Analysis
+                        </Button>
                       </div>
                     </div>
                     <p className="text-sm mb-2">{entry.content}</p>
-                    {entry.activities.length > 0 && (
+                    {entry.activities?.length > 0 && (
                       <div className="flex flex-wrap gap-2">
                         {entry.activities.map((activity, index) => (
                           <span

@@ -140,7 +140,7 @@ export default function GoalForm({ goal, isOpen, onClose, onSuccess }: GoalFormP
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-white/5 border-white/10 backdrop-blur-md text-white max-w-2xl">
+      <DialogContent className="bg-white/5 border-white/10 backdrop-blur-md text-white max-w-2xl mx-auto w-[95%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fixed p-6">
         <DialogHeader>
           <DialogTitle>{goal ? 'Edit SMART Goal' : 'Create SMART Goal'}</DialogTitle>
         </DialogHeader>

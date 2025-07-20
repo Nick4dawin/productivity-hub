@@ -151,40 +151,60 @@ export function Analytics() {
     <div className="space-y-8 p-4 md:p-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Tasks Card */}
-        <GlassCard>
-          <h3 className="font-medium">Tasks</h3>
-          <div className="text-2xl font-bold">{dynamicData.tasks.completionRate}</div>
-          <p className="text-sm text-muted-foreground">
-            {dynamicData.tasks.completed} of {dynamicData.tasks.total} tasks completed
-          </p>
-        </GlassCard>
+        <div 
+          className="cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg"
+          onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'todo' } }))}
+        >
+          <GlassCard>
+            <h3 className="font-medium">Tasks</h3>
+            <div className="text-2xl font-bold">{dynamicData.tasks.completionRate}</div>
+            <p className="text-sm text-muted-foreground">
+              {dynamicData.tasks.completed} of {dynamicData.tasks.total} tasks completed
+            </p>
+          </GlassCard>
+        </div>
 
         {/* Habits Card */}
-        <GlassCard>
-          <h3 className="font-medium">Habits</h3>
-          <div className="text-2xl font-bold">{dynamicData.habits.bestStreak} days</div>
-          <p className="text-sm text-muted-foreground">
-            Longest recorded streak
-          </p>
-        </GlassCard>
+        <div 
+          className="cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg"
+          onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'habits' } }))}
+        >
+          <GlassCard>
+            <h3 className="font-medium">Habits</h3>
+            <div className="text-2xl font-bold">{dynamicData.habits.bestStreak} days</div>
+            <p className="text-sm text-muted-foreground">
+              Longest recorded streak
+            </p>
+          </GlassCard>
+        </div>
 
         {/* Mood Card */}
-        <GlassCard>
-          <h3 className="font-medium">Mood</h3>
-          <div className="text-2xl">{dynamicData.mood.average}</div>
-          <p className="text-sm text-muted-foreground">
-            Average from {dynamicData.mood.entries} entries
-          </p>
-        </GlassCard>
+        <div 
+          className="cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg"
+          onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'mood' } }))}
+        >
+          <GlassCard>
+            <h3 className="font-medium">Mood</h3>
+            <div className="text-2xl">{dynamicData.mood.average}</div>
+            <p className="text-sm text-muted-foreground">
+              Average from {dynamicData.mood.entries} entries
+            </p>
+          </GlassCard>
+        </div>
 
         {/* Journal Card */}
-        <GlassCard>
-          <h3 className="font-medium">Journal</h3>
-          <div className="text-2xl font-bold">{dynamicData.journal.entries}</div>
-          <p className="text-sm text-muted-foreground">
-            Entries ({dynamicData.journal.wordsWritten} words)
-          </p>
-        </GlassCard>
+        <div 
+          className="cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg"
+          onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'journal' } }))}
+        >
+          <GlassCard>
+            <h3 className="font-medium">Journal</h3>
+            <div className="text-2xl font-bold">{dynamicData.journal.entries}</div>
+            <p className="text-sm text-muted-foreground">
+              Entries ({dynamicData.journal.wordsWritten} words)
+            </p>
+          </GlassCard>
+        </div>
       </div>
 
       <div className="space-y-4">

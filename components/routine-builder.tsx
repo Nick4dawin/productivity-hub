@@ -105,7 +105,7 @@ export default function RoutineBuilder({ routine, isOpen, onClose, onSuccess }: 
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-white/5 border-white/10 backdrop-blur-md text-white">
+      <DialogContent className="bg-white/5 border-white/10 backdrop-blur-md text-white max-w-md mx-auto w-[95%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fixed p-6">
         <DialogHeader>
           <DialogTitle>{routine ? 'Edit Routine' : 'Create Routine'}</DialogTitle>
         </DialogHeader>

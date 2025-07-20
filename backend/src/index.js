@@ -18,6 +18,8 @@ const budgetRoutes = require('./routes/budget.routes');
 const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
 const coachRoutes = require('./routes/coach.routes');
+const aiRoutes = require('./routes/ai.routes');
+const webhookRoutes = require('./routes/webhook.routes');
 
 const app = express();
 
@@ -43,7 +45,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/user', userRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/todos', todoRoutes);
 app.use('/api/habits', habitRoutes);
 app.use('/api/moods', moodRoutes);
@@ -51,11 +53,13 @@ app.use('/api/journal', journalRoutes);
 app.use('/api/routines', routineRoutes);
 app.use('/api/goals', goalRoutes);
 app.use('/api/media', mediaRoutes);
+app.use('/api/budget', budgetRoutes);
 app.use('/api/finance', financeRoutes);
-app.use('/api/accounts', accountRoutes);
-app.use('/api/subscriptions', subscriptionRoutes);
-app.use('/api/budgets', budgetRoutes);
+app.use('/api/subscription', subscriptionRoutes);
 app.use('/api/coach', coachRoutes);
+app.use('/api/account', accountRoutes);
+app.use('/api/ai', aiRoutes);
+app.use('/api/webhook', webhookRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
