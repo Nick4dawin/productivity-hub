@@ -890,7 +890,7 @@ export async function getMilestoneSuggestions(title: string, description?: strin
 
 export async function completeOnboarding(): Promise<{ user: User }> {
     const headers = await getAuthHeaders();
-    const response = await fetch(`${API_BASE_URL}/user/complete-onboarding`, {
+    const response = await fetch(`${API_BASE_URL}/users/complete-onboarding`, {
         method: 'PUT',
         headers,
     });

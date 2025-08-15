@@ -25,7 +25,7 @@ interface AuthContextType {
   logout: () => void;
   getAuthHeaders: () => Record<string, string>;
   updateUser: (user: Partial<User>) => void;
-  completeOnboarding: () => void;
+  completeOnboarding: () => Promise<void>;
   loading: boolean;
 }
 
@@ -180,8 +180,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(prevUser => (prevUser ? { ...prevUser, ...updatedFields } : null));
   };
 
-  const completeOnboarding = () => {
-    if (user) {
+  const completeOnboarding = async () => {
+    if (!user || !token) return;
+
+    try {
+      const response = await fetch(`${API_URL}/users/complete-onboarding`, {
+        method: "PUT",
+        headers: getAuthHeaders(),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to complete onboarding");
+      }
+
+      const data = await response.json();
+      updateUser({ onboarded: true });
+    } catch (error) {
+      console.error("Complete onboarding error:", error);
+      // Still update local state even if API call fails
       updateUser({ onboarded: true });
     }
   };

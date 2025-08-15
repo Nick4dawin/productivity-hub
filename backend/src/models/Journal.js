@@ -28,11 +28,8 @@ const journalSchema = new mongoose.Schema({
     type: String
   }],
   analysis: {
-    summary: String,
-    sentiment: String,
-    keywords: [String],
-    suggestions: [String],
-    insights: String,
+    type: mongoose.Schema.Types.Mixed,
+    default: {}
   },
   date: {
     type: Date,

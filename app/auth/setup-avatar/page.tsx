@@ -36,7 +36,7 @@ export default function SetupAvatarPage() {
 
     setIsSaving(true);
     try {
-      const response = await fetch('/api/user/avatar', {
+      const response = await fetch('/api/users/avatar', {
         method: 'PUT',
         headers: getAuthHeaders(),
         body: JSON.stringify({ avatarUrl: selectedAvatar }),

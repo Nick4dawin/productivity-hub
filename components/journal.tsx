@@ -10,6 +10,7 @@ import { getJournalEntries, createJournalEntry, updateJournalEntry, deleteJourna
 import { useToast } from "./ui/use-toast"
 import { format } from "date-fns"
 import { JournalAnalysis } from "./journal-analysis"
+import { JournalConfirmationModal } from "./journal-confirmation-modal"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "./ui/dialog"
 
@@ -28,6 +29,9 @@ export function Journal() {
   const [selectedEntry, setSelectedEntry] = useState<JournalEntry | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [editingEntry, setEditingEntry] = useState<JournalEntry | null>(null)
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
+  const [extractedData, setExtractedData] = useState<any>(null)
+  const [savedJournalId, setSavedJournalId] = useState<string | null>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -64,24 +68,62 @@ export function Journal() {
 
     try {
       setIsSubmitting(true)
-      console.log('Adding journal entry:', { title, content, category })
+      console.log('🚀 Adding enhanced journal entry:', { title, content, category })
+      
       const entry = await createJournalEntry({
         title: title.trim(),
         content: content.trim(),
         category,
         date: format(new Date(), "yyyy-MM-dd"),
       })
-      console.log('Added journal entry:', entry)
+      
+      console.log('✅ Journal entry created:', entry)
+      console.log('🔍 Analysis data received:', entry.analysis)
+      
+      // Check if we have extracted data to show modal
+      if (entry.analysis?.extracted) {
+        const extractedData = entry.analysis.extracted;
+        const hasExtractedData = 
+          !!extractedData.mood ||
+          (extractedData.todos && extractedData.todos.length > 0) ||
+          (extractedData.media && extractedData.media.length > 0) ||
+          (extractedData.habits && extractedData.habits.length > 0);
+          
+        console.log('📊 Extracted data summary:', {
+          hasMood: !!extractedData.mood,
+          todosCount: extractedData.todos?.length || 0,
+          mediaCount: extractedData.media?.length || 0,
+          habitsCount: extractedData.habits?.length || 0,
+          hasExtractedData
+        });
+        
+        if (hasExtractedData) {
+          console.log('🎯 Showing confirmation modal with extracted data');
+          setSavedJournalId(entry._id);
+          setExtractedData(extractedData);
+          setIsConfirmModalOpen(true);
+          
+          // Also show a toast for immediate feedback
+          toast({
+            title: "AI Analysis Complete",
+            description: `Found: ${extractedData.mood ? 'mood, ' : ''}${extractedData.todos?.length || 0} todos, ${extractedData.media?.length || 0} media, ${extractedData.habits?.length || 0} habits`,
+          })
+        }
+      } else {
+        console.log('⚠️ No extracted data found in analysis');
+      }
+      
       setEntries(prev => [entry, ...prev])
       setTitle("")
       setContent("")
       setCategory("Personal")
+      
       toast({
         title: "Success",
         description: "Journal entry created successfully",
       })
     } catch (error) {
-      console.error('Error adding journal entry:', error)
+      console.error('💥 Error adding journal entry:', error)
       toast({
         title: "Error",
         description: "Failed to create journal entry",
@@ -169,6 +211,63 @@ export function Journal() {
   const handleOpenAnalysis = (entry: JournalEntry) => {
     setSelectedEntry(entry);
     setIsAnalysisModalOpen(true);
+  }
+
+  const handleConfirmExtractedData = async (selectedData: any) => {
+    if (!savedJournalId) return;
+    
+    try {
+      console.log('🎯 Saving extracted items:', selectedData);
+      
+      // Call the backend to save extracted items
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api'}/journal/actions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          journalId: savedJournalId,
+          ...selectedData
+        }),
+      });
+      
+      if (response.ok) {
+        const result = await response.json();
+        console.log('✅ Extracted items saved:', result);
+        
+        // Calculate counts for success message
+        let itemsAdded = 0;
+        if (selectedData.mood) itemsAdded++;
+        itemsAdded += selectedData.todos?.length || 0;
+        itemsAdded += selectedData.media?.length || 0;
+        itemsAdded += selectedData.habits?.length || 0;
+        
+        toast({
+          title: `${itemsAdded} Items Added`,
+          description: 'Your journal items have been added to the appropriate collections',
+        });
+      } else {
+        console.error('❌ Failed to save extracted items');
+        toast({
+          title: "Error",
+          description: "Failed to save extracted items",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('💥 Error saving extracted items:', error);
+      toast({
+        title: "Error",
+        description: "Failed to process extracted items",
+        variant: "destructive",
+      });
+    }
+    
+    // Reset modal state
+    setIsConfirmModalOpen(false);
+    setSavedJournalId(null);
+    setExtractedData(null);
   }
 
   // Don't render until mounted to prevent hydration issues
@@ -287,6 +386,17 @@ export function Journal() {
         isOpen={isAnalysisModalOpen}
         onClose={() => setIsAnalysisModalOpen(false)}
         analysis={selectedEntry?.analysis || null}
+    />
+    
+    <JournalConfirmationModal 
+      isOpen={isConfirmModalOpen}
+      onClose={() => {
+        setIsConfirmModalOpen(false);
+        setSavedJournalId(null);
+        setExtractedData(null);
+      }}
+      extractedData={extractedData || { mood: '', todos: [], media: [], habits: [] }}
+      onConfirm={handleConfirmExtractedData}
     />
     
     <Dialog open={isEditModalOpen} onOpenChange={setIsEditModalOpen}>

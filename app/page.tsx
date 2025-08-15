@@ -190,7 +190,7 @@ export default function DashboardPage() {
   const handleDeleteAccount = async () => {
     setIsDeleting(true);
     try {
-      const response = await fetch(`${apiUrl}/user`, {
+      const response = await fetch(`${apiUrl}/users`, {
         method: 'DELETE',
         headers: getAuthHeaders(),
       });
