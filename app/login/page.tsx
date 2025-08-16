@@ -10,6 +10,7 @@ import { GlassCard } from "@/components/GlassCard";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { Logo } from "@/components/logo";
 import { GoogleSignInButton } from '@/components/google-signin-button';
 import { LoadingOverlay } from "@/components/ui/loading-overlay";
 
@@ -76,17 +77,10 @@ export default function LoginPage() {
       <div className="z-10 max-w-md w-full px-4">
         <GlassCard className="w-full flex flex-col items-center space-y-6">
           <div className="flex flex-col items-center justify-center text-center gap-4 pt-4">
-            <div className="w-12 h-12 relative">
-              <Image 
-                src="/logo.svg" 
-                alt="Logo" 
-                fill 
-                className="object-contain" 
-              />
-            </div>
+            <Logo size="lg" className="text-white" />
             <div>
               <h1 className="text-2xl font-bold text-white">Sign In</h1>
-              <p className="text-white/80">Welcome back to Produktiv</p>
+              <p className="text-white/80">Welcome back to Life OS</p>
             </div>
           </div>
           

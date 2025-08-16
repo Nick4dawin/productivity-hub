@@ -8,6 +8,7 @@ import { X, Send, Sparkles } from 'lucide-react';
 import { getCoachResponse, ChatMessage } from '@/lib/api';
 import ReactMarkdown from 'react-markdown';
 import { useAuth } from '@/contexts/auth-context';
+import { Logo } from './logo';
 
 export const CoachChat = ({ onClose }: { onClose: () => void }) => {
     const { user } = useAuth();
@@ -49,12 +50,15 @@ export const CoachChat = ({ onClose }: { onClose: () => void }) => {
     };
 
     return (
-        <div className="fixed bottom-24 right-8 w-96 z-50">
+        <div className="fixed bottom-32 right-8 w-96 z-50">
             <GlassCard className="flex flex-col h-[60vh] max-h-[600px] shadow-xl">
-                <header className="flex items-center justify-between p-4 border-b border-white/20">
-                    <div className="flex items-center gap-2">
-                        <Sparkles className="h-6 w-6 text-purple-400" />
-                        <h2 className="text-xl font-bold">AI Coach</h2>
+                <header className="flex items-center justify-between px-4 py-2 border-b border-white/20">
+                    <div className="flex items-center gap-3">
+                        <Logo size="sm" showText={false} />
+                        <div>
+                            <h2 className="text-lg font-bold">Life OS AI</h2>
+                            <p className="text-xs text-white/60">Powered by Spark</p>
+                        </div>
                     </div>
                     <Button variant="ghost" size="icon" onClick={onClose}>
                         <X className="h-6 w-6" />
@@ -65,6 +69,11 @@ export const CoachChat = ({ onClose }: { onClose: () => void }) => {
                     <div className="space-y-4">
                         {messages.map((message, index) => (
                             <div key={index} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                                {message.sender === 'ai' && (
+                                    <div className="flex-shrink-0 mr-2 mt-1">
+                                        <Logo size="sm" showText={false} />
+                                    </div>
+                                )}
                                 <div className={`prose prose-invert px-4 py-2 rounded-lg max-w-xs ${message.sender === 'user' ? 'bg-purple-600' : 'bg-gray-700'}`}>
                                     <ReactMarkdown>{message.text}</ReactMarkdown>
                                 </div>
@@ -72,8 +81,18 @@ export const CoachChat = ({ onClose }: { onClose: () => void }) => {
                         ))}
                          {isLoading && (
                             <div className="flex justify-start">
+                                <div className="flex-shrink-0 mr-2 mt-1">
+                                    <Logo size="sm" showText={false} />
+                                </div>
                                 <div className="px-4 py-2 rounded-lg bg-gray-700">
-                                    <p>Thinking...</p>
+                                    <div className="flex items-center gap-2">
+                                        <div className="animate-pulse">Thinking...</div>
+                                        <div className="flex gap-1">
+                                            <div className="w-1 h-1 bg-white/60 rounded-full animate-bounce"></div>
+                                            <div className="w-1 h-1 bg-white/60 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                                            <div className="w-1 h-1 bg-white/60 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         )}

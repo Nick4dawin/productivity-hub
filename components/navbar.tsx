@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Logo } from './logo';
 import { cn } from '@/lib/utils';
 import { ModeToggle } from './mode-toggle';
 import { useAuth } from '@/contexts/auth-context';
@@ -73,6 +74,9 @@ export function Navbar() {
       <nav className="border-b">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center space-x-4 sm:space-x-8">
+            <Link href="/" className="flex items-center">
+              <Logo size="md" />
+            </Link>
             {navItems.map((item) => (
               <Link
                 key={item.href}

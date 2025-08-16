@@ -8,8 +8,8 @@ import { CoachButton } from "@/components/coach-button";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "Productivity Hub",
-  description: "A hub for all your productivity needs.",
+  title: "Life OS",
+  description: "Your personal operating system for life management.",
 };
 
 export default function RootLayout({

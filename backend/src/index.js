@@ -20,6 +20,7 @@ const userRoutes = require('./routes/user.routes');
 const coachRoutes = require('./routes/coach.routes');
 const aiRoutes = require('./routes/ai.routes');
 const webhookRoutes = require('./routes/webhook.routes');
+const healthRoutes = require('./routes/health.routes');
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Routes
+app.use('/health', healthRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/todos', todoRoutes);

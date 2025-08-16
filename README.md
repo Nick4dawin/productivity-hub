@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Life OS
+
+Life OS is your personal operating system for life management - a comprehensive productivity platform built with Next.js and Express.js.
 
 ## Getting Started
 
@@ -17,6 +19,40 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+## Backend Server
+
+The backend server runs on port 5001 and includes:
+
+### Health Endpoint
+
+A health check endpoint is available at `/health` to prevent cold starts on hosting platforms like Render:
+
+```
+GET /health
+```
+
+Response:
+```json
+{
+  "status": "OK",
+  "message": "Server is healthy",
+  "timestamp": "2024-01-01T00:00:00.000Z",
+  "uptime": 123.456
+}
+```
+
+You can set up a cron job at [cron-job.org](https://cron-job.org) to ping this endpoint every few minutes to keep your server warm.
+
+### Running the Backend
+
+```bash
+cd backend
+npm install
+npm start
+# or for development
+npm run dev
+```
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
