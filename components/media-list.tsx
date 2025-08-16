@@ -42,13 +42,19 @@ export default function MediaList({ type, onEdit, refreshKey }: MediaListProps) 
   }, [fetchMedia, refreshKey]);
   
   const handleDelete = async (id: string) => {
+    console.log('🗑️ handleDelete called with ID:', id);
+    console.log('🔍 ID type:', typeof id);
+    console.log('🔍 ID value:', id);
+    
     try {
       const headers = getAuthHeaders();
+      console.log('🔑 Headers obtained:', !!headers);
       await deleteMedia(headers, id);
       toast({ title: 'Media deleted' });
       fetchMedia();
-    } catch {
-       toast({ title: `Failed to delete media`, variant: 'destructive' });
+    } catch (error) {
+      console.error('❌ Error in handleDelete:', error);
+      toast({ title: `Failed to delete media`, variant: 'destructive' });
     }
   };
 

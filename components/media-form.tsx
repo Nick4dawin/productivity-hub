@@ -17,22 +17,45 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
-import { createMedia, updateMedia, Media, searchExternalMedia } from '@/lib/api';
+import { createMedia, updateMedia, Media, searchExternalMedia, AuthHeaders } from '@/lib/api';
 import { useCallback, useState, useEffect } from 'react';
 import debounce from 'debounce';
+import { useAuth } from '@/contexts/auth-context';
 
 const mediaFormSchema = z.object({
   title: z.string().min(1, 'Title is required'),
   type: z.enum(['Movie', 'TV Show', 'Book', 'Game']),
   genre: z.string().optional(),
   status: z.enum(['Completed', 'In Progress', 'Planned']),
-  rating: z.coerce.number().min(0).max(5).optional(),
+  rating: z.union([z.string(), z.number()]).optional().transform((val) => {
+    if (val === undefined || val === null || val === '') return undefined;
+    const num = Number(val);
+    return isNaN(num) || num < 1 || num > 5 ? undefined : num;
+  }),
   review: z.string().optional(),
-  imageUrl: z.string().url().optional(),
-  episodesWatched: z.coerce.number().optional(),
-  totalEpisodes: z.coerce.number().optional(),
-  pagesRead: z.coerce.number().optional(),
-  totalPages: z.coerce.number().optional(),
+  imageUrl: z.string().optional().refine((val) => !val || val === '' || /^https?:\/\/.+/.test(val), {
+    message: 'Image URL must be a valid URL'
+  }),
+  episodesWatched: z.union([z.string(), z.number()]).optional().transform((val) => {
+    if (val === undefined || val === null || val === '') return undefined;
+    const num = Number(val);
+    return isNaN(num) || num < 0 ? undefined : num;
+  }),
+  totalEpisodes: z.union([z.string(), z.number()]).optional().transform((val) => {
+    if (val === undefined || val === null || val === '') return undefined;
+    const num = Number(val);
+    return isNaN(num) || num < 0 ? undefined : num;
+  }),
+  pagesRead: z.union([z.string(), z.number()]).optional().transform((val) => {
+    if (val === undefined || val === null || val === '') return undefined;
+    const num = Number(val);
+    return isNaN(num) || num < 0 ? undefined : num;
+  }),
+  totalPages: z.union([z.string(), z.number()]).optional().transform((val) => {
+    if (val === undefined || val === null || val === '') return undefined;
+    const num = Number(val);
+    return isNaN(num) || num < 0 ? undefined : num;
+  }),
 });
 
 interface SearchResult {
@@ -44,14 +67,7 @@ interface SearchResult {
     imageUrl?: string;
 }
 
-const mediaSubmitSchema = mediaFormSchema.transform(data => ({
-    ...data,
-    rating: isNaN(data.rating!) ? undefined : data.rating,
-    episodesWatched: isNaN(data.episodesWatched!) ? undefined : data.episodesWatched,
-    totalEpisodes: isNaN(data.totalEpisodes!) ? undefined : data.totalEpisodes,
-    pagesRead: isNaN(data.pagesRead!) ? undefined : data.pagesRead,
-    totalPages: isNaN(data.totalPages!) ? undefined : data.totalPages,
-}));
+const mediaSubmitSchema = mediaFormSchema;
 
 type MediaFormData = z.infer<typeof mediaFormSchema>;
 
@@ -64,8 +80,11 @@ interface MediaFormProps {
 
 export default function MediaForm({ isOpen, media, onClose, onSuccess }: MediaFormProps) {
   const { toast } = useToast();
+  const { getAuthHeaders } = useAuth();
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  
+  console.log('🎭 MediaForm rendered with props:', { isOpen, media: !!media, onClose: !!onClose, onSuccess: !!onSuccess });
 
   const {
     control,
@@ -140,7 +159,8 @@ export default function MediaForm({ isOpen, media, onClose, onSuccess }: MediaFo
       }
       setIsSearching(true);
       try {
-        const results = await searchExternalMedia(mediaType, query);
+        const headers = getAuthHeaders();
+        const results = await searchExternalMedia(mediaType, query, headers);
         setSearchResults(results);
       } catch (error) {
         console.error('Failed to search media:', error);
@@ -149,7 +169,7 @@ export default function MediaForm({ isOpen, media, onClose, onSuccess }: MediaFo
         setIsSearching(false);
       }
     }, 500),
-    [mediaType]
+    [mediaType, getAuthHeaders]
   );
 
   const handleSelectSearchResult = (result: SearchResult) => {
@@ -163,21 +183,45 @@ export default function MediaForm({ isOpen, media, onClose, onSuccess }: MediaFo
   };
 
   const onSubmit = async (data: MediaFormData) => {
+    console.log('💾 onSubmit called with data:', data);
+    console.log('📝 Media being edited:', media);
+    
     try {
       const validatedData = mediaSubmitSchema.parse(data);
+      console.log('✅ Validated data:', validatedData);
+      console.log('🎯 Rating value:', validatedData.rating, 'Type:', typeof validatedData.rating);
+      
+      const headers = getAuthHeaders();
+      console.log('🔑 Headers obtained:', !!headers);
+      
       if (media?._id) {
-        await updateMedia(media._id, validatedData);
+        console.log('🔄 Updating media with ID:', media._id);
+        await updateMedia(media._id, validatedData, headers);
         toast({ title: 'Media updated' });
       } else {
-        await createMedia(validatedData);
+        console.log('➕ Creating new media');
+        await createMedia(validatedData, headers);
         toast({ title: 'Media created' });
       }
+      
+      console.log('✅ Media saved successfully');
       onSuccess();
-    } catch {
-        toast({ title: 'Failed to save media', variant: 'destructive' });
+    } catch (error) {
+      console.error('❌ Error saving media:', error);
+      toast({ title: 'Failed to save media', variant: 'destructive' });
     }
   };
 
+  const handleFormSubmit = (data: MediaFormData) => {
+    console.log('🎯 handleFormSubmit called!');
+    console.log('📋 Form data:', data);
+    console.log('🔍 Form errors:', errors);
+    console.log('✅ Form is valid:', Object.keys(errors).length === 0);
+    onSubmit(data);
+  };
+
+  console.log('🎨 Rendering MediaForm dialog');
+  
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-black/80 border-white/10 text-white rounded-lg">
@@ -187,7 +231,7 @@ export default function MediaForm({ isOpen, media, onClose, onSuccess }: MediaFo
             {media?._id ? 'Edit the details of your media item.' : 'Add a new movie, TV show, book, or game to your collection.'}
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                 <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
             <Controller name="type" control={control} render={({ field }) => (
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger className="bg-white/5 border-white/10"><SelectValue placeholder="Type" /></SelectTrigger>
@@ -253,14 +297,18 @@ export default function MediaForm({ isOpen, media, onClose, onSuccess }: MediaFo
                 </Select>
             )}/>
 
-            <Input {...register('rating')} type="number" step="0.1" placeholder="Rating (1-5)" className="bg-white/5 border-white/10" />
+            <Input {...register('rating')} type="number" min="1" max="5" step="0.1" placeholder="Rating (1-5)" className="bg-white/5 border-white/10" />
             <Textarea {...register('review')} placeholder="Review" className="bg-white/5 border-white/10" />
             
             <DialogFooter className="flex justify-end gap-2 pt-4">
               <DialogClose asChild>
                 <Button type="button" variant="outline" className="bg-white/10 border-white/20">Cancel</Button>
               </DialogClose>
-              <Button type="submit" variant="gradient" disabled={isSubmitting}>
+              <Button 
+                type="submit" 
+                variant="gradient" 
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? 'Saving...' : 'Save'}
               </Button>
             </DialogFooter>

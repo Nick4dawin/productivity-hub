@@ -1,5 +1,8 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api';
 
+// Types
+export type AuthHeaders = Record<string, string>;
+
 // Helper function to get auth token
 const getAuthHeaders = async (): Promise<Record<string, string>> => {
   try {
@@ -586,48 +589,94 @@ export async function deleteGoal(id: string): Promise<void> {
 }
 
 // Media API
-export async function getMedia(): Promise<Media[]> {
-  const res = await fetch(`${API_BASE_URL}/media`, { headers: await getAuthHeaders() });
+export async function getMedia(headers?: AuthHeaders): Promise<Media[]> {
+  const authHeaders = headers || await getAuthHeaders();
+  const res = await fetch(`${API_BASE_URL}/media`, { headers: authHeaders });
   if (!res.ok) throw new Error('Failed to fetch media');
   return res.json();
 }
 
-export async function createMedia(mediaData: Partial<Media>): Promise<Media> {
+export async function createMedia(mediaData: Partial<Media>, headers?: AuthHeaders): Promise<Media> {
+  console.log('➕ Creating media with data:', mediaData);
+  const authHeaders = headers || await getAuthHeaders();
+  console.log('🔑 Using headers:', !!authHeaders);
+  
   const res = await fetch(`${API_BASE_URL}/media`, {
     method: 'POST',
-    headers: await getAuthHeaders(),
+    headers: authHeaders,
     body: JSON.stringify(mediaData),
   });
-  if (!res.ok) throw new Error('Failed to create media entry');
-  return res.json();
+  
+  console.log('📡 Create response status:', res.status);
+  
+  if (!res.ok) {
+    console.error('❌ Failed to create media. Status:', res.status);
+    const errorText = await res.text();
+    console.error('❌ Error response:', errorText);
+    throw new Error('Failed to create media entry');
+  }
+  
+  const result = await res.json();
+  console.log('✅ Media created successfully:', result);
+  return result;
 }
 
-export async function updateMedia(id: string, mediaData: Partial<Media>): Promise<Media> {
+export async function updateMedia(id: string, mediaData: Partial<Media>, headers?: AuthHeaders): Promise<Media> {
+  console.log('🔄 Updating media with ID:', id);
+  console.log('📝 Update data:', mediaData);
+  const authHeaders = headers || await getAuthHeaders();
+  console.log('🔑 Using headers:', !!authHeaders);
+  
   const res = await fetch(`${API_BASE_URL}/media/${id}`, {
     method: 'PUT',
-    headers: await getAuthHeaders(),
+    headers: authHeaders,
     body: JSON.stringify(mediaData),
   });
-  if (!res.ok) throw new Error('Failed to update media entry');
-  return res.json();
+  
+  console.log('📡 Update response status:', res.status);
+  
+  if (!res.ok) {
+    console.error('❌ Failed to update media. Status:', res.status);
+    const errorText = await res.text();
+    console.error('❌ Error response:', errorText);
+    throw new Error('Failed to update media entry');
+  }
+  
+  const result = await res.json();
+  console.log('✅ Media updated successfully:', result);
+  return result;
 }
 
-export async function deleteMedia(id: string): Promise<void> {
+export async function deleteMedia(headers: AuthHeaders, id: string): Promise<void> {
+  console.log('🗑️ Deleting media with ID:', id);
+  console.log('🔑 Headers available:', !!headers);
+  
   const res = await fetch(`${API_BASE_URL}/media/${id}`, {
     method: 'DELETE',
-    headers: await getAuthHeaders(),
+    headers,
   });
-  if (!res.ok) throw new Error('Failed to delete media entry');
+  
+  console.log('📡 Delete response status:', res.status);
+  
+  if (!res.ok) {
+    console.error('❌ Failed to delete media entry. Status:', res.status);
+    const errorText = await res.text();
+    console.error('❌ Error response:', errorText);
+    throw new Error('Failed to delete media entry');
+  }
+  
+  console.log('✅ Media deleted successfully');
 }
 
-export const searchExternalMedia = async (type: string, query: string) => {
+export const searchExternalMedia = async (type: string, query: string, headers?: AuthHeaders) => {
     const url = new URL(`${API_BASE_URL}/media/search`);
     url.searchParams.append('type', type);
     url.searchParams.append('query', query);
     
+    const authHeaders = headers || await getAuthHeaders();
     const response = await fetch(url.toString(), {
         method: 'GET',
-        headers: await getAuthHeaders(),
+        headers: authHeaders,
     });
     if (!response.ok) throw new Error('Failed to search external media');
     return response.json();
