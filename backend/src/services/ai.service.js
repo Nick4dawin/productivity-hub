@@ -78,13 +78,23 @@ Journal Entry: "${content}"`;
     Be extremely precise in your extraction. Only extract items that are explicitly mentioned, don't infer too much.
     If the user says "I feel tired", that's a mood, not a habit called "sleeping".
     
-    IMPORTANT: For mood detection, you MUST only use these predefined values: "excellent", "good", "neutral", "bad", "terrible". 
-    Map any detected emotion to the closest predefined mood:
-    - "excellent": Very happy, excited, amazing, fantastic, great day
-    - "good": Happy, positive, content, satisfied, upbeat
-    - "neutral": Okay, fine, normal, balanced, neither good nor bad
-    - "bad": Sad, frustrated, disappointed, stressed, worried
-    - "terrible": Very sad, depressed, awful, horrible, extremely negative
+    IMPORTANT: For mood detection, you MUST extract structured mood data that matches the mood tracking system:
+    
+    MOOD MAPPING - Map detected emotions to these exact emoji values:
+    - "😊" (Happy): Very happy, excited, amazing, fantastic, great day, joyful, elated
+    - "😌" (Calm): Peaceful, relaxed, content, serene, at ease, tranquil
+    - "😐" (Neutral): Okay, fine, normal, balanced, neither good nor bad, indifferent
+    - "😢" (Sad): Sad, disappointed, down, blue, melancholy, sorrowful
+    - "😤" (Angry): Angry, frustrated, mad, irritated, annoyed, upset
+    - "😴" (Tired): Tired, exhausted, sleepy, fatigued, worn out, drained
+    
+    ENERGY LEVEL MAPPING - Extract energy level:
+    - "⚡️" (High): High energy, energetic, pumped, motivated, active, vibrant
+    - "✨" (Medium): Moderate energy, balanced, steady, normal energy
+    - "🌙" (Low): Low energy, tired, sluggish, lethargic, drained
+    
+    ACTIVITIES MAPPING - Extract mentioned activities from this list:
+    - "Exercise", "Work", "Social", "Family", "Hobbies", "Reading", "Movies", "Gaming", "Nature", "Shopping", "Cooking", "Music"
     
     For each extracted item, provide a confidence score from 0.0 to 1.0 indicating how certain you are about the extraction:
     - 0.9-1.0: Very confident (explicitly mentioned)
@@ -103,9 +113,19 @@ Journal Entry: "${content}"`;
       "confidence": 0.85,
       "extracted": {
         "mood": {
-          "value": "good",
+          "value": "😊",
+          "label": "Happy",
           "confidence": 0.9
         },
+        "energy": {
+          "value": "⚡️",
+          "label": "High",
+          "confidence": 0.8
+        },
+        "activities": [
+          { "value": "Exercise", "confidence": 0.9 },
+          { "value": "Work", "confidence": 0.7 }
+        ],
         "todos": [
           { "title": "Call doctor", "time": "future", "dueDate": "2023-05-15", "priority": "medium", "confidence": 0.8 }
         ],
@@ -131,7 +151,10 @@ Journal Entry: "${content}"`;
     // Ensure confidence scores exist and are valid
     if (!result.confidence) result.confidence = 0.5;
     if (result.extracted?.mood && typeof result.extracted.mood === 'string') {
-      result.extracted.mood = { value: result.extracted.mood, confidence: 0.5 };
+      result.extracted.mood = { value: result.extracted.mood, label: 'Unknown', confidence: 0.5 };
+    }
+    if (result.extracted?.energy && typeof result.extracted.energy === 'string') {
+      result.extracted.energy = { value: result.extracted.energy, label: 'Unknown', confidence: 0.5 };
     }
     
     return result;
@@ -145,7 +168,9 @@ Journal Entry: "${content}"`;
       insights: 'No insights available.',
       confidence: 0.0,
       extracted: {
-        mood: { value: '', confidence: 0.0 },
+        mood: { value: '', label: '', confidence: 0.0 },
+        energy: { value: '', label: '', confidence: 0.0 },
+        activities: [],
         todos: [],
         media: [],
         habits: []
@@ -322,7 +347,7 @@ const analyzeJournalContentRealtime = async (content, userId) => {
   return debounce(async () => {
     return retryWithBackoff(async () => {
       const prompt = `Analyze this partial journal entry for real-time feedback. Focus on:
-      1. Mood detection if emotional indicators are present (MUST use only: "excellent", "good", "neutral", "bad", "terrible")
+      1. Mood detection if emotional indicators are present (MUST use emoji values: "😊", "😌", "😐", "😢", "😤", "😴")
       2. Quick suggestions for continuation if the user seems stuck
       3. Immediate actionable items if mentioned
       
@@ -331,7 +356,7 @@ const analyzeJournalContentRealtime = async (content, userId) => {
       Provide a lightweight analysis in JSON format:
       {
         "mood": {
-          "detected": "excellent|good|neutral|bad|terrible",
+          "detected": "😊|😌|😐|😢|😤|😴",
           "confidence": 0.8,
           "suggestion": "Brief mood-related suggestion"
         },
@@ -512,13 +537,23 @@ const extractDataWithConfidence = async (content, context = {}) => {
 
     prompt += `\n\nExtract information with detailed confidence scoring:
 
-    CRITICAL: For mood detection, you MUST only use these predefined values: "excellent", "good", "neutral", "bad", "terrible". 
-    Map any detected emotion to the closest predefined mood:
-    - "excellent": Very happy, excited, amazing, fantastic, great day
-    - "good": Happy, positive, content, satisfied, upbeat  
-    - "neutral": Okay, fine, normal, balanced, neither good nor bad
-    - "bad": Sad, frustrated, disappointed, stressed, worried
-    - "terrible": Very sad, depressed, awful, horrible, extremely negative
+    CRITICAL: For mood detection, you MUST extract structured mood data that matches the mood tracking system:
+    
+    MOOD MAPPING - Map detected emotions to these exact emoji values:
+    - "😊" (Happy): Very happy, excited, amazing, fantastic, great day, joyful, elated
+    - "😌" (Calm): Peaceful, relaxed, content, serene, at ease, tranquil
+    - "😐" (Neutral): Okay, fine, normal, balanced, neither good nor bad, indifferent
+    - "😢" (Sad): Sad, disappointed, down, blue, melancholy, sorrowful
+    - "😤" (Angry): Angry, frustrated, mad, irritated, annoyed, upset
+    - "😴" (Tired): Tired, exhausted, sleepy, fatigued, worn out, drained
+    
+    ENERGY LEVEL MAPPING - Extract energy level:
+    - "⚡️" (High): High energy, energetic, pumped, motivated, active, vibrant
+    - "✨" (Medium): Moderate energy, balanced, steady, normal energy
+    - "🌙" (Low): Low energy, tired, sluggish, lethargic, drained
+    
+    ACTIVITIES MAPPING - Extract mentioned activities from this list:
+    - "Exercise", "Work", "Social", "Family", "Hobbies", "Reading", "Movies", "Gaming", "Nature", "Shopping", "Cooking", "Music"
 
     For each extraction, provide confidence based on:
     - Explicit mention: 0.9-1.0
@@ -539,10 +574,20 @@ const extractDataWithConfidence = async (content, context = {}) => {
       "confidence": 0.85,
       "extracted": {
         "mood": {
-          "value": "good",
+          "value": "😊",
+          "label": "Happy",
           "confidence": 0.9,
           "reasoning": "Why this confidence level"
         },
+        "energy": {
+          "value": "⚡️",
+          "label": "High",
+          "confidence": 0.8,
+          "reasoning": "Why this confidence level"
+        },
+        "activities": [
+          { "value": "Exercise", "confidence": 0.9, "reasoning": "Why this confidence level" }
+        ],
         "todos": [
           {
             "title": "Task title",

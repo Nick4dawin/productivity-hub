@@ -234,13 +234,13 @@ export function JournalEntry({ onSave, isLoading, defaultValues }: JournalEntryP
   // Helper functions for mock analysis
   const detectMoodFromContent = (text: string): string => {
     const lowerText = text.toLowerCase();
-    if (lowerText.includes('happy') || lowerText.includes('great') || lowerText.includes('excited')) return 'happy';
-    if (lowerText.includes('sad') || lowerText.includes('down') || lowerText.includes('upset')) return 'sad';
-    if (lowerText.includes('anxious') || lowerText.includes('worried') || lowerText.includes('nervous')) return 'anxious';
-    if (lowerText.includes('tired') || lowerText.includes('exhausted') || lowerText.includes('sleepy')) return 'tired';
-    if (lowerText.includes('angry') || lowerText.includes('frustrated') || lowerText.includes('mad')) return 'angry';
-    if (lowerText.includes('stressed') || lowerText.includes('overwhelmed')) return 'stressed';
-    return 'neutral';
+    if (lowerText.includes('happy') || lowerText.includes('great') || lowerText.includes('excited')) return '😊';
+    if (lowerText.includes('calm') || lowerText.includes('peaceful') || lowerText.includes('relaxed')) return '😌';
+    if (lowerText.includes('sad') || lowerText.includes('down') || lowerText.includes('upset')) return '😢';
+    if (lowerText.includes('tired') || lowerText.includes('exhausted') || lowerText.includes('sleepy')) return '😴';
+    if (lowerText.includes('angry') || lowerText.includes('frustrated') || lowerText.includes('mad')) return '😤';
+    if (lowerText.includes('stressed') || lowerText.includes('overwhelmed')) return '😤';
+    return '😐';
   };
 
   const generateQuickSuggestions = (text: string): string[] => {

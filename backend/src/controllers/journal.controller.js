@@ -76,6 +76,40 @@ const journalController = {
       });
 
       await newEntry.save();
+      
+      // Auto-create mood entry if AI detected mood data with high confidence
+      if (analysis?.extracted?.mood?.value && analysis.extracted.mood.confidence >= 0.7) {
+        try {
+          const Mood = require('../models/Mood');
+          const extractedMood = analysis.extracted.mood;
+          const extractedEnergy = analysis.extracted.energy;
+          const extractedActivities = analysis.extracted.activities || [];
+          
+          // Only create mood entry if we have both mood and energy
+          if (extractedMood.value && extractedEnergy?.value) {
+            const moodEntry = new Mood({
+              user: req.user._id,
+              mood: extractedMood.value,
+              energy: extractedEnergy.value,
+              activities: extractedActivities.map(a => a.value),
+              note: `Noted by AI - ${analysis.summary || 'Journal entry analysis'}`,
+              date: new Date(),
+              source: 'journal_ai'
+            });
+            
+            await moodEntry.save();
+            console.log('✅ Auto-created mood entry from journal analysis:', {
+              mood: extractedMood.value,
+              energy: extractedEnergy.value,
+              activities: extractedActivities.map(a => a.value)
+            });
+          }
+        } catch (moodError) {
+          console.error('⚠️ Failed to auto-create mood entry:', moodError.message);
+          // Don't fail the journal creation if mood creation fails
+        }
+      }
+      
       res.status(201).json(newEntry);
     } catch (error) {
       console.error('Error creating journal entry:', error);

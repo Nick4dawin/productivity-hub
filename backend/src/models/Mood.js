@@ -25,6 +25,11 @@ const moodSchema = new mongoose.Schema({
     type: Date,
     required: true,
     default: Date.now
+  },
+  source: {
+    type: String,
+    enum: ['manual', 'journal_ai'],
+    default: 'manual'
   }
 }, {
   timestamps: true

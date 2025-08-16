@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/contexts/auth-context';
 import { Button } from '@/components/ui/button';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface GoogleSignInButtonProps {
   onError: (error: string) => void;
@@ -10,6 +10,7 @@ interface GoogleSignInButtonProps {
 
 export function GoogleSignInButton({ onError }: GoogleSignInButtonProps) {
   const { googleLogin, isLoading } = useAuth();
+  const [isGoogleLoaded, setIsGoogleLoaded] = useState(false);
 
   // Load the GSI script
   useEffect(() => {
@@ -17,6 +18,9 @@ export function GoogleSignInButton({ onError }: GoogleSignInButtonProps) {
     script.src = 'https://accounts.google.com/gsi/client';
     script.async = true;
     script.defer = true;
+    script.onload = () => {
+      setIsGoogleLoaded(true);
+    };
     script.onerror = () => onError('Google Sign-In script failed to load.');
     document.body.appendChild(script);
 
@@ -34,23 +38,54 @@ export function GoogleSignInButton({ onError }: GoogleSignInButtonProps) {
         return;
       }
     
-      const client = window.google.accounts.oauth2.initCodeClient({
-        client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '',
-        scope: 'email profile openid',
-        callback: (response) => {
-          if (response.code) {
-            googleLogin(response.code);
-          } else {
-            onError("Google Sign-In failed: No authorization code returned.");
-          }
-        },
-        error_callback: (error) => {
-          console.error("Google Sign-In Error:", error);
-          onError(`Google Sign-In failed: ${error.message || 'An unknown error occurred.'}`);
-        }
-      });
+      // Add error handling for COOP issues
+      const originalOpen = window.open;
+      let popupWindow: Window | null = null;
       
-      client.requestCode();
+      try {
+        // Temporarily override window.open to handle COOP issues
+        window.open = function(url?: string | URL, target?: string, features?: string) {
+          popupWindow = originalOpen.call(window, url, target, features);
+          
+          // Add error handling for popup window
+          if (popupWindow) {
+            const checkClosed = setInterval(() => {
+              try {
+                if (popupWindow?.closed) {
+                  clearInterval(checkClosed);
+                }
+              } catch (error) {
+                // COOP error - clear interval and continue
+                clearInterval(checkClosed);
+                console.warn('COOP policy blocked window.closed access');
+              }
+            }, 100);
+          }
+          
+          return popupWindow;
+        };
+
+        const client = window.google.accounts.oauth2.initCodeClient({
+          client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '',
+          scope: 'email profile openid',
+          callback: (response) => {
+            if (response.code) {
+              googleLogin(response.code);
+            } else {
+              onError("Google Sign-In failed: No authorization code returned.");
+            }
+          },
+          error_callback: (error) => {
+            console.error("Google Sign-In Error:", error);
+            onError(`Google Sign-In failed: ${error.message || 'An unknown error occurred.'}`);
+          }
+        });
+        
+        client.requestCode();
+      } finally {
+        // Restore original window.open
+        window.open = originalOpen;
+      }
     } catch (error) {
       console.error("Google Sign-In initialization failed:", error);
       onError("Failed to start Google Sign-In. Please try again.");
@@ -63,7 +98,7 @@ export function GoogleSignInButton({ onError }: GoogleSignInButtonProps) {
       variant="outline"
       className="border-white/20 bg-white/5 hover:bg-white/10 transition-transform hover:scale-105 w-full flex gap-2 items-center text-white backdrop-blur-md"
       onClick={handleGoogleSignIn}
-      disabled={isLoading}
+      disabled={isLoading || !isGoogleLoaded}
     >
       {isLoading ? (
         "Signing in..."

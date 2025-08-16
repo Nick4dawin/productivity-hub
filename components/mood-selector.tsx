@@ -11,11 +11,12 @@ type MoodOption = {
 };
 
 const moods: MoodOption[] = [
-  { value: 'excellent', label: 'Excellent', emoji: '😁' },
-  { value: 'good', label: 'Good', emoji: '🙂' },
-  { value: 'neutral', label: 'Neutral', emoji: '😐' },
-  { value: 'bad', label: 'Bad', emoji: '🙁' },
-  { value: 'terrible', label: 'Terrible', emoji: '😞' },
+  { value: '😊', label: 'Happy', emoji: '😊' },
+  { value: '😌', label: 'Calm', emoji: '😌' },
+  { value: '😐', label: 'Neutral', emoji: '😐' },
+  { value: '😢', label: 'Sad', emoji: '😢' },
+  { value: '😤', label: 'Angry', emoji: '😤' },
+  { value: '😴', label: 'Tired', emoji: '😴' },
 ];
 
 interface MoodSelectorProps {

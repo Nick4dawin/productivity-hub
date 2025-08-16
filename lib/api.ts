@@ -58,6 +58,7 @@ export interface Mood {
   activities: string[];
   note: string;
   date: string;
+  source?: 'manual' | 'journal_ai';
 }
 
 export interface JournalEntry {

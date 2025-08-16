@@ -15,13 +15,14 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { BrainCircuit, Calendar, Film, CheckCircle, Edit2, AlertTriangle, CheckCircle2, AlertCircle } from "lucide-react";
 
-// Predefined mood options that match the system
+// Predefined mood options that match the mood tracking system
 const PREDEFINED_MOODS = [
-  { value: 'excellent', label: 'Excellent', emoji: '😁' },
-  { value: 'good', label: 'Good', emoji: '🙂' },
-  { value: 'neutral', label: 'Neutral', emoji: '😐' },
-  { value: 'bad', label: 'Bad', emoji: '🙁' },
-  { value: 'terrible', label: 'Terrible', emoji: '😞' },
+  { value: '😊', label: 'Happy', emoji: '😊' },
+  { value: '😌', label: 'Calm', emoji: '😌' },
+  { value: '😐', label: 'Neutral', emoji: '😐' },
+  { value: '😢', label: 'Sad', emoji: '😢' },
+  { value: '😤', label: 'Angry', emoji: '😤' },
+  { value: '😴', label: 'Tired', emoji: '😴' },
 ];
 
 interface ExtractedTodo {

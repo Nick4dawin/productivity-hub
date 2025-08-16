@@ -316,7 +316,12 @@ export function MoodTracker() {
                   <span className="text-3xl">{entry.mood}</span>
                   <span className="text-2xl">{entry.energy}</span>
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center gap-2">
+                  {entry.source === 'journal_ai' && (
+                    <span className="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full border border-blue-500/30">
+                      Noted by AI
+                    </span>
+                  )}
                   <span className="text-sm text-muted-foreground mr-2">
                     {format(new Date(entry.date), "MMM d, yyyy")}
                   </span>
