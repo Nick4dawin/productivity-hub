@@ -32,7 +32,9 @@ const corsOptions = {
     'http://localhost:5173',
     'https://productivity-hub.vercel.app',
     'https://productivity-hub-one.vercel.app',
-    'https://productivity-hub-p1rc.onrender.com'
+    'https://productivity-hub-p1rc.onrender.com',
+    'https://lifeoswithai.vercel.app',
+    'https://lifeoswithai-p1rc.onrender.com'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
