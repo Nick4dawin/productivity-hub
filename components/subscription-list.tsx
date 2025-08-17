@@ -1,6 +1,6 @@
 "use client";
 
-import { Subscription } from "@/lib/api";
+import { Subscription }from "@/lib/api";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
@@ -13,9 +13,11 @@ interface SubscriptionListProps {
   subscriptions: Subscription[];
   onEdit: (subscription: Subscription) => void;
   onDelete: (id: string) => void;
+  onViewDetails: (subscription: Subscription) => void;
+  isMobile: boolean;
 }
 
-export function SubscriptionList({ subscriptions, onEdit, onDelete }: SubscriptionListProps) {
+export function SubscriptionList({ subscriptions, onEdit, onDelete, onViewDetails, isMobile }: SubscriptionListProps) {
   const { formatAmount } = useCurrency();
   
   const monthlyTotal = subscriptions
@@ -42,12 +44,12 @@ export function SubscriptionList({ subscriptions, onEdit, onDelete }: Subscripti
         <TableHeader>
           <TableRow>
             <TableHead>Name</TableHead>
-            <TableHead>Category</TableHead>
-            <TableHead>Billing Cycle</TableHead>
             <TableHead className="text-right">Amount</TableHead>
-            <TableHead>Next Billing</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            {!isMobile && <TableHead>Category</TableHead>}
+            {!isMobile && <TableHead>Billing Cycle</TableHead>}
+            {!isMobile && <TableHead>Next Billing</TableHead>}
+            {!isMobile && <TableHead>Status</TableHead>}
+            {!isMobile && <TableHead className="text-right">Actions</TableHead>}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -59,40 +61,44 @@ export function SubscriptionList({ subscriptions, onEdit, onDelete }: Subscripti
             </TableRow>
           ) : (
             subscriptions.map((subscription) => (
-              <TableRow key={subscription._id}>
+              <TableRow key={subscription._id} onClick={() => isMobile && onViewDetails(subscription)} className={isMobile ? "cursor-pointer" : ""}>
                 <TableCell>{subscription.name}</TableCell>
-                <TableCell>{subscription.category}</TableCell>
-                <TableCell className="capitalize">{subscription.billingCycle}</TableCell>
                 <TableCell className="text-right">{formatAmount(subscription.amount)}</TableCell>
-                <TableCell>{format(new Date(subscription.nextBillingDate), "PPP")}</TableCell>
-                <TableCell>
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    subscription.active ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'
-                  }`}>
-                    {subscription.active ? 'Active' : 'Inactive'}
-                  </span>
-                </TableCell>
-                <TableCell className="text-right">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="h-8 w-8 p-0">
-                        <span className="sr-only">Open menu</span>
-                        <MoreHorizontal className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem onClick={() => onEdit(subscription)}>
-                        Edit
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        onClick={() => onDelete(subscription._id)}
-                        className="text-red-500"
-                      >
-                        Delete
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </TableCell>
+                {!isMobile && <TableCell>{subscription.category}</TableCell>}
+                {!isMobile && <TableCell className="capitalize">{subscription.billingCycle}</TableCell>}
+                {!isMobile && <TableCell>{format(new Date(subscription.nextBillingDate), "PPP")}</TableCell>}
+                {!isMobile && (
+                  <TableCell>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      subscription.active ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'
+                    }`}>
+                      {subscription.active ? 'Active' : 'Inactive'}
+                    </span>
+                  </TableCell>
+                )}
+                {!isMobile && (
+                  <TableCell className="text-right">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="h-8 w-8 p-0">
+                          <span className="sr-only">Open menu</span>
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem onClick={() => onEdit(subscription)}>
+                          Edit
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => onDelete(subscription._id)}
+                          className="text-red-500"
+                        >
+                          Delete
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </TableCell>
+                )}
               </TableRow>
             ))
           )}
@@ -100,4 +106,4 @@ export function SubscriptionList({ subscriptions, onEdit, onDelete }: Subscripti
       </Table>
     </GlassCard>
   );
-} 
+}

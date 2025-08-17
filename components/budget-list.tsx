@@ -1,6 +1,6 @@
 "use client";
 
-import { Budget, FinanceEntry } from "@/lib/api";
+import { Budget, FinanceEntry }from "@/lib/api";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Edit, Trash } from "lucide-react";
@@ -13,9 +13,11 @@ interface BudgetListProps {
   finances: FinanceEntry[];
   onEdit: (budget: Budget) => void;
   onDelete: (id: string) => void;
+  onViewDetails: (budget: Budget) => void;
+  isMobile: boolean;
 }
 
-export function BudgetList({ budgets, finances, onEdit, onDelete }: BudgetListProps) {
+export function BudgetList({ budgets, finances, onEdit, onDelete, onViewDetails, isMobile }: BudgetListProps) {
   const { formatAmount } = useCurrency();
   
   // Calculate spending by category for the current month
@@ -81,7 +83,11 @@ export function BudgetList({ budgets, finances, onEdit, onDelete }: BudgetListPr
         </GlassCard>
       ) : (
         normalizedBudgets.map((budget) => (
-          <GlassCard key={budget._id} className="overflow-hidden">
+          <GlassCard 
+            key={budget._id} 
+            className={`overflow-hidden ${isMobile ? "cursor-pointer" : ""}`}
+            onClick={() => isMobile && onViewDetails(budget)}
+          >
             <div className="flex justify-between items-center mb-2">
               <div className="flex items-center">
                 <div 
@@ -91,27 +97,31 @@ export function BudgetList({ budgets, finances, onEdit, onDelete }: BudgetListPr
                 <h3 className="font-medium">{budget.category}</h3>
               </div>
               <div className="flex items-center space-x-2">
-                <span className="text-sm text-muted-foreground">
-                  {budget.period.charAt(0).toUpperCase() + budget.period.slice(1)}
-                </span>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="h-8 w-8 p-0">
-                      <span className="sr-only">Open menu</span>
-                      <MoreHorizontal className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="bg-white/10 border-white/10 backdrop-blur-md">
-                    <DropdownMenuItem onClick={() => onEdit(budget)} className="flex items-center">
-                      <Edit className="mr-2 h-4 w-4" />
-                      Edit
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => onDelete(budget._id)} className="text-red-500 flex items-center">
-                      <Trash className="mr-2 h-4 w-4" />
-                      Delete
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                {!isMobile && (
+                  <span className="text-sm text-muted-foreground">
+                    {budget.period.charAt(0).toUpperCase() + budget.period.slice(1)}
+                  </span>
+                )}
+                {!isMobile && (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="h-8 w-8 p-0">
+                        <span className="sr-only">Open menu</span>
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="bg-white/10 border-white/10 backdrop-blur-md">
+                      <DropdownMenuItem onClick={() => onEdit(budget)} className="flex items-center">
+                        <Edit className="mr-2 h-4 w-4" />
+                        Edit
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => onDelete(budget._id)} className="text-red-500 flex items-center">
+                        <Trash className="mr-2 h-4 w-4" />
+                        Delete
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
               </div>
             </div>
             
@@ -154,4 +164,4 @@ export function BudgetList({ budgets, finances, onEdit, onDelete }: BudgetListPr
       )}
     </div>
   );
-} 
+}

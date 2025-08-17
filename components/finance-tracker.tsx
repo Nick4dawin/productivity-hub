@@ -16,6 +16,8 @@ import { AccountList } from "./account-list";
 import { NetWorth } from "./networth";
 import { toast } from "./ui/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
+import { useMediaQuery } from '@/hooks/use-media-query';
 import { CurrencySelector } from "./currency-selector";
 import { SubscriptionList } from "./subscription-list";
 import { SubscriptionForm, SubscriptionFormValues } from "./subscription-form";
@@ -25,6 +27,8 @@ import { BudgetOverview } from "./budget-overview";
 
 export function FinanceTracker() {
   const queryClient = useQueryClient();
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+
   const [isFinanceFormOpen, setIsFinanceFormOpen] = useState(false);
   const [selectedFinanceEntry, setSelectedFinanceEntry] = useState<FinanceEntry | null>(null);
   const [isAccountFormOpen, setIsAccountFormOpen] = useState(false);
@@ -33,6 +37,11 @@ export function FinanceTracker() {
   const [selectedSubscription, setSelectedSubscription] = useState<Subscription | null>(null);
   const [isBudgetFormOpen, setIsBudgetFormOpen] = useState(false);
   const [selectedBudget, setSelectedBudget] = useState<Budget | null>(null);
+
+  const [isFinanceDetailsModalOpen, setIsFinanceDetailsModalOpen] = useState(false);
+  const [isAccountDetailsModalOpen, setIsAccountDetailsModalOpen] = useState(false);
+  const [isSubscriptionDetailsModalOpen, setIsSubscriptionDetailsModalOpen] = useState(false);
+  const [isBudgetDetailsModalOpen, setIsBudgetDetailsModalOpen] = useState(false);
 
   const { data: finances = [], isLoading: isLoadingFinances } = useQuery<FinanceEntry[]>({
     queryKey: ['finances'],
@@ -180,6 +189,7 @@ export function FinanceTracker() {
     } else {
       createFinanceMutation.mutate(submissionData);
     }
+    setIsFinanceDetailsModalOpen(false);
   };
   
   const handleAccountFormSubmit = (data: AccountFormValues) => {
@@ -188,6 +198,7 @@ export function FinanceTracker() {
     } else {
       createAccountMutation.mutate(data);
     }
+    setIsAccountDetailsModalOpen(false);
   };
 
   const handleSubscriptionFormSubmit = (data: SubscriptionFormValues) => {
@@ -204,6 +215,7 @@ export function FinanceTracker() {
     } else {
       createSubscriptionMutation.mutate(submissionData);
     }
+    setIsSubscriptionDetailsModalOpen(false);
   };
 
   const handleBudgetFormSubmit = (data: BudgetFormValues) => {
@@ -212,6 +224,7 @@ export function FinanceTracker() {
     } else {
       createBudgetMutation.mutate(data);
     }
+    setIsBudgetDetailsModalOpen(false);
   };
 
   const handleEditFinance = (entry: FinanceEntry) => {
@@ -246,55 +259,74 @@ export function FinanceTracker() {
         <div className="flex items-center justify-end gap-2">
           <CurrencySelector />
           <Button 
-            onClick={() => { setSelectedAccount(null); setIsAccountFormOpen(true); }}
-            className="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm"
-          >
-            Add Account
-          </Button>
-          <Button 
-            onClick={() => { setSelectedFinanceEntry(null); setIsFinanceFormOpen(true); }} 
-            disabled={accounts.length === 0}
-            className="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm"
-          >
-            Add Transaction
-          </Button>
+                onClick={() => { setSelectedAccount(null); setIsAccountFormOpen(true); }}
+                className="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm"
+              >
+                {isDesktop ? "Add Account" : "➕"}
+              </Button>
+              <Button 
+                onClick={() => { setSelectedFinanceEntry(null); setIsFinanceFormOpen(true); }} 
+                disabled={accounts.length === 0}
+                className="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm"
+              >
+                {isDesktop ? "Add Transaction" : "💸"}
+              </Button>
         </div>
       </div>
       
-      <Tabs defaultValue="accounts" className="w-full">
-        <TabsList className="grid w-full grid-cols-4 bg-white/5 border border-white/10 backdrop-blur-sm">
+      <Tabs defaultValue="overview" className="w-full">
+        <TabsList className="grid w-full grid-cols-5 bg-white/5 border border-white/10 backdrop-blur-sm">
+          <TabsTrigger 
+            value="overview" 
+            className="data-[state=active]:bg-white/10 data-[state=active]:backdrop-blur-md"
+          >
+            {isDesktop ? "Overview" : "📊"}
+          </TabsTrigger>
           <TabsTrigger 
             value="accounts" 
             className="data-[state=active]:bg-white/10 data-[state=active]:backdrop-blur-md"
           >
-            Accounts
+            {isDesktop ? "Accounts" : "💳"}
           </TabsTrigger>
           <TabsTrigger 
             value="transactions"
             className="data-[state=active]:bg-white/10 data-[state=active]:backdrop-blur-md"
           >
-            Transactions
+            {isDesktop ? "Transactions" : "💸"}
           </TabsTrigger>
           <TabsTrigger 
             value="subscriptions"
             className="data-[state=active]:bg-white/10 data-[state=active]:backdrop-blur-md"
           >
-            Subscriptions
+            {isDesktop ? "Subscriptions" : "🔄"}
           </TabsTrigger>
           <TabsTrigger 
             value="budgets"
             className="data-[state=active]:bg-white/10 data-[state=active]:backdrop-blur-md"
           >
-            Budgets
+            {isDesktop ? "Budgets" : "💰"}
           </TabsTrigger>
         </TabsList>
         
+        <TabsContent value="overview" className="mt-4">
+          {isLoading ? <p>Loading Overview...</p> : <BudgetOverview budgets={budgets} finances={finances} />}
+        </TabsContent>
+
         <TabsContent value="accounts" className="mt-4">
           {isLoading ? <p>Loading Accounts...</p> : 
             <AccountList
               accounts={accounts}
-              onEdit={handleEditAccount}
-              onDelete={(id) => deleteAccountMutation.mutate(id)}
+            isLoading={isLoadingAccounts}
+            onEdit={(account) => {
+              setSelectedAccount(account);
+              setIsAccountFormOpen(true);
+            }}
+            onDelete={(id) => deleteAccountMutation.mutate(id)}
+            onViewDetails={(account) => {
+              setSelectedAccount(account);
+              setIsAccountDetailsModalOpen(true);
+            }}
+            isMobile={!isDesktop}
             />
           }
         </TabsContent>
@@ -302,9 +334,18 @@ export function FinanceTracker() {
         <TabsContent value="transactions" className="mt-4">
           {isLoading ? <p>Loading Transactions...</p> : 
             <FinanceList 
-              finances={finances}
-              onEdit={handleEditFinance}
-              onDelete={(id) => deleteFinanceMutation.mutate(id)}
+                finances={finances}
+            isLoading={isLoadingFinances}
+            onEdit={(entry) => {
+              setSelectedFinanceEntry(entry);
+              setIsFinanceFormOpen(true);
+            }}
+            onDelete={(id) => deleteFinanceMutation.mutate(id)}
+            onViewDetails={(entry) => {
+              setSelectedFinanceEntry(entry);
+              setIsFinanceDetailsModalOpen(true);
+            }}
+            isMobile={!isDesktop}
             />
           }
         </TabsContent>
@@ -315,14 +356,23 @@ export function FinanceTracker() {
               onClick={() => { setSelectedSubscription(null); setIsSubscriptionFormOpen(true); }}
               className="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm"
             >
-              Add Subscription
+              {isDesktop ? "Add Subscription" : "➕"}
             </Button>
           </div>
           {isLoading ? <p>Loading Subscriptions...</p> : 
             <SubscriptionList 
               subscriptions={subscriptions}
-              onEdit={handleEditSubscription}
-              onDelete={(id: string) => deleteSubscriptionMutation.mutate(id)}
+            isLoading={isLoadingSubscriptions}
+            onEdit={(subscription) => {
+              setSelectedSubscription(subscription);
+              setIsSubscriptionFormOpen(true);
+            }}
+            onDelete={(id) => deleteSubscriptionMutation.mutate(id)}
+            onViewDetails={(subscription) => {
+              setSelectedSubscription(subscription);
+              setIsSubscriptionDetailsModalOpen(true);
+            }}
+            isMobile={!isDesktop}
             />
           }
         </TabsContent>
@@ -333,18 +383,27 @@ export function FinanceTracker() {
               onClick={() => { setSelectedBudget(null); setIsBudgetFormOpen(true); }}
               className="bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm"
             >
-              Add Budget
+              {isDesktop ? "Add Budget" : "➕"}
             </Button>
           </div>
           
-          {isLoading ? <p>Loading Budgets...</p> : (
+          {isLoading ? <p>Loading Budgets...</p> : ( 
             <div className="space-y-6">
               <BudgetOverview budgets={budgets} finances={finances} />
               <BudgetList 
                 budgets={budgets}
                 finances={finances}
-                onEdit={handleEditBudget}
-                onDelete={(id: string) => deleteBudgetMutation.mutate(id)}
+                isLoading={isLoadingBudgets}
+                onEdit={(budget) => {
+                  setSelectedBudget(budget);
+                  setIsBudgetFormOpen(true);
+                }}
+                onDelete={(id) => deleteBudgetMutation.mutate(id)}
+                onViewDetails={(budget) => {
+                  setSelectedBudget(budget);
+                  setIsBudgetDetailsModalOpen(true);
+                }}
+                isMobile={!isDesktop}
               />
             </div>
           )}
@@ -381,4 +440,4 @@ export function FinanceTracker() {
       />
     </div>
   );
-} 
+}

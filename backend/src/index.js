@@ -57,11 +57,11 @@ app.use('/api/journal', journalRoutes);
 app.use('/api/routines', routineRoutes);
 app.use('/api/goals', goalRoutes);
 app.use('/api/media', mediaRoutes);
-app.use('/api/budget', budgetRoutes);
+app.use('/api/budgets', budgetRoutes);
 app.use('/api/finance', financeRoutes);
-app.use('/api/subscription', subscriptionRoutes);
+app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/coach', coachRoutes);
-app.use('/api/account', accountRoutes);
+app.use('/api/accounts', accountRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/webhook', webhookRoutes);
 

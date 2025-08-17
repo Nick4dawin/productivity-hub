@@ -17,6 +17,7 @@ import {
   BrainCircuit,
   Wallet,
   Menu,
+  X,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -84,6 +85,14 @@ export default function DashboardPage() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showDebugPanel, setShowDebugPanel] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowDebugPanel(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -317,14 +326,23 @@ export default function DashboardPage() {
       </div>
       <AppTour />
       {/* Debug panel for development */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="fixed top-4 right-4 z-50 bg-black/80 text-white p-3 rounded-lg text-xs font-mono backdrop-blur-sm border border-white/20">
-          <div>Wallpaper: {wallpaperUrl ? '✅ Loaded' : '❌ Failsafe'}</div>
-          <div>Shuffling: {isShuffling ? '🔄 Yes' : '⏸️ No'}</div>
-          <div>Retries: {retryCount}/3</div>
-          <div>Theme: {theme}</div>
+      {process.env.NODE_ENV === 'development' && showDebugPanel && (
+        <div className="fixed top-4 right-4 z-50 bg-black/80 text-white p-3 rounded-lg text-xs font-mono backdrop-blur-sm border border-white/20 flex items-center justify-between">
+          <div>
+            <div>Wallpaper: {wallpaperUrl ? '✅ Loaded' : '❌ Failsafe'}</div>
+            <div>Shuffling: {isShuffling ? '🔄 Yes' : '⏸️ No'}</div>
+            <div>Retries: {retryCount}/3</div>
+            <div>Theme: {theme}</div>
+          </div>
+          <button
+            onClick={() => setShowDebugPanel(false)}
+            className="ml-4 p-1 rounded-full hover:bg-white/20 transition-colors"
+          >
+            <X size={16} />
+          </button>
         </div>
       )}
+      
       <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
         <div id="tour-step-2" className="hidden border-r border-white/10 bg-black/10 backdrop-blur-md lg:block">
           <div className="flex h-full max-h-screen flex-col gap-2">
