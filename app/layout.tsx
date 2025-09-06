@@ -6,6 +6,7 @@ import { fontSans } from "@/lib/fonts";
 import { Toaster } from "@/components/ui/toaster";
 import { CoachButton } from "@/components/coach-button";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
+import { BottomNavigation } from "@/components/bottom-navigation";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default function RootLayout({
             </div>
             <Toaster />
             <CoachButton />
+            <BottomNavigation />
             <PWAInstallPrompt />
           </Providers>
         </AuthProvider>

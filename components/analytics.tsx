@@ -1,36 +1,14 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useRef } from "react"
 import { useQuery } from '@tanstack/react-query'
 import { format, subDays, parseISO } from "date-fns"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts'
 import { GlassCard } from "./GlassCard"
-import { Button } from "./ui/button"
 import { LoadingSpinner } from "./ui/loading-spinner"
 import { getTodos, getHabits, getMoods, getJournalEntries, Todo, Habit, Mood, JournalEntry } from '@/lib/api'
+import { TrendingUp, Calendar, Target, Heart } from 'lucide-react'
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF', '#FF1943'];
 
-const RADIAN = Math.PI / 180;
-interface CustomizedLabelProps {
-  cx: number;
-  cy: number;
-  midAngle: number;
-  innerRadius: number;
-  outerRadius: number;
-  percent: number;
-}
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: CustomizedLabelProps) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-    return (
-        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-        {`${(percent * 100).toFixed(0)}%`}
-        </text>
-    );
-};
 
 // Map mood strings to numerical values for charting
 const moodToValue = (mood: string): number => {
@@ -51,7 +29,9 @@ const valueToEmoji = (value: number): string => {
 };
 
 export function Analytics() {
-  const [timeRange, setTimeRange] = useState<'week' | 'month'>('week');
+  const [timeRange, setTimeRange] = useState<'week' | 'month' | 'custom'>('week');
+  const [activeCard, setActiveCard] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const { data: todosData, isLoading: isLoadingTodos } = useQuery<Todo[]>({ queryKey: ['todos'], queryFn: getTodos });
   const { data: habitsData, isLoading: isLoadingHabits } = useQuery<Habit[]>({ queryKey: ['habits'], queryFn: getHabits });
@@ -147,155 +127,295 @@ export function Analytics() {
     return <div className="p-6 text-center">No analytics data available. Start using the app to see your progress!</div>;
   }
 
+  const handleCardScroll = () => {
+    if (scrollRef.current) {
+      const scrollLeft = scrollRef.current.scrollLeft;
+      const cardWidth = scrollRef.current.offsetWidth;
+      const newActiveCard = Math.round(scrollLeft / cardWidth);
+      setActiveCard(newActiveCard);
+    }
+  };
+
   return (
-    <div className="space-y-8 p-4 md:p-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Tasks Card */}
-        <div 
-          className="cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg"
-          onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'todo' } }))}
-        >
-          <GlassCard>
-            <h3 className="font-medium">Tasks</h3>
-            <div className="text-2xl font-bold">{dynamicData.tasks.completionRate}</div>
-            <p className="text-sm text-muted-foreground">
-              {dynamicData.tasks.completed} of {dynamicData.tasks.total} tasks completed
-            </p>
-          </GlassCard>
-        </div>
-
-        {/* Habits Card */}
-        <div 
-          className="cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg"
-          onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'habits' } }))}
-        >
-          <GlassCard>
-            <h3 className="font-medium">Habits</h3>
-            <div className="text-2xl font-bold">{dynamicData.habits.bestStreak} days</div>
-            <p className="text-sm text-muted-foreground">
-              Longest recorded streak
-            </p>
-          </GlassCard>
-        </div>
-
-        {/* Mood Card */}
-        <div 
-          className="cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg"
-          onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'mood' } }))}
-        >
-          <GlassCard>
-            <h3 className="font-medium">Mood</h3>
-            <div className="text-2xl">{dynamicData.mood.average}</div>
-            <p className="text-sm text-muted-foreground">
-              Average from {dynamicData.mood.entries} entries
-            </p>
-          </GlassCard>
-        </div>
-
-        {/* Journal Card */}
-        <div 
-          className="cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg"
-          onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'journal' } }))}
-        >
-          <GlassCard>
-            <h3 className="font-medium">Journal</h3>
-            <div className="text-2xl font-bold">{dynamicData.journal.entries}</div>
-            <p className="text-sm text-muted-foreground">
-              Entries ({dynamicData.journal.wordsWritten} words)
-            </p>
-          </GlassCard>
+    <div className="relative min-h-screen pb-20 md:pb-6">
+      {/* Segmented Control */}
+      <div className="mb-6 p-4 md:p-6">
+        <div className="flex items-center justify-center">
+          <div className="flex bg-white/10 backdrop-blur-md rounded-2xl p-1 border border-white/20">
+            <button
+              onClick={() => setTimeRange('week')}
+              className={`px-6 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                timeRange === 'week'
+                  ? 'bg-gradient-to-r from-blue-500/80 to-purple-500/80 text-white shadow-lg'
+                  : 'text-white/70 hover:text-white'
+              }`}
+            >
+              7D
+            </button>
+            <button
+              onClick={() => setTimeRange('month')}
+              className={`px-6 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                timeRange === 'month'
+                  ? 'bg-gradient-to-r from-blue-500/80 to-purple-500/80 text-white shadow-lg'
+                  : 'text-white/70 hover:text-white'
+              }`}
+            >
+              30D
+            </button>
+            <button
+              onClick={() => setTimeRange('custom')}
+              className={`px-6 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                timeRange === 'custom'
+                  ? 'bg-gradient-to-r from-blue-500/80 to-purple-500/80 text-white shadow-lg'
+                  : 'text-white/70 hover:text-white'
+              }`}
+            >
+              Custom
+            </button>
+          </div>
         </div>
       </div>
 
-      <div className="space-y-4">
-        <div className="flex gap-2">
-          <Button 
-            variant={timeRange === 'week' ? 'default' : 'outline'}
-            onClick={() => setTimeRange('week')}
-          >
-            Last 7 Days
-          </Button>
-          <Button 
-            variant={timeRange === 'month' ? 'default' : 'outline'}
-            onClick={() => setTimeRange('month')}
-          >
-            Last 30 Days
-          </Button>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Task Completion Chart */}
-          <GlassCard>
-            <h3 className="font-medium mb-4">Task Completion</h3>
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={dynamicData.tasks.history}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.2)" />
-                  <XAxis dataKey="date" stroke="rgba(255, 255, 255, 0.7)" />
-                  <YAxis stroke="rgba(255, 255, 255, 0.7)" />
-                  <Tooltip
-                    contentStyle={{ backgroundColor: 'rgba(0,0,0,0.8)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '0.5rem' }}
-                    labelStyle={{ color: '#fff' }}
-                    itemStyle={{ color: '#fff' }}
-                  />
-                  <Bar dataKey="completed" fill="#8884d8" name="Completed Tasks" />
-                  <Bar dataKey="total" fill="#82ca9d" name="Total Tasks" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </GlassCard>
+      {/* Mobile: Swipeable Cards */}
+      <div className="md:hidden">
+        <div
+          ref={scrollRef}
+          onScroll={handleCardScroll}
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-4"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {/* Task Completion Card */}
+          <div className="min-w-[calc(100vw-2rem)] snap-center flex-shrink-0">
+            <GlassCard className="h-80 flex flex-col items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
+              <div className="relative z-10 text-center p-6">
+                <Target className="w-10 h-10 text-blue-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-6 text-white">Task Completion</h3>
+                
+                {/* Circular Progress Ring */}
+                <div className="relative w-28 h-28 mx-auto mb-6">
+                  <svg className="w-28 h-28 transform -rotate-90" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="50" stroke="rgba(255,255,255,0.1)" strokeWidth="8" fill="none" />
+                    <circle
+                      cx="60" cy="60" r="50" stroke="url(#taskGradient)" strokeWidth="8" fill="none" strokeLinecap="round"
+                      strokeDasharray={`${(parseInt(dynamicData.tasks.completionRate) / 100) * 314} 314`}
+                      className="transition-all duration-1000 ease-out"
+                    />
+                    <defs>
+                      <linearGradient id="taskGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#3b82f6" />
+                        <stop offset="100%" stopColor="#8b5cf6" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-3xl font-bold text-white">{dynamicData.tasks.completionRate}</span>
+                  </div>
+                </div>
 
-          {/* Mood Tracking Chart */}
-          <GlassCard>
-            <h3 className="font-medium mb-4">Mood History</h3>
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={dynamicData.mood.history}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.2)" />
-                  <XAxis dataKey="date" stroke="rgba(255, 255, 255, 0.7)" />
-                  <YAxis domain={[1, 5]} stroke="rgba(255, 255, 255, 0.7)" />
-                  <Tooltip
-                    contentStyle={{ backgroundColor: 'rgba(0,0,0,0.8)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '0.5rem' }}
-                    labelStyle={{ color: '#fff' }}
-                    itemStyle={{ color: '#fff' }}
-                    formatter={(value: number) => [value > 0 ? value.toFixed(1) : 'N/A', 'Avg Mood']}
-                  />
-                  <Line type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} name="Mood Level" connectNulls />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </GlassCard>
-          
-          {/* Habit Distribution Chart */}
-          <GlassCard className="lg:col-span-2">
-            <h3 className="font-medium mb-4">Habit Category Distribution</h3>
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={dynamicData.habits.byCategory}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    label={renderCustomizedLabel}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                  >
-                    {dynamicData.habits.byCategory.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip
-                    contentStyle={{ backgroundColor: 'rgba(0,0,0,0.8)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '0.5rem' }}
-                    itemStyle={{ color: '#fff' }}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </GlassCard>
+                <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mb-4"></div>
+                <p className="text-white/80 text-base">{dynamicData.tasks.completed} tasks completed this week</p>
+              </div>
+            </GlassCard>
+          </div>
+
+          {/* Mood History Card */}
+          <div className="min-w-[calc(100vw-2rem)] snap-center flex-shrink-0">
+            <GlassCard className="h-80 flex flex-col items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-orange-500/10" />
+              <div className="relative z-10 text-center p-6">
+                <Heart className="w-10 h-10 text-pink-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-6 text-white">Mood History</h3>
+                
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <span className="text-4xl">{dynamicData.mood.average}</span>
+                </div>
+                
+                <div className="flex justify-center gap-3 mb-6">
+                  <span className="text-2xl">😊</span>
+                  <span className="text-2xl">😐</span>
+                  <span className="text-2xl">😔</span>
+                </div>
+                
+                <div className="w-20 h-1 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full mx-auto mb-4"></div>
+                <p className="text-white/80 text-base mb-2">Mostly Neutral</p>
+                <p className="text-white/60 text-sm">Try journaling!</p>
+              </div>
+            </GlassCard>
+          </div>
+
+          {/* Habit Category Card */}
+          <div className="min-w-[calc(100vw-2rem)] snap-center flex-shrink-0">
+            <GlassCard className="h-80 flex flex-col relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-teal-500/10" />
+              <div className="relative z-10 p-8">
+                <div className="text-center mb-8">
+                  <TrendingUp className="w-10 h-10 text-green-400 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-white">Habit Distribution</h3>
+                </div>
+                
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🍎</span>
+                      <span className="text-white/80 text-base">Fitness</span>
+                    </div>
+                    <span className="text-white font-semibold text-lg">50%</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🧘</span>
+                      <span className="text-white/80 text-base">Mindfulness</span>
+                    </div>
+                    <span className="text-white font-semibold text-lg">30%</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">💼</span>
+                      <span className="text-white/80 text-base">Work</span>
+                    </div>
+                    <span className="text-white font-semibold text-lg">20%</span>
+                  </div>
+                </div>
+                
+                <div className="w-20 h-1 bg-gradient-to-r from-green-500 to-teal-500 rounded-full mx-auto mt-6"></div>
+              </div>
+            </GlassCard>
+          </div>
+        </div>
+
+        {/* Card Indicators */}
+        <div className="flex justify-center gap-2 mt-6 pb-4">
+          {[0, 1, 2].map((index) => (
+            <div
+              key={index}
+              className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                activeCard === index ? 'bg-white' : 'bg-white/30'
+              }`}
+            />
+          ))}
         </div>
       </div>
+
+        {/* Desktop: Bento Box Layout */}
+        <div className="hidden md:block px-6">
+          <div className="grid grid-cols-4 grid-rows-3 gap-4 h-[600px]">
+            {/* Task Completion - Large Card */}
+            <GlassCard className="col-span-2 row-span-2 flex flex-col items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
+              <div className="relative z-10 text-center">
+                <Target className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+                <h3 className="text-2xl font-semibold mb-6 text-white">Task Completion</h3>
+                
+                {/* Large Circular Progress Ring */}
+                <div className="relative w-32 h-32 mx-auto mb-6">
+                  <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="50" stroke="rgba(255,255,255,0.1)" strokeWidth="8" fill="none" />
+                    <circle
+                      cx="60" cy="60" r="50" stroke="url(#taskGradient)" strokeWidth="8" fill="none" strokeLinecap="round"
+                      strokeDasharray={`${(parseInt(dynamicData.tasks.completionRate) / 100) * 314} 314`}
+                      className="transition-all duration-1000 ease-out"
+                    />
+                    <defs>
+                      <linearGradient id="taskGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#3b82f6" />
+                        <stop offset="100%" stopColor="#8b5cf6" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-4xl font-bold text-white">{dynamicData.tasks.completionRate}</span>
+                  </div>
+                </div>
+
+                <p className="text-white/80">{dynamicData.tasks.completed} tasks completed this week</p>
+              </div>
+            </GlassCard>
+
+            {/* Mood History */}
+            <GlassCard className="col-span-2 row-span-1 flex items-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-orange-500/10" />
+              <div className="relative z-10 flex items-center justify-between w-full p-6">
+                <div>
+                  <Heart className="w-8 h-8 text-pink-400 mb-2" />
+                  <h3 className="text-xl font-semibold text-white mb-2">Mood History</h3>
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">{dynamicData.mood.average}</span>
+                    <span className="text-white/80">Mostly Neutral</span>
+                  </div>
+                  <p className="text-white/60 text-sm">Try journaling!</p>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-2xl">😊</span>
+                  <span className="text-2xl">😐</span>
+                  <span className="text-2xl">😔</span>
+                </div>
+              </div>
+            </GlassCard>
+
+            {/* Habit Categories */}
+            <GlassCard className="col-span-2 row-span-1 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-teal-500/10" />
+              <div className="relative z-10 p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <TrendingUp className="w-8 h-8 text-green-400" />
+                  <h3 className="text-xl font-semibold text-white">Habit Distribution</h3>
+                </div>
+                
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="text-center">
+                    <span className="text-2xl block mb-1">🍎</span>
+                    <span className="text-white/80 text-sm block">Fitness</span>
+                    <span className="text-white font-medium">50%</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="text-2xl block mb-1">🧘</span>
+                    <span className="text-white/80 text-sm block">Mindfulness</span>
+                    <span className="text-white font-medium">30%</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="text-2xl block mb-1">💼</span>
+                    <span className="text-white/80 text-sm block">Work</span>
+                    <span className="text-white font-medium">20%</span>
+                  </div>
+                </div>
+              </div>
+            </GlassCard>
+
+            {/* Journal Stats */}
+            <GlassCard className="col-span-1 row-span-1 flex flex-col items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-indigo-500/10" />
+              <div className="relative z-10 text-center">
+                <PenTool className="w-8 h-8 text-purple-400 mx-auto mb-3" />
+                <h3 className="text-lg font-semibold text-white mb-2">Journal</h3>
+                <div className="text-2xl font-bold text-white mb-1">{dynamicData.journal.entries}</div>
+                <p className="text-white/80 text-sm">Entries</p>
+                <p className="text-white/60 text-xs">{dynamicData.journal.wordsWritten} words</p>
+              </div>
+            </GlassCard>
+
+            {/* Weekly Streak */}
+            <GlassCard className="col-span-1 row-span-1 flex flex-col items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-red-500/10" />
+              <div className="relative z-10 text-center">
+                <Calendar className="w-8 h-8 text-orange-400 mx-auto mb-3" />
+                <h3 className="text-lg font-semibold text-white mb-2">Best Streak</h3>
+                <div className="text-2xl font-bold text-white mb-1">{dynamicData.habits.bestStreak}</div>
+                <p className="text-white/80 text-sm">Days</p>
+              </div>
+            </GlassCard>
+          </div>
+        </div>
+
+      <style jsx>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   )
 }
