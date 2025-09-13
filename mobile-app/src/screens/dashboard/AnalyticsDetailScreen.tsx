@@ -1,0 +1,1 @@
+export { AnalyticsScreen as AnalyticsDetailScreen } from './AnalyticsScreen';

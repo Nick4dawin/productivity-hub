@@ -47,16 +47,30 @@ export function TodoList() {
   }
 
   const addTodo = async () => {
-    if (!newTodo.trim()) return
+    const trimmedTitle = newTodo.trim()
+    if (!trimmedTitle) {
+      toast({
+        title: "Error",
+        description: "Please enter a todo title",
+        variant: "destructive",
+      })
+      return
+    }
 
     try {
-      const todo = await createTodo({
-        title: newTodo.trim(),
+      const todoData = {
+        title: trimmedTitle,
         category,
         priority,
-        dueDate: dueDate || undefined,
         completed: false
-      })
+      }
+      
+      // Only add dueDate if it's not empty
+      if (dueDate && dueDate.trim()) {
+        todoData.dueDate = dueDate
+      }
+      
+      const todo = await createTodo(todoData)
       setTodos(prev => [...prev, todo])
       setNewTodo("")
       setCategory("Other")
@@ -68,9 +82,10 @@ export function TodoList() {
       })
     } catch (error) {
       console.error('Error adding todo:', error)
+      const errorMessage = error.response?.data?.message || "Failed to create todo"
       toast({
         title: "Error",
-        description: "Failed to create todo",
+        description: errorMessage,
         variant: "destructive",
       })
     }
@@ -78,7 +93,19 @@ export function TodoList() {
 
   const toggleTodo = async (id: string, completed: boolean) => {
     try {
-      const updatedTodo = await updateTodo(id, { completed })
+      // Find the todo to get its current data
+      const currentTodo = todos.find(todo => todo._id === id)
+      if (!currentTodo) {
+        throw new Error('Todo not found')
+      }
+      
+      // Include title and other required fields in the update
+      const updatedTodo = await updateTodo(id, { 
+        completed,
+        title: currentTodo.title,
+        priority: currentTodo.priority,
+        category: currentTodo.category
+      })
       setTodos(prev => prev.map(todo => 
         todo._id === id ? updatedTodo : todo
       ))
@@ -184,10 +211,17 @@ export function TodoList() {
             <Button
               variant={todo.completed ? "gradient" : "outline"}
               size="sm"
-              className="rounded-full w-8 h-8 p-0 shrink-0"
+              className={cn(
+                "rounded-full w-8 h-8 p-0 shrink-0 transition-all duration-200",
+                !todo.completed && "border-2 border-purple-500 hover:border-purple-400 bg-transparent",
+                todo.completed && "border-2 border-green-500 bg-gradient-to-r from-green-500 to-emerald-500"
+              )}
               onClick={() => toggleTodo(todo._id, !todo.completed)}
             >
-              <CheckCircle2 className={`w-4 h-4 ${!todo.completed && 'opacity-0'}`} />
+              <CheckCircle2 className={cn(
+                "w-4 h-4 transition-opacity duration-200",
+                todo.completed ? "opacity-100 text-white" : "opacity-0"
+              )} />
             </Button>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">

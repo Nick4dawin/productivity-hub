@@ -1,0 +1,4294 @@
+{
+  "timestamp": "2025-09-06T16:14:04.130Z",
+  "bundleAnalysis": {
+    "totalSize": 1386361,
+    "jsSize": 1386361,
+    "assetSize": 3333,
+    "largestAssets": [
+      {
+        "file": "assets\\icons\\README.md",
+        "size": 3333,
+        "sizeFormatted": "3.25 KB"
+      }
+    ],
+    "dependencies": {
+      "count": 49,
+      "nodeModulesSize": "425M",
+      "heavyDependencies": [
+        "@react-navigation/native",
+        "@react-navigation/native-stack",
+        "react-native-reanimated",
+        "react-native-svg",
+        "react-native-vector-icons",
+        "victory-native"
+      ]
+    },
+    "recommendations": []
+  },
+  "memoryAnalysis": {
+    "components": {
+      "issuesFound": 19,
+      "issues": [
+        {
+          "file": "src\\components\\animated\\AnimatedListItem.tsx",
+          "type": "timeout-leak",
+          "message": "setTimeout without clearTimeout detected"
+        },
+        {
+          "file": "src\\components\\animated\\CompletionAnimation.tsx",
+          "type": "timeout-leak",
+          "message": "setTimeout without clearTimeout detected"
+        },
+        {
+          "file": "src\\components\\animated\\ScreenTransition.tsx",
+          "type": "timeout-leak",
+          "message": "setTimeout without clearTimeout detected"
+        },
+        {
+          "file": "src\\components\\coach\\ChatInterface.tsx",
+          "type": "timeout-leak",
+          "message": "setTimeout without clearTimeout detected"
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "type": "timeout-leak",
+          "message": "setTimeout without clearTimeout detected"
+        },
+        {
+          "file": "src\\components\\media\\ExternalMediaSearch.tsx",
+          "type": "timeout-leak",
+          "message": "setTimeout without clearTimeout detected"
+        },
+        {
+          "file": "src\\hooks\\useOffline.ts",
+          "type": "large-state",
+          "message": "Large state object detected - consider splitting"
+        },
+        {
+          "file": "src\\screens\\settings\\ProfileScreen.tsx",
+          "type": "large-state",
+          "message": "Large state object detected - consider splitting"
+        },
+        {
+          "file": "src\\services\\AppStateService.ts",
+          "type": "listener-leak",
+          "message": "addEventListener without removeEventListener detected"
+        },
+        {
+          "file": "src\\services\\ErrorHandler.ts",
+          "type": "listener-leak",
+          "message": "addEventListener without removeEventListener detected"
+        },
+        {
+          "file": "src\\services\\HapticService.ts",
+          "type": "timeout-leak",
+          "message": "setTimeout without clearTimeout detected"
+        },
+        {
+          "file": "src\\services\\NetworkManager.ts",
+          "type": "listener-leak",
+          "message": "addEventListener without removeEventListener detected"
+        },
+        {
+          "file": "src\\services\\OrientationService.ts",
+          "type": "listener-leak",
+          "message": "addEventListener without removeEventListener detected"
+        },
+        {
+          "file": "src\\services\\PerformanceService.ts",
+          "type": "timeout-leak",
+          "message": "setTimeout without clearTimeout detected"
+        },
+        {
+          "file": "src\\services\\__tests__\\PerformanceService.test.ts",
+          "type": "timeout-leak",
+          "message": "setTimeout without clearTimeout detected"
+        },
+        {
+          "file": "src\\test-setup.ts",
+          "type": "timeout-leak",
+          "message": "setTimeout without clearTimeout detected"
+        },
+        {
+          "file": "src\\test-setup.ts",
+          "type": "listener-leak",
+          "message": "addEventListener without removeEventListener detected"
+        },
+        {
+          "file": "src\\test-utils\\index.ts",
+          "type": "timeout-leak",
+          "message": "setTimeout without clearTimeout detected"
+        },
+        {
+          "file": "src\\utils\\ErrorRecovery.ts",
+          "type": "timeout-leak",
+          "message": "setTimeout without clearTimeout detected"
+        }
+      ]
+    },
+    "leaks": {
+      "potentialLeaks": 11,
+      "leaks": [
+        {
+          "file": "src\\components\\animated\\LoadingAnimation.tsx",
+          "type": "effect-cleanup",
+          "description": "useEffect without cleanup function",
+          "occurrences": 5
+        },
+        {
+          "file": "src\\components\\settings\\NotificationPreferences.tsx",
+          "type": "effect-cleanup",
+          "description": "useEffect without cleanup function",
+          "occurrences": 1
+        },
+        {
+          "file": "src\\components\\settings\\PrivacySettings.tsx",
+          "type": "effect-cleanup",
+          "description": "useEffect without cleanup function",
+          "occurrences": 1
+        },
+        {
+          "file": "src\\components\\settings\\SyncPreferences.tsx",
+          "type": "effect-cleanup",
+          "description": "useEffect without cleanup function",
+          "occurrences": 1
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "type": "effect-cleanup",
+          "description": "useEffect without cleanup function",
+          "occurrences": 1
+        },
+        {
+          "file": "src\\contexts\\AuthContext.tsx",
+          "type": "effect-cleanup",
+          "description": "useEffect without cleanup function",
+          "occurrences": 1
+        },
+        {
+          "file": "src\\contexts\\ThemeContext.tsx",
+          "type": "effect-cleanup",
+          "description": "useEffect without cleanup function",
+          "occurrences": 1
+        },
+        {
+          "file": "src\\hooks\\useDeviceIntegration.ts",
+          "type": "effect-cleanup",
+          "description": "useEffect without cleanup function",
+          "occurrences": 4
+        },
+        {
+          "file": "src\\hooks\\useNotifications.ts",
+          "type": "effect-cleanup",
+          "description": "useEffect without cleanup function",
+          "occurrences": 1
+        },
+        {
+          "file": "src\\hooks\\useOffline.ts",
+          "type": "effect-cleanup",
+          "description": "useEffect without cleanup function",
+          "occurrences": 3
+        },
+        {
+          "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+          "type": "effect-cleanup",
+          "description": "useEffect without cleanup function",
+          "occurrences": 1
+        }
+      ]
+    },
+    "images": {
+      "totalImages": 0,
+      "totalSize": 0,
+      "totalSizeFormatted": "0 B",
+      "largestImages": [],
+      "formatDistribution": {}
+    },
+    "recommendations": [
+      {
+        "type": "component-memory",
+        "severity": "high",
+        "message": "19 potential memory issues found in components",
+        "action": "Review and fix memory leaks in components"
+      },
+      {
+        "type": "memory-leaks",
+        "severity": "high",
+        "message": "11 potential memory leaks detected",
+        "action": "Add cleanup functions to useEffect hooks and clear timers"
+      }
+    ]
+  },
+  "renderingAnalysis": {
+    "complexity": {
+      "totalComponents": 152,
+      "averageComplexity": 35.63157894736842,
+      "mostComplex": [
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "jsxElements": 28,
+          "hooks": 3,
+          "conditionals": 26,
+          "loops": 4,
+          "complexity": 120,
+          "lines": 514
+        },
+        {
+          "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+          "jsxElements": 42,
+          "hooks": 7,
+          "conditionals": 15,
+          "loops": 3,
+          "complexity": 107,
+          "lines": 490
+        },
+        {
+          "file": "src\\components\\routines\\RoutineBuilder.tsx",
+          "jsxElements": 61,
+          "hooks": 7,
+          "conditionals": 5,
+          "loops": 5,
+          "complexity": 100,
+          "lines": 552
+        },
+        {
+          "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+          "jsxElements": 59,
+          "hooks": 10,
+          "conditionals": 5,
+          "loops": 1,
+          "complexity": 96,
+          "lines": 613
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "jsxElements": 69,
+          "hooks": 8,
+          "conditionals": 3,
+          "loops": 0,
+          "complexity": 94,
+          "lines": 480
+        },
+        {
+          "file": "src\\components\\habits\\HabitAnalytics.tsx",
+          "jsxElements": 58,
+          "hooks": 1,
+          "conditionals": 5,
+          "loops": 9,
+          "complexity": 93,
+          "lines": 443
+        },
+        {
+          "file": "src\\components\\journal\\JournalSearch.tsx",
+          "jsxElements": 42,
+          "hooks": 2,
+          "conditionals": 14,
+          "loops": 1,
+          "complexity": 90,
+          "lines": 349
+        },
+        {
+          "file": "src\\screens\\media\\AddMediaScreen.tsx",
+          "jsxElements": 52,
+          "hooks": 4,
+          "conditionals": 7,
+          "loops": 3,
+          "complexity": 87,
+          "lines": 475
+        },
+        {
+          "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+          "jsxElements": 48,
+          "hooks": 6,
+          "conditionals": 8,
+          "loops": 1,
+          "complexity": 86,
+          "lines": 405
+        },
+        {
+          "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+          "jsxElements": 64,
+          "hooks": 5,
+          "conditionals": 3,
+          "loops": 0,
+          "complexity": 83,
+          "lines": 640
+        }
+      ],
+      "highComplexity": [
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "jsxElements": 28,
+          "hooks": 3,
+          "conditionals": 26,
+          "loops": 4,
+          "complexity": 120,
+          "lines": 514
+        },
+        {
+          "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+          "jsxElements": 42,
+          "hooks": 7,
+          "conditionals": 15,
+          "loops": 3,
+          "complexity": 107,
+          "lines": 490
+        },
+        {
+          "file": "src\\components\\routines\\RoutineBuilder.tsx",
+          "jsxElements": 61,
+          "hooks": 7,
+          "conditionals": 5,
+          "loops": 5,
+          "complexity": 100,
+          "lines": 552
+        },
+        {
+          "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+          "jsxElements": 59,
+          "hooks": 10,
+          "conditionals": 5,
+          "loops": 1,
+          "complexity": 96,
+          "lines": 613
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "jsxElements": 69,
+          "hooks": 8,
+          "conditionals": 3,
+          "loops": 0,
+          "complexity": 94,
+          "lines": 480
+        },
+        {
+          "file": "src\\components\\habits\\HabitAnalytics.tsx",
+          "jsxElements": 58,
+          "hooks": 1,
+          "conditionals": 5,
+          "loops": 9,
+          "complexity": 93,
+          "lines": 443
+        },
+        {
+          "file": "src\\components\\journal\\JournalSearch.tsx",
+          "jsxElements": 42,
+          "hooks": 2,
+          "conditionals": 14,
+          "loops": 1,
+          "complexity": 90,
+          "lines": 349
+        },
+        {
+          "file": "src\\screens\\media\\AddMediaScreen.tsx",
+          "jsxElements": 52,
+          "hooks": 4,
+          "conditionals": 7,
+          "loops": 3,
+          "complexity": 87,
+          "lines": 475
+        },
+        {
+          "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+          "jsxElements": 48,
+          "hooks": 6,
+          "conditionals": 8,
+          "loops": 1,
+          "complexity": 86,
+          "lines": 405
+        },
+        {
+          "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+          "jsxElements": 64,
+          "hooks": 5,
+          "conditionals": 3,
+          "loops": 0,
+          "complexity": 83,
+          "lines": 640
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "jsxElements": 27,
+          "hooks": 3,
+          "conditionals": 14,
+          "loops": 2,
+          "complexity": 79,
+          "lines": 399
+        },
+        {
+          "file": "src\\components\\common\\NetworkStatus.tsx",
+          "jsxElements": 53,
+          "hooks": 5,
+          "conditionals": 5,
+          "loops": 0,
+          "complexity": 78,
+          "lines": 332
+        },
+        {
+          "file": "src\\components\\settings\\SyncPreferences.tsx",
+          "jsxElements": 43,
+          "hooks": 4,
+          "conditionals": 8,
+          "loops": 1,
+          "complexity": 77,
+          "lines": 548
+        },
+        {
+          "file": "src\\screens\\goals\\GoalDetailScreen.tsx",
+          "jsxElements": 53,
+          "hooks": 7,
+          "conditionals": 2,
+          "loops": 1,
+          "complexity": 75,
+          "lines": 441
+        },
+        {
+          "file": "src\\screens\\mood\\MoodScreen.tsx",
+          "jsxElements": 35,
+          "hooks": 6,
+          "conditionals": 8,
+          "loops": 1,
+          "complexity": 73,
+          "lines": 393
+        },
+        {
+          "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+          "jsxElements": 28,
+          "hooks": 9,
+          "conditionals": 7,
+          "loops": 2,
+          "complexity": 71,
+          "lines": 378
+        },
+        {
+          "file": "src\\components\\mood\\MoodHistory.tsx",
+          "jsxElements": 37,
+          "hooks": 1,
+          "conditionals": 8,
+          "loops": 3,
+          "complexity": 69,
+          "lines": 411
+        },
+        {
+          "file": "src\\screens\\settings\\ProfileScreen.tsx",
+          "jsxElements": 47,
+          "hooks": 6,
+          "conditionals": 3,
+          "loops": 0,
+          "complexity": 68,
+          "lines": 355
+        },
+        {
+          "file": "src\\components\\finance\\TransactionHistory.tsx",
+          "jsxElements": 25,
+          "hooks": 7,
+          "conditionals": 7,
+          "loops": 3,
+          "complexity": 66,
+          "lines": 307
+        },
+        {
+          "file": "src\\components\\goals\\GoalForm.tsx",
+          "jsxElements": 43,
+          "hooks": 2,
+          "conditionals": 5,
+          "loops": 2,
+          "complexity": 66,
+          "lines": 355
+        },
+        {
+          "file": "src\\components\\finance\\TransactionForm.tsx",
+          "jsxElements": 24,
+          "hooks": 8,
+          "conditionals": 7,
+          "loops": 2,
+          "complexity": 65,
+          "lines": 317
+        },
+        {
+          "file": "src\\components\\settings\\PrivacySettings.tsx",
+          "jsxElements": 48,
+          "hooks": 3,
+          "conditionals": 2,
+          "loops": 1,
+          "complexity": 62,
+          "lines": 512
+        },
+        {
+          "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+          "jsxElements": 24,
+          "hooks": 10,
+          "conditionals": 6,
+          "loops": 0,
+          "complexity": 62,
+          "lines": 312
+        },
+        {
+          "file": "src\\components\\finance\\BudgetForm.tsx",
+          "jsxElements": 23,
+          "hooks": 7,
+          "conditionals": 6,
+          "loops": 3,
+          "complexity": 61,
+          "lines": 303
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "jsxElements": 39,
+          "hooks": 4,
+          "conditionals": 4,
+          "loops": 1,
+          "complexity": 61,
+          "lines": 420
+        },
+        {
+          "file": "src\\components\\media\\MediaAnalytics.tsx",
+          "jsxElements": 50,
+          "hooks": 1,
+          "conditionals": 0,
+          "loops": 4,
+          "complexity": 60,
+          "lines": 404
+        },
+        {
+          "file": "src\\components\\settings\\NotificationPreferences.tsx",
+          "jsxElements": 44,
+          "hooks": 3,
+          "conditionals": 3,
+          "loops": 0,
+          "complexity": 59,
+          "lines": 464
+        },
+        {
+          "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+          "jsxElements": 35,
+          "hooks": 5,
+          "conditionals": 4,
+          "loops": 1,
+          "complexity": 59,
+          "lines": 390
+        },
+        {
+          "file": "src\\screens\\settings\\SettingsScreen.tsx",
+          "jsxElements": 31,
+          "hooks": 4,
+          "conditionals": 6,
+          "loops": 1,
+          "complexity": 59,
+          "lines": 457
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "jsxElements": 33,
+          "hooks": 4,
+          "conditionals": 5,
+          "loops": 1,
+          "complexity": 58,
+          "lines": 295
+        },
+        {
+          "file": "src\\components\\journal\\AIAnalysis.tsx",
+          "jsxElements": 41,
+          "hooks": 3,
+          "conditionals": 2,
+          "loops": 2,
+          "complexity": 57,
+          "lines": 362
+        },
+        {
+          "file": "src\\components\\performance\\MemoizedComponents.tsx",
+          "jsxElements": 23,
+          "hooks": 7,
+          "conditionals": 6,
+          "loops": 1,
+          "complexity": 57,
+          "lines": 286
+        },
+        {
+          "file": "src\\components\\coach\\CoachInsights.tsx",
+          "jsxElements": 41,
+          "hooks": 4,
+          "conditionals": 1,
+          "loops": 2,
+          "complexity": 56,
+          "lines": 320
+        },
+        {
+          "file": "src\\components\\media\\MediaProgressTracker.tsx",
+          "jsxElements": 41,
+          "hooks": 6,
+          "conditionals": 1,
+          "loops": 0,
+          "complexity": 56,
+          "lines": 330
+        },
+        {
+          "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+          "jsxElements": 30,
+          "hooks": 2,
+          "conditionals": 6,
+          "loops": 1,
+          "complexity": 54,
+          "lines": 342
+        },
+        {
+          "file": "src\\components\\todos\\TodoItem.tsx",
+          "jsxElements": 27,
+          "hooks": 3,
+          "conditionals": 7,
+          "loops": 0,
+          "complexity": 54,
+          "lines": 324
+        },
+        {
+          "file": "src\\components\\coach\\CoachSummary.tsx",
+          "jsxElements": 46,
+          "hooks": 2,
+          "conditionals": 1,
+          "loops": 0,
+          "complexity": 53,
+          "lines": 336
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "jsxElements": 25,
+          "hooks": 4,
+          "conditionals": 6,
+          "loops": 1,
+          "complexity": 53,
+          "lines": 234
+        },
+        {
+          "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+          "jsxElements": 36,
+          "hooks": 4,
+          "conditionals": 1,
+          "loops": 3,
+          "complexity": 53,
+          "lines": 301
+        },
+        {
+          "file": "src\\screens\\auth\\RegisterScreen.tsx",
+          "jsxElements": 29,
+          "hooks": 4,
+          "conditionals": 5,
+          "loops": 0,
+          "complexity": 52,
+          "lines": 320
+        },
+        {
+          "file": "src\\components\\animated\\LoadingAnimation.tsx",
+          "jsxElements": 12,
+          "hooks": 16,
+          "conditionals": 1,
+          "loops": 2,
+          "complexity": 51,
+          "lines": 355
+        }
+      ]
+    },
+    "antiPatterns": {
+      "totalIssues": 74,
+      "issues": [
+        {
+          "file": "src\\components\\animated\\AnimatedListItem.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\animated\\CompletionAnimation.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\animated\\LoadingAnimation.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\animated\\ScreenTransition.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\charts\\HabitChart.tsx",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\components\\charts\\MoodChart.tsx",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\components\\charts\\ProductivityChart.tsx",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\components\\coach\\ChatInterface.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\coach\\TypingIndicator.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\common\\Button.tsx",
+          "type": "inline-styles",
+          "message": "Inline style objects cause unnecessary re-renders"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetForm.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\finance\\QuickEntry.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionForm.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\goals\\GoalProgress.tsx",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\components\\habits\\HabitItem.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\habits\\HabitProgress.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\journal\\MoodExtraction.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\journal\\MoodExtraction.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\media\\ExternalMediaSearch.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\media\\MediaAnalytics.tsx",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\components\\media\\MediaProgressTracker.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\performance\\MemoizedComponents.tsx",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\components\\routines\\RoutineBuilder.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\settings\\NotificationPreferences.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\settings\\PrivacySettings.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\settings\\PrivacySettings.tsx",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\components\\settings\\SyncPreferences.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\settings\\SyncPreferences.tsx",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\components\\settings\\SyncPreferences.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\todos\\FloatingActionButton.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\components\\todos\\TodoList.tsx",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\components\\todos\\TodoSearch.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\contexts\\AuthContext.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\contexts\\AuthContext.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\contexts\\OfflineContext.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\contexts\\ThemeContext.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\hooks\\useAnalytics.ts",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\hooks\\useAnalytics.ts",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\hooks\\useDashboard.ts",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\hooks\\useDashboard.ts",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\hooks\\useDeviceIntegration.ts",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\hooks\\useJournal.ts",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\hooks\\useNotifications.ts",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\hooks\\useNotifications.ts",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\hooks\\useOffline.ts",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\screens\\coach\\CoachScreen.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\screens\\mood\\MoodScreen.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\screens\\settings\\ProfileScreen.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\screens\\todos\\TodosScreen.tsx",
+          "type": "no-memoization",
+          "message": "Component with multiple state but no memoization"
+        },
+        {
+          "file": "src\\services\\BiometricService.ts",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\services\\CameraService.ts",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\services\\NotificationService.ts",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\services\\OfflineManager.ts",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\utils\\ErrorRecovery.ts",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        },
+        {
+          "file": "src\\utils\\LazyLoader.tsx",
+          "type": "missing-deps",
+          "message": "useEffect without dependency array"
+        },
+        {
+          "file": "src\\__tests__\\integration\\runIntegrationTests.ts",
+          "type": "missing-keys",
+          "message": "List rendering without keys"
+        }
+      ],
+      "byType": {
+        "missing-deps": [
+          {
+            "file": "src\\components\\animated\\AnimatedListItem.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\animated\\CompletionAnimation.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\animated\\LoadingAnimation.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\animated\\ScreenTransition.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\coach\\ChatInterface.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\coach\\TypingIndicator.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\habits\\HabitItem.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\habits\\HabitProgress.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\journal\\JournalPrompts.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\journal\\MoodExtraction.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\settings\\NotificationPreferences.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\settings\\PrivacySettings.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\settings\\SyncPreferences.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\sync\\SyncStatus.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\components\\todos\\TodoSearch.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\contexts\\AuthContext.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\contexts\\OfflineContext.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\contexts\\ThemeContext.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\hooks\\useAnalytics.ts",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\hooks\\useDashboard.ts",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\hooks\\useDeviceIntegration.ts",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\hooks\\useNotifications.ts",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\hooks\\useOffline.ts",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\screens\\coach\\CoachScreen.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          },
+          {
+            "file": "src\\utils\\LazyLoader.tsx",
+            "type": "missing-deps",
+            "message": "useEffect without dependency array"
+          }
+        ],
+        "missing-keys": [
+          {
+            "file": "src\\components\\charts\\HabitChart.tsx",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\components\\charts\\MoodChart.tsx",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\components\\charts\\ProductivityChart.tsx",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\components\\goals\\GoalProgress.tsx",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\components\\media\\MediaAnalytics.tsx",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\components\\performance\\MemoizedComponents.tsx",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\components\\settings\\PrivacySettings.tsx",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\components\\settings\\SyncPreferences.tsx",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\components\\todos\\TodoList.tsx",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\hooks\\useAnalytics.ts",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\hooks\\useDashboard.ts",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\hooks\\useJournal.ts",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\hooks\\useNotifications.ts",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\services\\BiometricService.ts",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\services\\CameraService.ts",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\services\\NotificationService.ts",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\services\\OfflineManager.ts",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\utils\\ErrorRecovery.ts",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          },
+          {
+            "file": "src\\__tests__\\integration\\runIntegrationTests.ts",
+            "type": "missing-keys",
+            "message": "List rendering without keys"
+          }
+        ],
+        "no-memoization": [
+          {
+            "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\finance\\BudgetForm.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\finance\\QuickEntry.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\finance\\TransactionForm.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\journal\\JournalEditor.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\journal\\JournalPrompts.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\journal\\MoodExtraction.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\media\\ExternalMediaSearch.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\media\\MediaProgressTracker.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\media\\MediaRatingReview.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\routines\\RoutineBuilder.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\settings\\SyncPreferences.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\sync\\SyncStatus.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\components\\todos\\FloatingActionButton.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\contexts\\AuthContext.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\screens\\mood\\MoodScreen.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\screens\\settings\\ProfileScreen.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          },
+          {
+            "file": "src\\screens\\todos\\TodosScreen.tsx",
+            "type": "no-memoization",
+            "message": "Component with multiple state but no memoization"
+          }
+        ],
+        "inline-styles": [
+          {
+            "file": "src\\components\\common\\Button.tsx",
+            "type": "inline-styles",
+            "message": "Inline style objects cause unnecessary re-renders"
+          }
+        ]
+      }
+    },
+    "optimizations": {
+      "totalOpportunities": 268,
+      "opportunities": [
+        {
+          "file": "src\\components\\animated\\AnimatedButton.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\animated\\AnimatedListItem.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\charts\\HabitChart.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\charts\\MoodChart.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\charts\\ProductivityChart.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\coach\\ChatBubble.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\coach\\ChatInput.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\coach\\ChatInput.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\coach\\ChatInterface.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\coach\\CoachInsights.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\coach\\CoachInsights.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\coach\\CoachInsights.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\coach\\CoachSummary.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\coach\\CoachSummary.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\coach\\TypingIndicator.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\common\\Button.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\common\\Button.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\common\\Card.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\common\\ErrorBoundary.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\common\\Header.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\common\\Header.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\common\\Input.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\common\\Input.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\common\\LoadingSpinner.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\common\\NetworkStatus.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\common\\NetworkStatus.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\common\\OfflineIndicator.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\common\\OfflineIndicator.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\common\\VersionInfo.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\dashboard\\QuickStats.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\dashboard\\RecentActivity.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\dashboard\\RecentActivity.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\dashboard\\UpcomingTasks.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\dashboard\\UpcomingTasks.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\finance\\AccountCard.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\finance\\AccountCard.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetAnalysis.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetAnalysis.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetAnalysis.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetCard.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetCard.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetCard.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetForm.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetForm.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetForm.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\finance\\FinanceCharts.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\finance\\FinanceCharts.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\finance\\NetWorthCard.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\finance\\QuickEntry.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\finance\\QuickEntry.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\finance\\ReceiptCapture.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\finance\\ReceiptCapture.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\finance\\SubscriptionCard.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\finance\\SubscriptionCard.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionForm.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionForm.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionForm.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionHistory.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionHistory.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\goals\\GoalForm.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\goals\\GoalForm.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\goals\\GoalItem.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\goals\\GoalItem.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\goals\\GoalStats.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\goals\\MilestoneForm.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\goals\\MilestoneForm.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\habits\\HabitAnalytics.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\habits\\HabitAnalytics.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\habits\\HabitAnalytics.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\habits\\HabitCalendar.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\habits\\HabitInsights.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\habits\\HabitInsights.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\habits\\HabitInsights.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\habits\\HabitItem.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\habits\\HabitItem.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\habits\\HabitProgress.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\journal\\AIAnalysis.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\journal\\AIAnalysis.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\journal\\AIAnalysis.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\journal\\CategoryTags.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\journal\\CategoryTags.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\journal\\CategoryTags.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\journal\\JournalItem.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\journal\\JournalItem.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\journal\\JournalList.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\journal\\JournalList.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\journal\\JournalSearch.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\journal\\JournalSearch.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\journal\\JournalSearch.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\journal\\MoodExtraction.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\journal\\MoodExtraction.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\journal\\MoodExtraction.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\journal\\PhotoAttachment.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\journal\\PhotoAttachment.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\journal\\PhotoAttachment.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\journal\\PhotoAttachment.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\layout\\Column.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\layout\\Container.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\layout\\Row.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\media\\ExternalMediaSearch.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\media\\ExternalMediaSearch.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\media\\MediaAnalytics.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\media\\MediaAnalytics.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\media\\MediaAnalytics.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\media\\MediaCard.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\media\\MediaCard.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\media\\MediaFilter.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\media\\MediaFilter.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\media\\MediaFilter.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\media\\MediaList.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\media\\MediaList.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\media\\MediaProgressTracker.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\media\\MediaProgressTracker.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\media\\MediaRecommendations.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\media\\MediaRecommendations.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\media\\MediaRecommendations.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\media\\MediaRecommendations.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\media\\MediaSearch.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\mood\\MoodCorrelation.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\mood\\MoodCorrelation.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\mood\\MoodCorrelation.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\mood\\MoodHistory.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\mood\\MoodHistory.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\mood\\MoodHistory.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\mood\\MoodHistory.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\mood\\MoodSelector.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\mood\\MoodSelector.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\routines\\RoutineBuilder.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\routines\\RoutineBuilder.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\routines\\RoutineBuilder.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\routines\\RoutineItem.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\routines\\RoutineTemplates.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\routines\\RoutineTemplates.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\settings\\AvatarSelection.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\settings\\AvatarSelection.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\settings\\AvatarSelection.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\settings\\NotificationPreferences.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\settings\\PrivacySettings.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\settings\\SyncPreferences.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\todos\\FloatingActionButton.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\todos\\FloatingActionButton.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\todos\\TodoFilter.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\todos\\TodoFilter.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\todos\\TodoFilter.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\components\\todos\\TodoItem.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\todos\\TodoItem.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\todos\\TodoList.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\todos\\TodoList.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\todos\\TodoSearch.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\todos\\TodoSearch.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\components\\todos\\TodoStats.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\components\\todos\\TodoStats.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\components\\todos\\TodoStats.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\contexts\\AuthContext.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\contexts\\OfflineContext.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\contexts\\ThemeContext.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\navigation\\AppNavigator.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\navigation\\AuthStack.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\navigation\\MainTabNavigator.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\navigation\\stacks\\DashboardStack.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\navigation\\stacks\\HabitsStack.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\navigation\\stacks\\JournalStack.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\navigation\\stacks\\MoreStack.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\navigation\\stacks\\TodosStack.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\auth\\LoginScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\auth\\LoginScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\auth\\RegisterScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\auth\\RegisterScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\coach\\CoachScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\coach\\CoachScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\dashboard\\AnalyticsScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\dashboard\\AnalyticsScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\dashboard\\AnalyticsScreen.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\screens\\dashboard\\DashboardScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\dashboard\\DashboardScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\finance\\AddTransactionScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\finance\\BudgetsScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\finance\\BudgetsScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\finance\\BudgetsScreen.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\screens\\finance\\FinanceScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\finance\\FinanceScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\finance\\FinanceScreen.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\screens\\finance\\TransactionHistoryScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\goals\\GoalDetailScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\goals\\GoalDetailScreen.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\screens\\goals\\GoalsScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\screens\\habits\\HabitAnalyticsScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\habits\\HabitDetailScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\habits\\HabitDetailScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\habits\\HabitsScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\habits\\HabitsScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\journal\\JournalAnalysisScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\journal\\JournalScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\journal\\JournalScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\LoadingScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\media\\AddMediaScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\media\\AddMediaScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\media\\AddMediaScreen.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\screens\\media\\MediaAnalyticsScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\media\\MediaAnalyticsScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\screens\\media\\MediaScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\media\\MediaScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\mood\\MoodScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\mood\\MoodScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\mood\\MoodScreen.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\screens\\more\\MoreScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\routines\\RoutinesScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\settings\\ProfileScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\settings\\ProfileScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\settings\\SettingsScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\settings\\SettingsScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\settings\\SettingsScreen.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+          "type": "flatlist",
+          "message": "Large lists should use FlatList for better performance"
+        },
+        {
+          "file": "src\\screens\\todos\\TodosScreen.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        },
+        {
+          "file": "src\\screens\\todos\\TodosScreen.tsx",
+          "type": "use-memo",
+          "message": "Expensive operations can be memoized with useMemo"
+        },
+        {
+          "file": "src\\screens\\todos\\TodosScreen.tsx",
+          "type": "use-callback",
+          "message": "Event handlers can be memoized with useCallback"
+        },
+        {
+          "file": "src\\utils\\LazyLoader.tsx",
+          "type": "react-memo",
+          "message": "Component can be wrapped with React.memo"
+        }
+      ],
+      "byType": {
+        "use-callback": [
+          {
+            "file": "src\\components\\animated\\AnimatedButton.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\animated\\AnimatedListItem.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\coach\\ChatInput.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\coach\\CoachInsights.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\common\\Button.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\common\\ErrorBoundary.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\common\\Header.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\common\\Input.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\common\\NetworkStatus.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\common\\OfflineIndicator.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\dashboard\\RecentActivity.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\dashboard\\UpcomingTasks.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\finance\\AccountCard.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\finance\\BudgetCard.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\finance\\BudgetForm.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\finance\\FinanceCharts.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\finance\\QuickEntry.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\finance\\ReceiptCapture.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\finance\\SubscriptionCard.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\finance\\TransactionCategories.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\finance\\TransactionForm.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\finance\\TransactionHistory.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\goals\\GoalForm.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\goals\\GoalItem.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\goals\\MilestoneForm.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\habits\\HabitInsights.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\habits\\HabitItem.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\journal\\AIAnalysis.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\journal\\CategoryTags.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\journal\\JournalEditor.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\journal\\JournalItem.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\journal\\JournalList.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\journal\\JournalPrompts.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\journal\\JournalSearch.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\journal\\MoodExtraction.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\journal\\PhotoAttachment.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\media\\ExternalMediaSearch.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\media\\MediaCard.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\media\\MediaFilter.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\media\\MediaList.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\media\\MediaProgressTracker.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\media\\MediaRatingReview.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\media\\MediaRecommendations.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\mood\\ActivitySelector.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\mood\\MoodHistory.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\mood\\MoodSelector.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\routines\\RoutineBuilder.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\routines\\RoutineItem.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\routines\\RoutineTemplates.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\settings\\AvatarSelection.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\settings\\NotificationPreferences.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\settings\\PrivacySettings.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\settings\\SyncPreferences.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\sync\\SyncStatus.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\todos\\FloatingActionButton.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\todos\\TodoFilter.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\todos\\TodoItem.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\todos\\TodoSearch.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\components\\todos\\TodoStats.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\auth\\LoginScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\auth\\RegisterScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\coach\\CoachScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\dashboard\\AnalyticsScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\dashboard\\DashboardScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\finance\\BudgetsScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\finance\\FinanceScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\goals\\GoalDetailScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\goals\\GoalsScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\habits\\HabitDetailScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\habits\\HabitsScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\journal\\JournalScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\media\\AddMediaScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\media\\MediaAnalyticsScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\media\\MediaScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\mood\\MoodScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\routines\\RoutinesScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\settings\\ProfileScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\settings\\SettingsScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          },
+          {
+            "file": "src\\screens\\todos\\TodosScreen.tsx",
+            "type": "use-callback",
+            "message": "Event handlers can be memoized with useCallback"
+          }
+        ],
+        "react-memo": [
+          {
+            "file": "src\\components\\charts\\HabitChart.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\charts\\MoodChart.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\charts\\ProductivityChart.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\coach\\ChatBubble.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\coach\\ChatInput.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\coach\\ChatInterface.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\coach\\CoachInsights.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\coach\\CoachSummary.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\coach\\TypingIndicator.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\common\\Button.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\common\\Card.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\common\\Header.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\common\\Input.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\common\\LoadingSpinner.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\common\\NetworkStatus.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\common\\OfflineIndicator.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\common\\VersionInfo.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\dashboard\\QuickStats.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\dashboard\\RecentActivity.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\dashboard\\UpcomingTasks.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\finance\\AccountCard.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\finance\\BudgetAnalysis.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\finance\\BudgetCard.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\finance\\BudgetForm.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\finance\\FinanceCharts.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\finance\\NetWorthCard.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\finance\\QuickEntry.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\finance\\ReceiptCapture.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\finance\\SubscriptionCard.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\finance\\TransactionCategories.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\finance\\TransactionForm.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\finance\\TransactionHistory.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\habits\\HabitAnalytics.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\habits\\HabitCalendar.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\habits\\HabitInsights.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\habits\\HabitItem.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\habits\\HabitProgress.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\journal\\AIAnalysis.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\journal\\CategoryTags.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\journal\\JournalEditor.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\journal\\JournalItem.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\journal\\JournalList.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\journal\\JournalPrompts.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\journal\\JournalSearch.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\journal\\MoodExtraction.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\journal\\PhotoAttachment.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\layout\\Column.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\layout\\Container.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\layout\\Row.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\media\\ExternalMediaSearch.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\media\\MediaAnalytics.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\media\\MediaCard.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\media\\MediaFilter.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\media\\MediaList.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\media\\MediaProgressTracker.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\media\\MediaRatingReview.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\media\\MediaRecommendations.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\media\\MediaSearch.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\mood\\ActivitySelector.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\mood\\MoodCorrelation.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\mood\\MoodHistory.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\mood\\MoodSelector.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\settings\\AvatarSelection.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\sync\\SyncStatus.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\todos\\FloatingActionButton.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\todos\\TodoFilter.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\todos\\TodoItem.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\todos\\TodoList.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\todos\\TodoSearch.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\components\\todos\\TodoStats.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\contexts\\AuthContext.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\contexts\\OfflineContext.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\contexts\\ThemeContext.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\navigation\\AppNavigator.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\navigation\\AuthStack.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\navigation\\MainTabNavigator.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\navigation\\stacks\\DashboardStack.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\navigation\\stacks\\HabitsStack.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\navigation\\stacks\\JournalStack.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\navigation\\stacks\\MoreStack.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\navigation\\stacks\\TodosStack.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\auth\\LoginScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\auth\\RegisterScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\coach\\CoachScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\dashboard\\AnalyticsScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\dashboard\\DashboardScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\finance\\AddTransactionScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\finance\\BudgetsScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\finance\\FinanceScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\finance\\TransactionHistoryScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\habits\\HabitAnalyticsScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\habits\\HabitDetailScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\habits\\HabitsScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\journal\\JournalAnalysisScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\journal\\JournalScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\LoadingScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\media\\AddMediaScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\media\\MediaAnalyticsScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\media\\MediaScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\mood\\MoodScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\more\\MoreScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\settings\\ProfileScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\settings\\SettingsScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\screens\\todos\\TodosScreen.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          },
+          {
+            "file": "src\\utils\\LazyLoader.tsx",
+            "type": "react-memo",
+            "message": "Component can be wrapped with React.memo"
+          }
+        ],
+        "use-memo": [
+          {
+            "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\coach\\CoachSummary.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\finance\\BudgetAnalysis.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\finance\\BudgetCard.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\goals\\GoalItem.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\goals\\GoalStats.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\goals\\MilestoneForm.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\habits\\HabitAnalytics.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\habits\\HabitInsights.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\journal\\JournalPrompts.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\journal\\MoodExtraction.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\journal\\PhotoAttachment.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\media\\MediaAnalytics.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\media\\MediaRecommendations.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\mood\\ActivitySelector.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\mood\\MoodCorrelation.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\mood\\MoodHistory.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\routines\\RoutineBuilder.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\sync\\SyncStatus.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\todos\\TodoList.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\components\\todos\\TodoStats.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          },
+          {
+            "file": "src\\screens\\todos\\TodosScreen.tsx",
+            "type": "use-memo",
+            "message": "Expensive operations can be memoized with useMemo"
+          }
+        ],
+        "flatlist": [
+          {
+            "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\coach\\CoachInsights.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\finance\\BudgetAnalysis.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\finance\\BudgetForm.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\finance\\TransactionForm.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\goals\\GoalForm.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\habits\\HabitAnalytics.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\journal\\AIAnalysis.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\journal\\CategoryTags.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\journal\\JournalEditor.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\journal\\JournalPrompts.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\journal\\JournalSearch.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\journal\\PhotoAttachment.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\media\\MediaAnalytics.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\media\\MediaFilter.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\media\\MediaRecommendations.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\mood\\ActivitySelector.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\mood\\MoodCorrelation.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\mood\\MoodHistory.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\routines\\RoutineBuilder.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\routines\\RoutineTemplates.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\settings\\AvatarSelection.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\components\\todos\\TodoFilter.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\screens\\dashboard\\AnalyticsScreen.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\screens\\finance\\BudgetsScreen.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\screens\\finance\\FinanceScreen.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\screens\\goals\\GoalDetailScreen.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\screens\\media\\AddMediaScreen.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\screens\\mood\\MoodScreen.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\screens\\settings\\SettingsScreen.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          },
+          {
+            "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+            "type": "flatlist",
+            "message": "Large lists should use FlatList for better performance"
+          }
+        ]
+      }
+    },
+    "recommendations": [
+      {
+        "type": "component-complexity",
+        "severity": "high",
+        "message": "41 components have high complexity",
+        "action": "Break down complex components into smaller, focused components"
+      },
+      {
+        "type": "performance-antipatterns",
+        "severity": "high",
+        "message": "74 performance anti-patterns detected",
+        "action": "Fix performance anti-patterns to improve rendering speed"
+      },
+      {
+        "type": "optimization-opportunities",
+        "severity": "medium",
+        "message": "268 optimization opportunities identified",
+        "action": "Implement React.memo, useMemo, and useCallback where appropriate"
+      }
+    ]
+  },
+  "networkAnalysis": {
+    "api": {
+      "totalFiles": 7,
+      "totalCalls": 17,
+      "filesWithMostCalls": [
+        {
+          "file": "src\\services\\SyncManager.ts",
+          "fetchCalls": 0,
+          "axioCalls": 0,
+          "apiServiceCalls": 4,
+          "totalCalls": 4
+        },
+        {
+          "file": "src\\contexts\\OfflineContext.tsx",
+          "fetchCalls": 0,
+          "axioCalls": 0,
+          "apiServiceCalls": 3,
+          "totalCalls": 3
+        },
+        {
+          "file": "src\\services\\__tests__\\ApiService.test.ts",
+          "fetchCalls": 0,
+          "axioCalls": 0,
+          "apiServiceCalls": 3,
+          "totalCalls": 3
+        },
+        {
+          "file": "src\\__tests__\\integration\\BasicIntegration.test.tsx",
+          "fetchCalls": 0,
+          "axioCalls": 0,
+          "apiServiceCalls": 3,
+          "totalCalls": 3
+        },
+        {
+          "file": "src\\contexts\\AuthContext.tsx",
+          "fetchCalls": 0,
+          "axioCalls": 0,
+          "apiServiceCalls": 2,
+          "totalCalls": 2
+        },
+        {
+          "file": "src\\services\\ApiService.ts",
+          "fetchCalls": 0,
+          "axioCalls": 1,
+          "apiServiceCalls": 0,
+          "totalCalls": 1
+        },
+        {
+          "file": "src\\services\\UpdateService.ts",
+          "fetchCalls": 0,
+          "axioCalls": 0,
+          "apiServiceCalls": 1,
+          "totalCalls": 1
+        }
+      ]
+    },
+    "caching": {
+      "reactQuery": true,
+      "asyncStorage": true,
+      "offlineManager": true,
+      "customCaching": true
+    },
+    "optimizations": {
+      "requestBatching": false,
+      "requestDeduplication": false,
+      "errorHandling": true,
+      "retryMechanisms": true,
+      "compressionUsed": false,
+      "cdnUsage": false
+    },
+    "recommendations": [
+      {
+        "type": "request-batching",
+        "severity": "medium",
+        "message": "Request batching not implemented",
+        "action": "Implement request batching for multiple API calls"
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "type": "component-memory",
+      "severity": "high",
+      "message": "19 potential memory issues found in components",
+      "action": "Review and fix memory leaks in components"
+    },
+    {
+      "type": "memory-leaks",
+      "severity": "high",
+      "message": "11 potential memory leaks detected",
+      "action": "Add cleanup functions to useEffect hooks and clear timers"
+    },
+    {
+      "type": "component-complexity",
+      "severity": "high",
+      "message": "41 components have high complexity",
+      "action": "Break down complex components into smaller, focused components"
+    },
+    {
+      "type": "performance-antipatterns",
+      "severity": "high",
+      "message": "74 performance anti-patterns detected",
+      "action": "Fix performance anti-patterns to improve rendering speed"
+    },
+    {
+      "type": "optimization-opportunities",
+      "severity": "medium",
+      "message": "268 optimization opportunities identified",
+      "action": "Implement React.memo, useMemo, and useCallback where appropriate"
+    },
+    {
+      "type": "request-batching",
+      "severity": "medium",
+      "message": "Request batching not implemented",
+      "action": "Implement request batching for multiple API calls"
+    }
+  ],
+  "codeQuality": {
+    "lint": {
+      "error": "ESLint analysis failed",
+      "message": "Command failed: npx eslint src --format json\n\nOops! Something went wrong! :(\n\nESLint: 8.57.1\n\nError [ERR_MODULE_NOT_FOUND]: Cannot find package '@eslint/eslintrc' imported from C:\\Projects\\productivity-hub\\eslint.config.mjs\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:255:9)\n    at packageResolve (node:internal/modules/esm/resolve:767:81)\n    at moduleResolve (node:internal/modules/esm/resolve:853:18)\n    at defaultResolve (node:internal/modules/esm/resolve:983:11)\n    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:783:12)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:707:25)\n    at ModuleLoader.resolve (node:internal/modules/esm/loader:690:38)\n    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:307:38)\n    at ModuleJob._link (node:internal/modules/esm/module_job:183:49)\n"
+    },
+    "testCoverage": {
+      "hasCoverage": false,
+      "message": "No test coverage reports found"
+    },
+    "typeScript": {
+      "totalFiles": 207,
+      "tsFiles": 207,
+      "jsFiles": 0,
+      "tsPercentage": 100
+    }
+  }
+}

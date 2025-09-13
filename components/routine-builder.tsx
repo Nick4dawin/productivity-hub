@@ -16,7 +16,7 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
-import { createRoutine, updateRoutine, getTodos, getHabits, Routine, Todo, Habit } from '@/lib/api';
+import { createRoutine, updateRoutine, getTodos, getHabits, createTimeBlock, Routine, Todo, Habit } from '@/lib/api';
 import { Checkbox } from './ui/checkbox';
 
 const routineSchema = z.object({
@@ -25,6 +25,10 @@ const routineSchema = z.object({
   type: z.enum(['Morning', 'Evening', 'Custom']),
   tasks: z.array(z.string()).optional(),
   habits: z.array(z.string()).optional(),
+  addToTimeline: z.boolean().optional(),
+  startTime: z.string().optional(),
+  endTime: z.string().optional(),
+  scheduleType: z.enum(['weekday', 'weekend', 'both']).optional(),
 });
 
 type RoutineFormData = z.infer<typeof routineSchema>;
@@ -45,6 +49,7 @@ export default function RoutineBuilder({ routine, isOpen, onClose, onSuccess }: 
     handleSubmit,
     control,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<RoutineFormData>({
     resolver: zodResolver(routineSchema),
@@ -54,6 +59,10 @@ export default function RoutineBuilder({ routine, isOpen, onClose, onSuccess }: 
       type: routine?.type || 'Custom',
       tasks: routine?.tasks.map(t => t._id) || [],
       habits: routine?.habits.map(h => h._id) || [],
+      addToTimeline: false,
+      startTime: '',
+      endTime: '',
+      scheduleType: 'both',
     },
   });
 
@@ -81,18 +90,50 @@ export default function RoutineBuilder({ routine, isOpen, onClose, onSuccess }: 
         type: routine?.type || 'Custom',
         tasks: routine?.tasks.map(t => t._id) || [],
         habits: routine?.habits.map(h => h._id) || [],
+        addToTimeline: false,
+        startTime: '',
+        endTime: '',
+        scheduleType: 'both',
     });
   }, [routine, reset]);
 
   const onSubmit = async (data: RoutineFormData) => {
     try {
+      let createdRoutine;
       if (routine) {
-        await updateRoutine(routine._id, data);
+        createdRoutine = await updateRoutine(routine._id, data);
         toast({ title: 'Success', description: 'Routine updated successfully.' });
       } else {
-        await createRoutine(data);
+        createdRoutine = await createRoutine(data);
         toast({ title: 'Success', description: 'Routine created successfully.' });
       }
+      
+      // Create time block if addToTimeline is checked
+      if (data.addToTimeline && data.startTime && data.endTime && data.scheduleType) {
+        try {
+          await createTimeBlock({
+            title: data.name,
+            description: data.description || `${data.type} routine`,
+            startTime: data.startTime,
+            endTime: data.endTime,
+            scheduleType: data.scheduleType as 'weekday' | 'weekend',
+            icon: data.type === 'Morning' ? '🌅' : data.type === 'Evening' ? '🌙' : '⚡',
+            color: data.type === 'Morning' ? 'from-yellow-500 to-orange-600' : 
+                   data.type === 'Evening' ? 'from-purple-500 to-pink-600' : 
+                   'from-blue-500 to-purple-600',
+            position: 0
+          });
+          toast({ title: 'Success', description: 'Routine added to timeline!' });
+        } catch (timeBlockError) {
+          console.error('Failed to create time block:', timeBlockError);
+          toast({
+            title: 'Warning',
+            description: 'Routine saved but failed to add to timeline.',
+            variant: 'destructive',
+          });
+        }
+      }
+      
       onSuccess();
     } catch {
       toast({
@@ -194,6 +235,82 @@ export default function RoutineBuilder({ routine, isOpen, onClose, onSuccess }: 
             />
           </div>
 
+          {/* Timeline Integration */}
+          <div className="space-y-4 border-t border-white/10 pt-4">
+            <h3 className="font-semibold mb-2">Timeline Integration</h3>
+            
+            <Controller
+              name="addToTimeline"
+              control={control}
+              render={({ field }) => (
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="addToTimeline"
+                    checked={field.value || false}
+                    onCheckedChange={field.onChange}
+                  />
+                  <label htmlFor="addToTimeline" className="text-sm font-medium">
+                    Add to Timeline
+                  </label>
+                </div>
+              )}
+            />
+            
+            {watch('addToTimeline') && (
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1">Start Time</label>
+                  <Controller
+                    name="startTime"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        type="time"
+                        {...field}
+                        className="bg-white/10 border-white/20"
+                      />
+                    )}
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium mb-1">End Time</label>
+                  <Controller
+                    name="endTime"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        type="time"
+                        {...field}
+                        className="bg-white/10 border-white/20"
+                      />
+                    )}
+                  />
+                </div>
+                
+                <div className="col-span-2">
+                  <label className="block text-sm font-medium mb-1">Schedule</label>
+                  <Controller
+                    name="scheduleType"
+                    control={control}
+                    render={({ field }) => (
+                      <Select value={field.value} onValueChange={field.onChange}>
+                        <SelectTrigger className="bg-white/10 border-white/20">
+                          <SelectValue placeholder="Select schedule type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="weekday">Weekdays Only</SelectItem>
+                          <SelectItem value="weekend">Weekends Only</SelectItem>
+                          <SelectItem value="both">Every Day</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+
           <DialogFooter>
             <Button type="button" variant="outline" onClick={onClose} className="bg-white/10 border-white/20">Cancel</Button>
             <Button type="submit" disabled={isSubmitting} variant="gradient">
@@ -204,4 +321,4 @@ export default function RoutineBuilder({ routine, isOpen, onClose, onSuccess }: 
       </DialogContent>
     </Dialog>
   );
-} 
+}

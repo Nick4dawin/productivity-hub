@@ -19,6 +19,8 @@ interface AuthContextType {
   isAuthenticated: boolean;
   token: string | null;
   apiUrl: string;
+  authError: string | null;
+  clearAuthError: () => void;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
   googleLogin: (code: string) => Promise<void>;
@@ -36,6 +38,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
   const router = useRouter();
 
   // Initialize auth state from localStorage/cookies on mount
@@ -68,8 +71,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsAuthenticated(true);
   };
 
+  const clearAuthError = () => {
+    setAuthError(null);
+  };
+
   const login = async (email: string, password: string) => {
     setIsLoading(true);
+    setAuthError(null); // Clear previous errors
 
     try {
       const response = await fetch(`${API_URL}/auth/login`, {
@@ -83,13 +91,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Login failed");
+        const errorMessage = data.message || "Login failed";
+        setAuthError(errorMessage);
+        throw new Error(errorMessage);
       }
 
       saveAuthData(data.token, data.user);
       router.push("/");
     } catch (error) {
       console.error("Login error:", error);
+      if (error instanceof Error) {
+        setAuthError(error.message);
+      }
       throw error;
     } finally {
       setIsLoading(false);
@@ -209,6 +222,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isAuthenticated,
     token,
     apiUrl: API_URL,
+    authError,
+    clearAuthError,
     login,
     register,
     googleLogin,
@@ -228,4 +243,4 @@ export function useAuth() {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
-} 
+}

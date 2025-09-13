@@ -64,7 +64,7 @@ const SIDEBAR_ITEMS: SidebarItem[] = [
   { id: "dashboard", label: "Dashboard", icon: Activity },
   { id: "habits", label: "Habits", icon: CalendarCheck },
   { id: "mood", label: "Mood", icon: Smile },
-  { id: "journal", label: "Journal", icon: BrainCircuit, tourId: "tour-step-5" },
+  { id: "journal", label: "Journal", icon: BrainCircuit, tourId: "tour-step-5", isPage: true },
   { id: "todo", label: "To-Do", icon: ListTodo, tourId: "tour-step-3" },
   { id: "media", label: "Media", icon: Clapperboard },
   { id: "routines", label: "Routines", icon: ClipboardList },
@@ -211,6 +211,15 @@ export default function DashboardPage() {
       fetchNewWallpaper();
     }
   }, []);
+
+  // Auto-change wallpaper when theme changes
+  useEffect(() => {
+    if (theme) {
+      console.log('🎨 Theme changed to:', theme);
+      console.log('🔄 Auto-fetching new wallpaper for theme change');
+      fetchNewWallpaper();
+    }
+  }, [theme]);
 
   // Listen for navigation events from Analytics component
   useEffect(() => {
@@ -364,12 +373,12 @@ export default function DashboardPage() {
                   <path d="M12 6v12" />
                   <path d="M9 6v12a3 3 0 0 0-3 3V9a3 3 0 0 0 3-3z" />
                 </svg>
-                <span>Produktiv</span>
+                <span>Life OS</span>
               </a>
             </div>
-            <div className="flex-1 overflow-auto py-2">
-              <div className="flex-1">
-                <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+            <div className="flex-1 overflow-hidden py-2">
+              <div className="flex-1 overflow-hidden">
+                <nav className="grid items-start px-2 text-sm font-medium lg:px-4 overflow-hidden">
                   {SIDEBAR_ITEMS.map((item) => (
                     <button
                       key={item.id}
@@ -447,13 +456,13 @@ export default function DashboardPage() {
             <div className="flex-1" />
 
             <div className="flex items-center gap-4">
-              <form className="hidden lg:block">
+              <form className="hidden lg:block flex-1 max-w-md">
                 <div className="relative">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400" />
                   <Input
                     type="search"
                     placeholder="Search..."
-                    className="w-full appearance-none bg-white/5 pl-8 shadow-none md:w-2/3 lg:w-1/3"
+                    className="w-full appearance-none bg-white/5 pl-8 shadow-none"
                   />
                 </div>
               </form>

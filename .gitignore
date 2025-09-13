@@ -1,6 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+############################
+# Dependencies
+############################
 node_modules/
 backend/node_modules/
 /.pnp
@@ -11,10 +13,14 @@ backend/node_modules/
 !.yarn/releases
 !.yarn/versions
 
-# testing
+############################
+# Testing
+############################
 coverage/
 
-# next.js
+############################
+# Next.js
+############################
 .next/
 .next/cache/
 out/
@@ -23,12 +29,46 @@ build/
 backend/dist/
 backend/build/
 
-# misc
+############################
+# React Native
+############################
+# Metro / Packager
+.expo/
+.expo-shared/
+.expo/web-build/
+.expo-dev/
+
+# iOS
+ios/Pods/
+ios/build/
+ios/DerivedData/
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+
+# Android
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+android/captures/
+*.apk
+*.aar
+*.iml
+
+############################
+# Misc
+############################
 .DS_Store
 Thumbs.db
 *.pem
 
-# debug
+############################
+# Debug / Logs
+############################
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -37,7 +77,9 @@ backend/logs/
 logs/
 *.log
 
-# env files (can opt-in for committing if needed)
+############################
+# Env files (can opt-in for committing if needed)
+############################
 .env
 .env.*
 .env.local
@@ -47,24 +89,34 @@ logs/
 backend/.env
 backend/.env.*
 
-# vercel
+############################
+# Vercel
+############################
 .vercel
 
-# typescript
+############################
+# TypeScript
+############################
 *.tsbuildinfo
 next-env.d.ts
 
-# clerk configuration (can include secrets)
+############################
+# Clerk
+############################
 .clerk/
 
-# editor
+############################
+# Editor
+############################
 .vscode/
 .idea/
 *.swp
 *.swo
 *.sublime*
 
-# misc
+############################
+# Archives / Temp
+############################
 *.tgz
 *.gz
 *.zip
@@ -73,6 +125,8 @@ next-env.d.ts
 *.swp
 *.swo
 
-# public/generated
+############################
+# Public Generated
+############################
 public/*.svg
 !public/logo.svg

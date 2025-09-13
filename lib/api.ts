@@ -100,13 +100,32 @@ export interface Media {
   updatedAt?: string;
 }
 
+export interface TimeBlock {
+  _id: string;
+  user: string;
+  title: string;
+  startTime: string;
+  endTime: string;
+  icon: string;
+  color: string;
+  description?: string;
+  scheduleType: 'weekday' | 'weekend' | 'both';
+  dayOfWeek?: number[];
+  position?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface Routine {
   _id: string;
   name: string;
   description?: string;
   tasks: Todo[];
   habits: Habit[];
-  type: 'Morning' | 'Evening' | 'Custom';
+  timeBlocks: TimeBlock[];
+  type: 'Morning' | 'Evening' | 'Custom' | 'Daily';
+  scheduleType: 'weekday' | 'weekend' | 'both';
+  isActive: boolean;
 }
 
 export interface Milestone {
@@ -477,6 +496,100 @@ export async function deleteJournalEntry(id: string): Promise<void> {
     throw new Error(error.message || 'Failed to delete journal entry');
   }
   console.log('Deleted journal entry:', id);
+}
+
+// TimeBlocks
+export async function getTimeBlocks(scheduleType?: 'weekday' | 'weekend'): Promise<TimeBlock[]> {
+  const url = scheduleType ? `/api/timeblocks?scheduleType=${scheduleType}` : `/api/timeblocks`;
+  
+  const response = await fetch(url, {
+    method: 'GET',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch time blocks');
+  }
+
+  const data = await response.json();
+  return data.success ? data.data : data;
+}
+
+export async function createTimeBlock(data: Omit<TimeBlock, '_id' | 'user' | 'createdAt' | 'updatedAt'>): Promise<TimeBlock> {
+  const response = await fetch(`/api/timeblocks`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to create time block');
+  }
+
+  const result = await response.json();
+  return result.success ? result.data : result;
+}
+
+export async function updateTimeBlock(id: string, data: Partial<TimeBlock>): Promise<TimeBlock> {
+  const response = await fetch(`/api/timeblocks`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id, ...data }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update time block');
+  }
+
+  const result = await response.json();
+  return result.success ? result.data : result;
+}
+
+export async function deleteTimeBlock(id: string): Promise<void> {
+  const response = await fetch(`/api/timeblocks?id=${id}`, {
+    method: 'DELETE',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete time block');
+  }
+}
+
+export async function updateTimeBlockPosition(id: string, position: number): Promise<TimeBlock> {
+  const response = await fetch(`/api/timeblocks/${id}/position`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ position }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update time block position');
+  }
+
+  const result = await response.json();
+  return result.success ? result.data : result;
+}
+
+export async function getAISuggestions(scheduleType: 'weekday' | 'weekend', existingBlocks?: TimeBlock[]): Promise<any[]> {
+  const response = await fetch(`/api/timeblocks/suggestions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ scheduleType, existingBlocks }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to get AI suggestions');
+  }
+
+  const result = await response.json();
+  return result.success ? result.data : result;
 }
 
 // Routine API calls

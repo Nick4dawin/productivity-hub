@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { useAuth } from '@/contexts/auth-context';
+import { Pencil, Trash2 } from 'lucide-react';
 
 interface MediaListProps {
   type: 'Movie' | 'TV Show' | 'Book' | 'Game';
@@ -109,8 +110,12 @@ export default function MediaList({ type, onEdit, refreshKey }: MediaListProps) 
               <CardFooter className="flex justify-between items-center mt-auto pt-4">
                 <Badge>{item.status}</Badge>
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm" onClick={() => onEdit(item)} className="bg-white/10 border-white/20">Edit</Button>
-                  <Button variant="destructive" size="sm" onClick={() => handleDelete(item._id)}>Delete</Button>
+                  <Button variant="outline" size="sm" onClick={() => onEdit(item)} className="bg-white/10 border-white/20">
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                  <Button variant="destructive" size="sm" onClick={() => handleDelete(item._id)}>
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
                 </div>
               </CardFooter>
             </div>
@@ -119,4 +124,4 @@ export default function MediaList({ type, onEdit, refreshKey }: MediaListProps) 
       ))}
     </div>
   );
-} 
+}

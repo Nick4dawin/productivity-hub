@@ -1,0 +1,31 @@
+{
+  "name": "ProductivityHub",
+  "shortDescription": "Your all-in-one productivity companion",
+  "version": "1.0.0",
+  "category": "Productivity",
+  "contentRating": "4+",
+  "website": "https://productivityhub.app",
+  "supportEmail": "support@productivityhub.app",
+  "privacyPolicy": "https://productivityhub.app/privacy",
+  "termsOfService": "https://productivityhub.app/terms",
+  "generatedDate": "2025-09-06T16:05:05.436Z",
+  "files": {
+    "ios": [
+      "description.txt",
+      "keywords.txt",
+      "release-notes.txt",
+      "app-store-metadata.json"
+    ],
+    "android": [
+      "short-description.txt",
+      "full-description.txt",
+      "whats-new.txt",
+      "play-store-metadata.json"
+    ],
+    "common": [
+      "privacy-policy.md",
+      "terms-of-service.md",
+      "support-documentation.md"
+    ]
+  }
+}

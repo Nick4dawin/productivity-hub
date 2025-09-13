@@ -6,6 +6,7 @@ import { fontSans } from "@/lib/fonts";
 import { Toaster } from "@/components/ui/toaster";
 import { CoachButton } from "@/components/coach-button";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
+import { BottomNavigation } from "@/components/bottom-navigation";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default function RootLayout({
             </div>
             <Toaster />
             <CoachButton />
+            <BottomNavigation />
             <PWAInstallPrompt />
           </Providers>
         </AuthProvider>
@@ -44,13 +46,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                  navigator.serviceWorker.register(new URL('/service-worker.js', location.origin).href)
-                    .then(registration => {
-                      console.log('Service Worker registered: ', registration);
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/service-worker.js', {
+                    scope: '/'
+                  })
+                    .then(function(registration) {
+                      console.log('SW registered successfully: ', registration.scope);
                     })
-                    .catch(error => {
-                      console.error('Service Worker registration failed: ', error);
+                    .catch(function(registrationError) {
+                      console.log('SW registration failed: ', registrationError);
                     });
                 });
               }
