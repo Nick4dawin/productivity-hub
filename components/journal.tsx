@@ -5,12 +5,13 @@ import { Button } from "./ui/button"
 import { Textarea } from "./ui/textarea"
 import { Input } from "./ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-import { Plus, Calendar, BrainCircuit, Edit, Trash, MoreHorizontal } from "lucide-react"
+import { Plus, Calendar, BrainCircuit, Edit, Trash, MoreHorizontal, Lightbulb } from "lucide-react"
 import { getJournalEntries, createJournalEntry, updateJournalEntry, deleteJournalEntry, type JournalEntry } from "@/lib/api"
 import { useToast } from "./ui/use-toast"
 import { format } from "date-fns"
 import { JournalAnalysis } from "./journal-analysis"
 import { JournalConfirmationModal } from "./journal-confirmation-modal"
+import { JournalSuggestions } from "./journal-suggestions"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "./ui/dialog"
 
@@ -32,6 +33,7 @@ export function Journal() {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
   const [extractedData, setExtractedData] = useState<any>(null)
   const [savedJournalId, setSavedJournalId] = useState<string | null>(null)
+  const [isPromptsModalOpen, setIsPromptsModalOpen] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -270,6 +272,15 @@ export function Journal() {
     setExtractedData(null);
   }
 
+  const handlePromptSelect = (prompt: string) => {
+    setContent(prev => prev ? `${prev}\n\n${prompt}` : prompt)
+    setIsPromptsModalOpen(false)
+    toast({
+      title: "Prompt Added",
+      description: "Writing prompt has been added to your journal entry",
+    })
+  }
+
   // Don't render until mounted to prevent hydration issues
   if (!mounted) return null
 
@@ -316,18 +327,126 @@ export function Journal() {
 
   return (
     <>
-    <div className="space-y-6">
+    {/* Desktop Layout: Two-column grid */}
+    <div className="hidden lg:grid lg:grid-cols-[400px_1fr] lg:gap-8 lg:h-[calc(100vh-200px)]">
+      {/* Left Column: Journal Form */}
+      <div className="space-y-6 bg-white/5 border border-white/10 rounded-lg p-6">
+        <div className="flex items-center gap-2 mb-4">
+          <BrainCircuit className="w-6 h-6 text-primary" />
+          <h2 className="text-xl font-semibold">New Entry</h2>
+        </div>
+        
+        <div className="space-y-4">
+          {renderJournalForm()}
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setIsPromptsModalOpen(true)}
+              className="bg-white/5 border-white/10 hover:bg-white/10"
+            >
+              <Lightbulb className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="gradient"
+              className="flex-1"
+              onClick={addEntry}
+              disabled={!title.trim() || !content.trim() || isSubmitting}
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Add Entry
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Column: Journal Entries */}
+      <div className="bg-white/5 border border-white/10 rounded-lg p-6 overflow-y-auto">
+        <div className="flex items-center gap-2 mb-6">
+          <Calendar className="w-6 h-6 text-primary" />
+          <h2 className="text-xl font-semibold">Recent Entries</h2>
+          <span className="text-sm text-muted-foreground ml-auto">
+            {entries.length} {entries.length === 1 ? 'entry' : 'entries'}
+          </span>
+        </div>
+        
+        <div className="space-y-4">
+          {entries.map(entry => (
+            <div
+              key={entry._id}
+              className="p-4 border rounded-lg space-y-3 bg-white/5 border-white/10 hover:bg-white/10 transition-colors"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-medium">{entry.title}</h3>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="px-2 py-0.5 bg-primary/10 rounded-full text-xs">
+                      {entry.category}
+                    </span>
+                    <span className="flex items-center text-sm text-muted-foreground">
+                      <Calendar className="w-4 h-4 mr-1" />
+                      {format(new Date(entry.date), "MMM d, yyyy")}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center">
+                  {entry.analysis && (
+                    <Button variant="ghost" size="icon" onClick={() => handleOpenAnalysis(entry)}
+                      className="mr-1">
+                      <BrainCircuit className="w-5 h-5 text-primary" />
+                    </Button>
+                  )}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="bg-white/10 border-white/10 backdrop-blur-md">
+                      <DropdownMenuItem onClick={() => handleEditEntry(entry)} className="cursor-pointer flex items-center gap-2">
+                        <Edit className="h-4 w-4" />
+                        <span>Edit</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleDeleteEntry(entry._id)} className="cursor-pointer flex items-center gap-2 text-red-500">
+                        <Trash className="h-4 w-4" />
+                        <span>Delete</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </div>
+              <p className="text-muted-foreground whitespace-pre-wrap text-sm line-clamp-3">
+                {entry.content}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {/* Mobile Layout: Original vertical layout */}
+    <div className="lg:hidden space-y-6">
       <div className="space-y-4">
         {renderJournalForm()}
-        <Button
-          variant="gradient"
-          className="w-full"
-          onClick={addEntry}
-          disabled={!title.trim() || !content.trim() || isSubmitting}
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          Add Entry
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setIsPromptsModalOpen(true)}
+            className="bg-white/5 border-white/10 hover:bg-white/10"
+          >
+            <Lightbulb className="w-4 h-4" />
+          </Button>
+          <Button
+            variant="gradient"
+            className="flex-1"
+            onClick={addEntry}
+            disabled={!title.trim() || !content.trim() || isSubmitting}
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Add Entry
+          </Button>
+        </div>
       </div>
 
       <div className="space-y-4">
@@ -418,6 +537,23 @@ export function Journal() {
             {isSubmitting ? "Saving..." : "Save Changes"}
           </Button>
         </DialogFooter>
+      </DialogContent>
+    </Dialog>
+    
+    <Dialog open={isPromptsModalOpen} onOpenChange={setIsPromptsModalOpen}>
+      <DialogContent className="bg-white/5 border-white/10 backdrop-blur-md text-white max-w-2xl max-h-[80vh] overflow-hidden">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <Lightbulb className="w-5 h-5 text-yellow-400" />
+            Writing Prompts
+          </DialogTitle>
+          <DialogDescription className="text-gray-400">
+            Get inspired with AI-generated writing prompts based on your recent activity.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="overflow-y-auto flex-1">
+          <JournalSuggestions onSelectSuggestion={handlePromptSelect} />
+        </div>
       </DialogContent>
     </Dialog>
     </>

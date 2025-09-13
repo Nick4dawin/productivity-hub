@@ -30,8 +30,8 @@ const goalSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['not-started', 'in-progress', 'completed', 'abandoned'],
-    default: 'not-started'
+    enum: ['Not Started', 'In Progress', 'Completed', 'On Hold'],
+    default: 'Not Started'
   },
   progress: {
     type: Number,
@@ -46,4 +46,4 @@ const goalSchema = new mongoose.Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model('Goal', goalSchema); 
+module.exports = mongoose.model('Goal', goalSchema);

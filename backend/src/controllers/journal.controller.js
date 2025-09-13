@@ -7,6 +7,7 @@ const { analyzeJournalEntry, extractDataWithConfidence } = require('../services/
 const contextAggregationService = require('../services/context-aggregation.service');
 const userPreferencesService = require('../services/user-preferences.service');
 const ConfidenceValidator = require('../utils/confidence-validator');
+const { searchMovies, searchTvShows } = require('../services/media.service');
 
 const journalController = {
   // Get all journal entries for a user
@@ -298,7 +299,7 @@ const journalController = {
         }
       }
 
-      // Save media with confidence validation
+      // Save media with confidence validation and TMDB integration
       if (media && media.length > 0) {
         const savedMedia = [];
         const mediaErrors = [];
@@ -308,15 +309,44 @@ const journalController = {
             const mediaConfidence = item.confidence || 0.8;
 
             if (mediaConfidence >= confidenceThreshold) {
-              const newMedia = new Media({
+              // Enrich media data with TMDB API for movies and TV shows
+              let enrichedMediaData = {
                 user: req.user._id,
                 title: item.title,
                 type: mapMediaType(item.type),
                 status: mapMediaStatus(item.status),
                 genre: '',
-                review: `Extracted from journal entry on ${new Date(journalEntry.date).toLocaleDateString()} (confidence: ${Math.round(mediaConfidence * 100)}%)`
-              });
+                review: `Extracted from journal entry on ${new Date(journalEntry.date).toLocaleDateString()} (confidence: ${Math.round(mediaConfidence * 100)}%)`,
+                imageUrl: null
+              };
 
+              // Try to get TMDB data for movies and TV shows
+              if (item.type === 'movie' || item.type === 'show') {
+                try {
+                  let tmdbResults = [];
+                  if (item.type === 'movie') {
+                    tmdbResults = await searchMovies(item.title);
+                  } else if (item.type === 'show') {
+                    tmdbResults = await searchTvShows(item.title);
+                  }
+
+                  // Use the first result if available
+                  if (tmdbResults && tmdbResults.length > 0) {
+                    const tmdbData = tmdbResults[0];
+                    enrichedMediaData.genre = tmdbData.genre || '';
+                    enrichedMediaData.imageUrl = tmdbData.imageUrl || null;
+                    
+                    console.log(`✅ TMDB data found for "${item.title}": genre=${tmdbData.genre}, image=${!!tmdbData.imageUrl}`);
+                  } else {
+                    console.log(`⚠️ No TMDB data found for "${item.title}"`);
+                  }
+                } catch (tmdbError) {
+                  console.error(`❌ TMDB API error for "${item.title}":`, tmdbError.message);
+                  // Continue with basic data if TMDB fails
+                }
+              }
+
+              const newMedia = new Media(enrichedMediaData);
               const savedMediaItem = await newMedia.save();
               savedMedia.push(savedMediaItem);
               
@@ -495,7 +525,7 @@ const journalController = {
       res.status(500).json({
         suggestions: [],
         fallbackPrompts: [
-          "What's on your mind today?",
+          "Start writing your journal entry...",
           "How are you feeling right now?",
           "What's one thing you want to remember about today?",
           "What are you looking forward to?",

@@ -46,13 +46,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                  navigator.serviceWorker.register(new URL('/service-worker.js', location.origin).href)
-                    .then(registration => {
-                      console.log('Service Worker registered: ', registration);
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/service-worker.js', {
+                    scope: '/'
+                  })
+                    .then(function(registration) {
+                      console.log('SW registered successfully: ', registration.scope);
                     })
-                    .catch(error => {
-                      console.error('Service Worker registration failed: ', error);
+                    .catch(function(registrationError) {
+                      console.log('SW registration failed: ', registrationError);
                     });
                 });
               }

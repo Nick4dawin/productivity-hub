@@ -36,7 +36,7 @@ export default function SetupAvatarPage() {
 
     setIsSaving(true);
     try {
-      const response = await fetch('/api/users/avatar', {
+      const response = await fetch('/api/user/avatar', {
         method: 'PUT',
         headers: getAuthHeaders(),
         body: JSON.stringify({ avatarUrl: selectedAvatar }),
@@ -96,4 +96,4 @@ export default function SetupAvatarPage() {
       </div>
     </div>
   );
-} 
+}

@@ -22,9 +22,8 @@ type FormData = {
 export default function LoginPage() {
   const [backgroundImage, setBackgroundImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
-  const { login, isAuthenticated } = useAuth();
+  const { login, isAuthenticated, authError, clearAuthError } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -57,10 +56,11 @@ export default function LoginPage() {
   const onSubmit = async (data: FormData) => {
     try {
       setIsLoading(true);
-      setError("");
+      clearAuthError(); // Clear previous errors
       await login(data.email, data.password);
     } catch (error) {
-      setError(error instanceof Error ? error.message : "Login failed. Please try again.");
+      // Error is already handled in auth context
+      console.error("Login submission error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -84,13 +84,13 @@ export default function LoginPage() {
             </div>
           </div>
           
-          {error && (
+          {authError && (
             <div className="bg-red-500/20 border border-red-500/50 text-white rounded-lg p-3 w-full">
-              {error}
+              {authError}
             </div>
           )}
           
-          <GoogleSignInButton onError={setError} />
+          <GoogleSignInButton onError={(error) => console.error('Google sign-in error:', error)} />
           
           <div className="flex items-center w-full">
             <div className="h-px flex-1 bg-white/20" />

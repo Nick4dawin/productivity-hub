@@ -716,7 +716,7 @@ export function JournalEntry({ onSave, isLoading, defaultValues }: JournalEntryP
 
               <div className="relative">
                 <Textarea
-                  placeholder="What's on your mind today?"
+                  placeholder="Start writing your journal entry..."
                   className="min-h-[200px] resize-none"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}

@@ -19,6 +19,20 @@ exports.createTodo = async (req, res) => {
     await todo.save();
     res.status(201).json(todo);
   } catch (error) {
+    // Handle Mongoose validation errors
+    if (error.name === 'ValidationError') {
+      const errors = Object.values(error.errors).map(err => ({
+        field: err.path,
+        message: err.message
+      }));
+      return res.status(400).json({ 
+        message: 'Validation error', 
+        errors 
+      });
+    }
+    
+    // Handle other errors
+    console.error('Error creating todo:', error);
     res.status(500).json({ message: 'Error creating todo' });
   }
 };
@@ -45,7 +59,7 @@ exports.updateTodo = async (req, res) => {
     const todo = await Todo.findOneAndUpdate(
       { _id: req.params.id, userId: req.user._id },
       req.body,
-      { new: true }
+      { new: true, runValidators: true }
     );
 
     if (!todo) {
@@ -54,6 +68,20 @@ exports.updateTodo = async (req, res) => {
 
     res.json(todo);
   } catch (error) {
+    // Handle Mongoose validation errors
+    if (error.name === 'ValidationError') {
+      const errors = Object.values(error.errors).map(err => ({
+        field: err.path,
+        message: err.message
+      }));
+      return res.status(400).json({ 
+        message: 'Validation error', 
+        errors 
+      });
+    }
+    
+    // Handle other errors
+    console.error('Error updating todo:', error);
     res.status(500).json({ message: 'Error updating todo' });
   }
 };

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { MessageCircle, PenTool, BarChart3, Camera, Sparkles } from 'lucide-react'
+import { MessageCircle, PenTool, BarChart3, Film, Sparkles } from 'lucide-react'
 
 export function BottomNavigation() {
   const pathname = usePathname()
@@ -60,7 +60,7 @@ export function BottomNavigation() {
         >
           <div className="relative">
             <MessageCircle className="w-6 h-6" strokeWidth={2} />
-            <Sparkles className="w-3 h-3 absolute -top-1 -right-1 text-blue-400" />
+            <Sparkles className="w-3 h-3 absolute top-0 right-0 text-blue-400" />
           </div>
         </button>
 
@@ -97,7 +97,7 @@ export function BottomNavigation() {
           }`}
           onClick={() => handleNavigation('media')}
         >
-          <Camera className="w-6 h-6" strokeWidth={2} />
+          <Film className="w-6 h-6" strokeWidth={2} />
         </button>
       </div>
     </div>

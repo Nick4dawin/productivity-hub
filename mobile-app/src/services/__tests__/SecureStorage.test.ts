@@ -248,7 +248,7 @@ describe('SecureStorage', () => {
       mockKeychain.resetInternetCredentials.mockRejectedValue(error);
 
       await expect(SecureStorage.clearAll()).rejects.toThrow(
-        'Failed to clear all data: Keychain error'
+        'Failed to clear all data: Failed to clear token: Keychain error'
       );
     });
   });

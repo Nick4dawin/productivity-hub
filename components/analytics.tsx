@@ -6,7 +6,7 @@ import { format, subDays, parseISO } from "date-fns"
 import { GlassCard } from "./GlassCard"
 import { LoadingSpinner } from "./ui/loading-spinner"
 import { getTodos, getHabits, getMoods, getJournalEntries, Todo, Habit, Mood, JournalEntry } from '@/lib/api'
-import { TrendingUp, Calendar, Target, Heart } from 'lucide-react'
+import { TrendingUp, Calendar, Target, Heart, PenTool } from 'lucide-react'
 
 
 
@@ -29,7 +29,7 @@ const valueToEmoji = (value: number): string => {
 };
 
 export function Analytics() {
-  const [timeRange, setTimeRange] = useState<'week' | 'month' | 'custom'>('week');
+  const [timeRange, setTimeRange] = useState<'week' | 'month'>('week');
   const [activeCard, setActiveCard] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -162,39 +162,142 @@ export function Analytics() {
             >
               30D
             </button>
-            <button
-              onClick={() => setTimeRange('custom')}
-              className={`px-6 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                timeRange === 'custom'
-                  ? 'bg-gradient-to-r from-blue-500/80 to-purple-500/80 text-white shadow-lg'
-                  : 'text-white/70 hover:text-white'
-              }`}
-            >
-              Custom
-            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile: Swipeable Cards */}
-      <div className="md:hidden">
-        <div
-          ref={scrollRef}
-          onScroll={handleCardScroll}
-          className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-4"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
+      {/* Mobile: 4-Card Grid Layout */}
+      <div className="md:hidden px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Task Completion Card */}
-          <div className="min-w-[calc(100vw-2rem)] snap-center flex-shrink-0">
-            <GlassCard className="h-80 flex flex-col items-center justify-center relative overflow-hidden">
+          <GlassCard className="h-64 flex flex-col items-center justify-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
+            <div className="relative z-10 text-center p-4">
+              <Target className="w-8 h-8 text-blue-400 mx-auto mb-3" />
+              <h3 className="text-lg font-semibold mb-4 text-white">Task Completion</h3>
+              
+              {/* Circular Progress Ring */}
+              <div className="relative w-16 h-16 mx-auto mb-3">
+                <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="50" stroke="rgba(255,255,255,0.1)" strokeWidth="8" fill="none" />
+                  <circle
+                    cx="60" cy="60" r="50" stroke="url(#taskGradient)" strokeWidth="8" fill="none" strokeLinecap="round"
+                    strokeDasharray={`${(parseInt(dynamicData.tasks.completionRate) / 100) * 314} 314`}
+                    className="transition-all duration-1000 ease-out"
+                  />
+                  <defs>
+                    <linearGradient id="taskGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#3b82f6" />
+                      <stop offset="100%" stopColor="#8b5cf6" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-xl font-bold text-white">{dynamicData.tasks.completionRate}</span>
+                </div>
+              </div>
+
+              <p className="text-white/80 text-sm">{dynamicData.tasks.completed} tasks completed</p>
+            </div>
+          </GlassCard>
+
+          {/* Mood History Card */}
+          <GlassCard className="h-64 flex flex-col items-center justify-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-orange-500/10" />
+            <div className="relative z-10 text-center p-4">
+              <Heart className="w-8 h-8 text-pink-400 mx-auto mb-3" />
+              <h3 className="text-lg font-semibold mb-4 text-white">Mood History</h3>
+              
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <span className="text-3xl">{dynamicData.mood.average}</span>
+              </div>
+              
+              <div className="flex justify-center gap-2 mb-3">
+                <span className="text-lg">😊</span>
+                <span className="text-lg">😐</span>
+                <span className="text-lg">😔</span>
+              </div>
+              
+              <p className="text-white/80 text-sm mb-1">Mostly Neutral</p>
+              <p className="text-white/60 text-xs">Try journaling!</p>
+            </div>
+          </GlassCard>
+
+          {/* Habit Distribution Card */}
+           <GlassCard className="h-64 flex flex-col relative overflow-hidden">
+             <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-teal-500/10" />
+             <div className="relative z-10 p-4 h-full flex flex-col justify-center">
+               <div className="text-center mb-4">
+                 <TrendingUp className="w-8 h-8 text-green-400 mx-auto mb-3" />
+                 <h3 className="text-lg font-semibold text-white">Habit Distribution</h3>
+               </div>
+               
+               <div className="space-y-2">
+                 <div className="flex items-center justify-between">
+                   <div className="flex items-center gap-2">
+                     <span className="text-base">🍎</span>
+                     <span className="text-white/80 text-sm">Fitness</span>
+                   </div>
+                   <span className="text-white font-medium text-sm">50%</span>
+                 </div>
+                 <div className="flex items-center justify-between">
+                   <div className="flex items-center gap-2">
+                     <span className="text-base">🧘</span>
+                     <span className="text-white/80 text-sm">Mindfulness</span>
+                   </div>
+                   <span className="text-white font-medium text-sm">30%</span>
+                 </div>
+                 <div className="flex items-center justify-between">
+                   <div className="flex items-center gap-2">
+                     <span className="text-base">💼</span>
+                     <span className="text-white/80 text-sm">Work</span>
+                   </div>
+                   <span className="text-white font-medium text-sm">20%</span>
+                 </div>
+               </div>
+             </div>
+           </GlassCard>
+
+           {/* Journal & Streak Combined Card */}
+           <GlassCard className="h-64 flex flex-col items-center justify-center relative overflow-hidden">
+             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-orange-500/10" />
+             <div className="relative z-10 text-center p-4">
+               <div className="flex justify-center gap-3 mb-3">
+                 <PenTool className="w-6 h-6 text-purple-400" />
+                 <Calendar className="w-6 h-6 text-orange-400" />
+               </div>
+               <h3 className="text-lg font-semibold text-white mb-4">Progress</h3>
+               
+               <div className="grid grid-cols-2 gap-3">
+                 <div className="text-center">
+                   <div className="text-xl font-bold text-white mb-1">{dynamicData.journal.entries}</div>
+                   <p className="text-white/80 text-sm">Journal</p>
+                   <p className="text-white/60 text-xs">Entries</p>
+                 </div>
+                 <div className="text-center">
+                   <div className="text-xl font-bold text-white mb-1">{dynamicData.habits.bestStreak}</div>
+                   <p className="text-white/80 text-sm">Best Streak</p>
+                   <p className="text-white/60 text-xs">Days</p>
+                 </div>
+               </div>
+             </div>
+           </GlassCard>
+         </div>
+       </div>
+
+        {/* Desktop: 4-Card Grid Layout */}
+        <div className="hidden md:block px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            {/* Task Completion Card */}
+            <GlassCard className="flex flex-col items-center justify-center relative overflow-hidden h-64">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
               <div className="relative z-10 text-center p-6">
                 <Target className="w-10 h-10 text-blue-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-6 text-white">Task Completion</h3>
+                <h3 className="text-xl font-semibold mb-4 text-white">Task Completion</h3>
                 
                 {/* Circular Progress Ring */}
-                <div className="relative w-28 h-28 mx-auto mb-6">
-                  <svg className="w-28 h-28 transform -rotate-90" viewBox="0 0 120 120">
+                <div className="relative w-20 h-20 mx-auto mb-4">
+                  <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 120 120">
                     <circle cx="60" cy="60" r="50" stroke="rgba(255,255,255,0.1)" strokeWidth="8" fill="none" />
                     <circle
                       cx="60" cy="60" r="50" stroke="url(#taskGradient)" strokeWidth="8" fill="none" strokeLinecap="round"
@@ -209,199 +312,93 @@ export function Analytics() {
                     </defs>
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-3xl font-bold text-white">{dynamicData.tasks.completionRate}</span>
+                    <span className="text-2xl font-bold text-white">{dynamicData.tasks.completionRate}</span>
                   </div>
                 </div>
 
-                <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mb-4"></div>
-                <p className="text-white/80 text-base">{dynamicData.tasks.completed} tasks completed this week</p>
+                <p className="text-white/80 text-sm">{dynamicData.tasks.completed} tasks completed</p>
               </div>
             </GlassCard>
-          </div>
 
-          {/* Mood History Card */}
-          <div className="min-w-[calc(100vw-2rem)] snap-center flex-shrink-0">
-            <GlassCard className="h-80 flex flex-col items-center justify-center relative overflow-hidden">
+            {/* Mood History Card */}
+            <GlassCard className="flex flex-col items-center justify-center relative overflow-hidden h-64">
               <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-orange-500/10" />
               <div className="relative z-10 text-center p-6">
                 <Heart className="w-10 h-10 text-pink-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-6 text-white">Mood History</h3>
+                <h3 className="text-xl font-semibold mb-4 text-white">Mood History</h3>
                 
-                <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="flex items-center justify-center gap-3 mb-4">
                   <span className="text-4xl">{dynamicData.mood.average}</span>
                 </div>
                 
-                <div className="flex justify-center gap-3 mb-6">
-                  <span className="text-2xl">😊</span>
-                  <span className="text-2xl">😐</span>
-                  <span className="text-2xl">😔</span>
+                <div className="flex justify-center gap-2 mb-4">
+                  <span className="text-xl">😊</span>
+                  <span className="text-xl">😐</span>
+                  <span className="text-xl">😔</span>
                 </div>
                 
-                <div className="w-20 h-1 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full mx-auto mb-4"></div>
-                <p className="text-white/80 text-base mb-2">Mostly Neutral</p>
-                <p className="text-white/60 text-sm">Try journaling!</p>
+                <p className="text-white/80 text-sm mb-1">Mostly Neutral</p>
+                <p className="text-white/60 text-xs">Try journaling!</p>
               </div>
             </GlassCard>
-          </div>
 
-          {/* Habit Category Card */}
-          <div className="min-w-[calc(100vw-2rem)] snap-center flex-shrink-0">
-            <GlassCard className="h-80 flex flex-col relative overflow-hidden">
+            {/* Habit Distribution Card */}
+            <GlassCard className="flex flex-col relative overflow-hidden h-64">
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-teal-500/10" />
-              <div className="relative z-10 p-8">
-                <div className="text-center mb-8">
+              <div className="relative z-10 p-6 h-full flex flex-col justify-center">
+                <div className="text-center mb-6">
                   <TrendingUp className="w-10 h-10 text-green-400 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-white">Habit Distribution</h3>
                 </div>
                 
-                <div className="space-y-6">
+                <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">🍎</span>
-                      <span className="text-white/80 text-base">Fitness</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">🍎</span>
+                      <span className="text-white/80 text-sm">Fitness</span>
                     </div>
-                    <span className="text-white font-semibold text-lg">50%</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">🧘</span>
-                      <span className="text-white/80 text-base">Mindfulness</span>
-                    </div>
-                    <span className="text-white font-semibold text-lg">30%</span>
+                    <span className="text-white font-medium text-sm">50%</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">💼</span>
-                      <span className="text-white/80 text-base">Work</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">🧘</span>
+                      <span className="text-white/80 text-sm">Mindfulness</span>
                     </div>
-                    <span className="text-white font-semibold text-lg">20%</span>
+                    <span className="text-white font-medium text-sm">30%</span>
                   </div>
-                </div>
-                
-                <div className="w-20 h-1 bg-gradient-to-r from-green-500 to-teal-500 rounded-full mx-auto mt-6"></div>
-              </div>
-            </GlassCard>
-          </div>
-        </div>
-
-        {/* Card Indicators */}
-        <div className="flex justify-center gap-2 mt-6 pb-4">
-          {[0, 1, 2].map((index) => (
-            <div
-              key={index}
-              className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                activeCard === index ? 'bg-white' : 'bg-white/30'
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-
-        {/* Desktop: Bento Box Layout */}
-        <div className="hidden md:block px-6">
-          <div className="grid grid-cols-4 grid-rows-3 gap-4 h-[600px]">
-            {/* Task Completion - Large Card */}
-            <GlassCard className="col-span-2 row-span-2 flex flex-col items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
-              <div className="relative z-10 text-center">
-                <Target className="w-12 h-12 text-blue-400 mx-auto mb-4" />
-                <h3 className="text-2xl font-semibold mb-6 text-white">Task Completion</h3>
-                
-                {/* Large Circular Progress Ring */}
-                <div className="relative w-32 h-32 mx-auto mb-6">
-                  <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
-                    <circle cx="60" cy="60" r="50" stroke="rgba(255,255,255,0.1)" strokeWidth="8" fill="none" />
-                    <circle
-                      cx="60" cy="60" r="50" stroke="url(#taskGradient)" strokeWidth="8" fill="none" strokeLinecap="round"
-                      strokeDasharray={`${(parseInt(dynamicData.tasks.completionRate) / 100) * 314} 314`}
-                      className="transition-all duration-1000 ease-out"
-                    />
-                    <defs>
-                      <linearGradient id="taskGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#3b82f6" />
-                        <stop offset="100%" stopColor="#8b5cf6" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-4xl font-bold text-white">{dynamicData.tasks.completionRate}</span>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">💼</span>
+                      <span className="text-white/80 text-sm">Work</span>
+                    </div>
+                    <span className="text-white font-medium text-sm">20%</span>
                   </div>
-                </div>
-
-                <p className="text-white/80">{dynamicData.tasks.completed} tasks completed this week</p>
-              </div>
-            </GlassCard>
-
-            {/* Mood History */}
-            <GlassCard className="col-span-2 row-span-1 flex items-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-orange-500/10" />
-              <div className="relative z-10 flex items-center justify-between w-full p-6">
-                <div>
-                  <Heart className="w-8 h-8 text-pink-400 mb-2" />
-                  <h3 className="text-xl font-semibold text-white mb-2">Mood History</h3>
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl">{dynamicData.mood.average}</span>
-                    <span className="text-white/80">Mostly Neutral</span>
-                  </div>
-                  <p className="text-white/60 text-sm">Try journaling!</p>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-2xl">😊</span>
-                  <span className="text-2xl">😐</span>
-                  <span className="text-2xl">😔</span>
                 </div>
               </div>
             </GlassCard>
 
-            {/* Habit Categories */}
-            <GlassCard className="col-span-2 row-span-1 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-teal-500/10" />
-              <div className="relative z-10 p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <TrendingUp className="w-8 h-8 text-green-400" />
-                  <h3 className="text-xl font-semibold text-white">Habit Distribution</h3>
+            {/* Journal & Streak Combined Card */}
+            <GlassCard className="flex flex-col items-center justify-center relative overflow-hidden h-64">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-orange-500/10" />
+              <div className="relative z-10 text-center p-6">
+                <div className="flex justify-center gap-4 mb-4">
+                  <PenTool className="w-8 h-8 text-purple-400" />
+                  <Calendar className="w-8 h-8 text-orange-400" />
                 </div>
+                <h3 className="text-xl font-semibold text-white mb-6">Progress</h3>
                 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                   <div className="text-center">
-                    <span className="text-2xl block mb-1">🍎</span>
-                    <span className="text-white/80 text-sm block">Fitness</span>
-                    <span className="text-white font-medium">50%</span>
+                    <div className="text-2xl font-bold text-white mb-1">{dynamicData.journal.entries}</div>
+                    <p className="text-white/80 text-sm">Journal</p>
+                    <p className="text-white/60 text-xs">Entries</p>
                   </div>
                   <div className="text-center">
-                    <span className="text-2xl block mb-1">🧘</span>
-                    <span className="text-white/80 text-sm block">Mindfulness</span>
-                    <span className="text-white font-medium">30%</span>
-                  </div>
-                  <div className="text-center">
-                    <span className="text-2xl block mb-1">💼</span>
-                    <span className="text-white/80 text-sm block">Work</span>
-                    <span className="text-white font-medium">20%</span>
+                    <div className="text-2xl font-bold text-white mb-1">{dynamicData.habits.bestStreak}</div>
+                    <p className="text-white/80 text-sm">Best Streak</p>
+                    <p className="text-white/60 text-xs">Days</p>
                   </div>
                 </div>
-              </div>
-            </GlassCard>
-
-            {/* Journal Stats */}
-            <GlassCard className="col-span-1 row-span-1 flex flex-col items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-indigo-500/10" />
-              <div className="relative z-10 text-center">
-                <PenTool className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-                <h3 className="text-lg font-semibold text-white mb-2">Journal</h3>
-                <div className="text-2xl font-bold text-white mb-1">{dynamicData.journal.entries}</div>
-                <p className="text-white/80 text-sm">Entries</p>
-                <p className="text-white/60 text-xs">{dynamicData.journal.wordsWritten} words</p>
-              </div>
-            </GlassCard>
-
-            {/* Weekly Streak */}
-            <GlassCard className="col-span-1 row-span-1 flex flex-col items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-red-500/10" />
-              <div className="relative z-10 text-center">
-                <Calendar className="w-8 h-8 text-orange-400 mx-auto mb-3" />
-                <h3 className="text-lg font-semibold text-white mb-2">Best Streak</h3>
-                <div className="text-2xl font-bold text-white mb-1">{dynamicData.habits.bestStreak}</div>
-                <p className="text-white/80 text-sm">Days</p>
               </div>
             </GlassCard>
           </div>

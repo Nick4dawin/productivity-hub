@@ -1,4 +1,6 @@
 const Groq = require('groq-sdk');
+const TimeBlock = require('../models/TimeBlock');
+const Routine = require('../models/Routine');
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
@@ -140,7 +142,7 @@ Journal Entry: "${content}"`;
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "llama3-8b-8192",
+      model: "llama-3.3-70b-versatile",
       temperature: 0.3, // Lower temperature for more focused extraction
       max_tokens: 1000,
       response_format: { type: "json_object" }
@@ -197,7 +199,7 @@ const getCoachSummary = async (data) => {
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "llama3-8b-8192",
+      model: "llama-3.3-70b-versatile",
       temperature: 0.7,
       max_tokens: 1000,
     });
@@ -230,7 +232,7 @@ const getCoachChatResponse = async (messages) => {
 
     const completion = await groq.chat.completions.create({
       messages: conversation,
-      model: "llama3-8b-8192",
+      model: "llama-3.3-70b-versatile",
       temperature: 0.8,
       max_tokens: 500,
     });
@@ -255,7 +257,7 @@ const getMilestoneSuggestions = async (goalTitle, goalDescription) => {
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "llama3-8b-8192",
+      model: "llama-3.3-70b-versatile",
       temperature: 0.7,
       max_tokens: 500,
       response_format: { type: "json_object" }
@@ -324,7 +326,7 @@ const generateJournalPrompt = async (contextData) => {
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "llama3-8b-8192",
+      model: "llama-3.3-70b-versatile",
       temperature: 0.7,
       max_tokens: 250,
     });
@@ -333,6 +335,117 @@ const generateJournalPrompt = async (contextData) => {
   } catch (error) {
     console.error('Error generating journal prompt:', error);
     return 'What\'s on your mind today?';
+  }
+};
+
+// NEW: Generate multiple journal prompts with AI-generated editable titles
+const generateMultiplePromptsWithTitles = async (contextData, count = 5) => {
+  try {
+    const { todos, moods, habits, media, userId } = contextData;
+    
+    let prompt = `Create ${count} diverse, personalized journal prompts with titles for the user based on their data.
+    
+    Your goal is to provide variety in writing prompts that help the user explore different aspects of their life, emotions, and goals.`;
+    
+    prompt += `\n\nUser Data:`;
+    
+    if (moods && moods.length > 0) {
+      const latestMood = moods[0];
+      prompt += `\n- Recent Mood: "${latestMood.mood}" (${new Date(latestMood.date).toLocaleDateString()})`;
+      
+      if (moods.length > 1) {
+        prompt += `\n- Mood Pattern: [${moods.map(m => m.mood).join(', ')}]`;
+      }
+    }
+    
+    if (todos && todos.length > 0) {
+      const upcomingTodos = todos.slice(0, 3);
+      prompt += `\n- Upcoming Tasks:`;
+      upcomingTodos.forEach(todo => {
+        prompt += `\n  * "${todo.title}"${todo.dueDate ? ` (due: ${todo.dueDate})` : ''}${todo.priority ? ` [${todo.priority} priority]` : ''}`;
+      });
+    }
+    
+    if (media && media.length > 0) {
+      const recentMedia = media.slice(0, 2);
+      prompt += `\n- Recent Media:`;
+      recentMedia.forEach(m => {
+        prompt += `\n  * ${m.title} (${m.type}, ${m.status})`;
+      });
+    }
+    
+    if (habits && habits.length > 0) {
+      const habitData = habits.slice(0, 3);
+      prompt += `\n- Active Habits:`;
+      habitData.forEach(h => {
+        prompt += `\n  * ${h.name} (streak: ${h.streak} days)`;
+      });
+    }
+    
+    prompt += `\n\nCreate ${count} different journal prompts, each with:
+    1. A short, engaging title (2-4 words)
+    2. A thoughtful prompt question
+    3. Different categories: mood reflection, goal planning, gratitude, creativity, relationships, personal growth
+    4. Variety in tone: some introspective, some forward-looking, some celebratory
+
+    Return JSON format:
+    {
+      "prompts": [
+        {
+          "title": "Short engaging title",
+          "prompt": "Thoughtful question or writing prompt",
+          "category": "mood|goals|gratitude|creativity|relationships|growth"
+        }
+      ]
+    }`;
+
+    const completion = await groq.chat.completions.create({
+      messages: [{ role: "user", content: prompt }],
+      model: "llama-3.3-70b-versatile",
+      temperature: 0.8,
+      max_tokens: 1000,
+      response_format: { type: "json_object" }
+    });
+
+    const result = JSON.parse(completion.choices[0].message.content);
+    
+    // Ensure we have the expected structure
+    if (!result.prompts || !Array.isArray(result.prompts)) {
+      throw new Error('Invalid response format');
+    }
+    
+    return result;
+  } catch (error) {
+    console.error('Error generating multiple prompts with titles:', error);
+    return {
+      prompts: [
+        {
+          title: "Daily Reflection",
+          prompt: "What's one thing you learned about yourself today?",
+          category: "growth"
+        },
+        {
+          title: "Mood Check",
+          prompt: "How are you feeling right now, and what might be influencing that?",
+          category: "mood"
+        },
+        {
+          title: "Gratitude Moment",
+          prompt: "What's something small that brought you joy today?",
+          category: "gratitude"
+        },
+        {
+          title: "Future Focus",
+          prompt: "What's one goal you're excited to work on this week?",
+          category: "goals"
+        },
+        {
+          title: "Creative Spark",
+          prompt: "If you could create anything today, what would it be and why?",
+          category: "creativity"
+        }
+      ]
+    };
   }
 };
 
@@ -369,7 +482,7 @@ const analyzeJournalContentRealtime = async (content, userId) => {
 
       const completion = await groq.chat.completions.create({
         messages: [{ role: "user", content: prompt }],
-        model: "llama3-8b-8192",
+        model: "llama-3.3-70b-versatile",
         temperature: 0.4,
         max_tokens: 300,
         response_format: { type: "json_object" }
@@ -472,7 +585,7 @@ const generateContextualSuggestions = async (userContext) => {
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "llama3-8b-8192",
+      model: "llama-3.3-70b-versatile",
       temperature: 0.6,
       max_tokens: 800,
       response_format: { type: "json_object" }
@@ -495,7 +608,7 @@ const generateContextualSuggestions = async (userContext) => {
     return {
       suggestions: [],
       fallbackPrompts: [
-        "What's on your mind today?",
+        "Start writing your journal entry...",
         "How are you feeling right now?",
         "What's one thing you want to remember about today?",
         "What are you looking forward to?",
@@ -624,7 +737,7 @@ const extractDataWithConfidence = async (content, context = {}) => {
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "llama3-8b-8192",
+      model: "llama-3.3-70b-versatile",
       temperature: 0.3,
       max_tokens: 1200,
       response_format: { type: "json_object" }
@@ -692,14 +805,314 @@ const extractDataWithConfidence = async (content, context = {}) => {
   });
 };
 
+/**
+ * Generate AI suggestions for time blocks based on user's schedule
+ * @param {string} userId - User ID
+ * @param {string} scheduleType - 'weekday' or 'weekend'
+ * @param {Array} existingBlocks - Current time blocks
+ * @returns {Array} Array of suggestion objects
+ */
+const generateTimeBlockSuggestions = async (userId, scheduleType = 'weekday', existingBlocks = []) => {
+  try {
+    // Get user's existing routines and time blocks for context
+    const userRoutines = await Routine.find({ 
+      user: userId, 
+      isActive: true,
+      $or: [
+        { scheduleType: scheduleType },
+        { scheduleType: 'both' }
+      ]
+    }).populate('timeBlocks');
+
+    const userTimeBlocks = await TimeBlock.find({ 
+      user: userId,
+      scheduleType: { $in: [scheduleType, 'both'] }
+    });
+
+    // Analyze schedule gaps and patterns
+    const suggestions = await analyzeScheduleAndGenerateSuggestions(
+      userRoutines,
+      userTimeBlocks,
+      existingBlocks,
+      scheduleType
+    );
+
+    return suggestions;
+  } catch (error) {
+    console.error('Error generating AI suggestions:', error);
+    return getFallbackSuggestions(scheduleType);
+  }
+};
+
+/**
+ * Analyze user's schedule and generate intelligent suggestions
+ */
+const analyzeScheduleAndGenerateSuggestions = async (routines, timeBlocks, existingBlocks, scheduleType) => {
+  const suggestions = [];
+  
+  // Combine all time blocks for analysis
+  const allBlocks = [...timeBlocks, ...existingBlocks];
+  
+  // Find gaps in schedule
+  const gaps = findScheduleGaps(allBlocks);
+  
+  // Generate suggestions using Groq AI
+  try {
+    const prompt = createTimeBlockSuggestionPrompt(routines, allBlocks, gaps, scheduleType);
+    
+    const completion = await groq.chat.completions.create({
+      messages: [{
+        role: "user",
+        content: prompt
+      }],
+      model: "llama3-8b-8192",
+      max_tokens: 1000,
+      temperature: 0.7,
+    });
+
+    const aiSuggestions = parseTimeBlockSuggestions(completion.choices[0].message.content);
+    suggestions.push(...aiSuggestions);
+  } catch (error) {
+    console.error('Groq API error:', error);
+    // Fall back to rule-based suggestions
+    suggestions.push(...getRuleBasedSuggestions(gaps, scheduleType));
+  }
+
+  return suggestions.slice(0, 5); // Limit to 5 suggestions
+};
+
+/**
+ * Find gaps in the user's schedule
+ */
+const findScheduleGaps = (timeBlocks) => {
+  const gaps = [];
+  const sortedBlocks = timeBlocks
+    .filter(block => block.startTime && block.endTime)
+    .sort((a, b) => a.startTime.localeCompare(b.startTime));
+
+  // Find gaps between blocks
+  for (let i = 0; i < sortedBlocks.length - 1; i++) {
+    const currentEnd = sortedBlocks[i].endTime;
+    const nextStart = sortedBlocks[i + 1].startTime;
+    
+    const gapDuration = getTimeDifference(currentEnd, nextStart);
+    if (gapDuration >= 30) { // 30+ minute gaps
+      gaps.push({
+        startTime: currentEnd,
+        endTime: nextStart,
+        duration: gapDuration
+      });
+    }
+  }
+
+  return gaps;
+};
+
+/**
+ * Create prompt for AI time block suggestions
+ */
+const createTimeBlockSuggestionPrompt = (routines, timeBlocks, gaps, scheduleType) => {
+  const routineTypes = routines.map(r => r.type).join(', ');
+  const blockTitles = timeBlocks.map(b => b.title).join(', ');
+  
+  return `Based on a user's ${scheduleType} schedule, suggest 3-5 productive time blocks to fill gaps.
+
+Current routines: ${routineTypes}
+Existing blocks: ${blockTitles}
+Schedule gaps: ${gaps.map(g => `${g.startTime}-${g.endTime} (${g.duration}min)`).join(', ')}
+
+Provide suggestions in this exact JSON format:
+[{
+  "title": "Activity Name",
+  "description": "Brief description",
+  "duration": 60,
+  "category": "productivity",
+  "icon": "💡",
+  "priority": "high"
+}]
+
+Categories: productivity, health, learning, personal
+Priorities: high, medium, low
+Focus on activities that complement existing schedule and improve productivity.`;
+};
+
+/**
+ * Parse AI response into structured suggestions
+ */
+const parseTimeBlockSuggestions = (aiResponse) => {
+  try {
+    // Extract JSON from response
+    const jsonMatch = aiResponse.match(/\[.*\]/s);
+    if (jsonMatch) {
+      const parsed = JSON.parse(jsonMatch[0]);
+      return parsed.map(suggestion => ({
+        ...suggestion,
+        id: Math.random().toString(36).substr(2, 9),
+        type: 'ai-suggestion'
+      }));
+    }
+  } catch (error) {
+    console.error('Error parsing AI suggestions:', error);
+  }
+  return [];
+};
+
+/**
+ * Generate rule-based suggestions when AI is not available
+ */
+const getRuleBasedSuggestions = (gaps, scheduleType) => {
+  const suggestions = [];
+  
+  const baseSuggestions = scheduleType === 'weekday' ? [
+    {
+      title: "Focus Work Session",
+      description: "Deep work on important tasks",
+      duration: 90,
+      category: "productivity",
+      icon: "🎯",
+      priority: "high"
+    },
+    {
+      title: "Quick Exercise",
+      description: "15-minute energizing workout",
+      duration: 15,
+      category: "health",
+      icon: "💪",
+      priority: "medium"
+    },
+    {
+      title: "Learning Break",
+      description: "Read or watch educational content",
+      duration: 30,
+      category: "learning",
+      icon: "📚",
+      priority: "medium"
+    },
+    {
+      title: "Email & Admin",
+      description: "Handle emails and administrative tasks",
+      duration: 45,
+      category: "productivity",
+      icon: "📧",
+      priority: "low"
+    }
+  ] : [
+    {
+      title: "Personal Project",
+      description: "Work on hobby or side project",
+      duration: 120,
+      category: "personal",
+      icon: "🛠️",
+      priority: "high"
+    },
+    {
+      title: "Outdoor Activity",
+      description: "Go for a walk or outdoor exercise",
+      duration: 60,
+      category: "health",
+      icon: "🌳",
+      priority: "high"
+    },
+    {
+      title: "Social Time",
+      description: "Connect with friends or family",
+      duration: 90,
+      category: "personal",
+      icon: "👥",
+      priority: "medium"
+    },
+    {
+      title: "Meal Prep",
+      description: "Prepare meals for the week",
+      duration: 75,
+      category: "personal",
+      icon: "🍳",
+      priority: "medium"
+    }
+  ];
+
+  // Add IDs and type to suggestions
+  const processedSuggestions = baseSuggestions.map(suggestion => ({
+    ...suggestion,
+    id: Math.random().toString(36).substr(2, 9),
+    type: 'rule-based'
+  }));
+
+  // Filter suggestions based on available gaps
+  gaps.forEach(gap => {
+    const suitableSuggestions = processedSuggestions.filter(s => s.duration <= gap.duration);
+    suggestions.push(...suitableSuggestions.slice(0, 2));
+  });
+
+  return suggestions.slice(0, 5);
+};
+
+/**
+ * Get fallback suggestions when all else fails
+ */
+const getFallbackSuggestions = (scheduleType) => {
+  const fallbackSuggestions = scheduleType === 'weekday' ? [
+    {
+      title: "Break Time",
+      description: "Take a short break to recharge",
+      duration: 15,
+      category: "personal",
+      icon: "☕",
+      priority: "low"
+    },
+    {
+      title: "Planning Session",
+      description: "Review and plan upcoming tasks",
+      duration: 30,
+      category: "productivity",
+      icon: "📋",
+      priority: "medium"
+    }
+  ] : [
+    {
+      title: "Relaxation",
+      description: "Unwind and relax",
+      duration: 60,
+      category: "personal",
+      icon: "🧘",
+      priority: "medium"
+    },
+    {
+      title: "Creative Time",
+      description: "Engage in creative activities",
+      duration: 90,
+      category: "personal",
+      icon: "🎨",
+      priority: "high"
+    }
+  ];
+
+  return fallbackSuggestions.map(suggestion => ({
+    ...suggestion,
+    id: Math.random().toString(36).substr(2, 9),
+    type: 'fallback'
+  }));
+};
+
+/**
+ * Calculate time difference in minutes
+ */
+const getTimeDifference = (startTime, endTime) => {
+  const start = new Date(`2000-01-01T${startTime}:00`);
+  const end = new Date(`2000-01-01T${endTime}:00`);
+  return Math.abs(end - start) / (1000 * 60);
+};
+
 module.exports = {
   analyzeJournalEntry,
   getCoachSummary,
   getCoachChatResponse,
   getMilestoneSuggestions,
   generateJournalPrompt,
+  generateMultiplePromptsWithTitles,
   // New enhanced methods
   analyzeJournalContentRealtime,
   generateContextualSuggestions,
-  extractDataWithConfidence
+  extractDataWithConfidence,
+  generateTimeBlockSuggestions
 };

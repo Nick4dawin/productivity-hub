@@ -1,0 +1,5563 @@
+{
+  "timestamp": "2025-09-06T16:21:31.224Z",
+  "screenReaderSupport": {
+    "labels": {
+      "totalComponents": 91,
+      "totalInteractiveElements": 315,
+      "elementsWithLabels": 0,
+      "coverage": 0,
+      "componentsWithIssues": [
+        {
+          "file": "src\\components\\animated\\AnimatedButton.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 191,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\animated\\AnimatedListItem.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 143,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 199,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\coach\\ChatInput.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 48,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 32,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 122,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 180,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 228,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 273,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 281,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\coach\\CoachInsights.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 94,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 62,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 75,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\common\\Button.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "Button",
+              "line": 27,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 155,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\common\\Card.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 92,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\common\\ErrorBoundary.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 111,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 115,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\common\\Header.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 68,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 105,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 122,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\common\\Input.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 159,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 15,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 144,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\common\\NetworkStatus.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 54,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 85,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 140,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 201,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 207,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\common\\OfflineIndicator.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 59,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\dashboard\\RecentActivity.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 56,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\dashboard\\UpcomingTasks.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 53,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 58,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\finance\\AccountCard.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 38,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\finance\\BudgetCard.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 73,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\finance\\BudgetForm.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 118,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 153,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 178,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 204,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 211,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\finance\\FinanceCharts.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 147,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 169,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\finance\\QuickEntry.tsx",
+          "interactiveElements": 4,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 65,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 82,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 117,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 136,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\finance\\ReceiptCapture.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "Button",
+              "line": 96,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 102,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 113,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\finance\\SubscriptionCard.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 56,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "interactiveElements": 4,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 69,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 123,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 129,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 141,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\finance\\TransactionForm.tsx",
+          "interactiveElements": 6,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 104,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 121,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 152,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 177,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 219,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 226,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\finance\\TransactionHistory.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 147,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 170,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 189,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\goals\\GoalForm.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "Button",
+              "line": 272,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 293,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\goals\\GoalItem.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 62,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 68,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 80,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\goals\\MilestoneForm.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 82,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 109,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 136,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\habits\\HabitInsights.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 246,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\habits\\HabitItem.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 113,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 193,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 199,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\journal\\AIAnalysis.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "Button",
+              "line": 76,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 176,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 189,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\journal\\CategoryTags.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 62,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 96,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "interactiveElements": 13,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 121,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 145,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 166,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 185,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 196,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 213,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 219,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 225,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 235,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 243,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 251,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 259,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 270,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\journal\\JournalItem.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 56,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 62,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 86,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "interactiveElements": 4,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 319,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 332,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 379,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 409,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\journal\\JournalSearch.tsx",
+          "interactiveElements": 10,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 60,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 83,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 89,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 103,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 124,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 155,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 173,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 200,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 218,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 241,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\journal\\MoodExtraction.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 159,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 229,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 235,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\journal\\PhotoAttachment.tsx",
+          "interactiveElements": 4,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 93,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 115,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 121,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 142,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\media\\ExternalMediaSearch.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 153,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\media\\MediaCard.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 57,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\media\\MediaFilter.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 43,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\media\\MediaProgressTracker.tsx",
+          "interactiveElements": 6,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "Button",
+              "line": 98,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 104,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 137,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 174,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 180,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 213,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 44,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 104,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 110,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 141,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 83,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\media\\MediaRecommendations.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 249,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\media\\MediaSearch.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 55,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 43,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "interactiveElements": 6,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 91,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 111,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 169,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 212,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 221,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 194,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\mood\\MoodHistory.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 72,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 99,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 112,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\mood\\MoodSelector.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 115,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\routines\\RoutineBuilder.tsx",
+          "interactiveElements": 9,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 149,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 178,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 260,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 314,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 337,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 359,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 387,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 393,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 406,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\routines\\RoutineItem.tsx",
+          "interactiveElements": 4,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 58,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 64,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 76,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 120,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\routines\\RoutineTemplates.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "Button",
+              "line": 193,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 212,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 237,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\settings\\AvatarSelection.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 116,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 146,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 152,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 178,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 188,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\settings\\NotificationPreferences.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 157,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 215,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 290,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 385,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 141,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\settings\\PrivacySettings.tsx",
+          "interactiveElements": 6,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 194,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 362,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 370,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 386,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 394,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 165,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\settings\\SyncPreferences.tsx",
+          "interactiveElements": 4,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 216,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 304,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 442,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 198,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 115,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 226,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 232,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 166,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 178,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 187,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\todos\\FloatingActionButton.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 97,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 114,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 158,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 174,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 138,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\todos\\TodoFilter.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 53,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 89,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\todos\\TodoItem.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 97,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 105,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 125,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 155,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 161,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\todos\\TodoSearch.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 89,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 72,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\todos\\TodoStats.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 123,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\auth\\LoginScreen.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "Button",
+              "line": 158,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 173,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 186,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\auth\\RegisterScreen.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "Button",
+              "line": 219,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 234,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 247,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\coach\\CoachScreen.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 76,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\dashboard\\AnalyticsScreen.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 60,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\dashboard\\DashboardScreen.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 89,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\finance\\BudgetsScreen.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 56,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 85,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\finance\\FinanceScreen.tsx",
+          "interactiveElements": 4,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 60,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 94,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 113,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 125,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 164,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 190,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\goals\\GoalDetailScreen.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 133,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 136,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 258,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 291,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 297,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\goals\\GoalsScreen.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "Button",
+              "line": 98,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 120,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+          "interactiveElements": 4,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 127,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 166,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 255,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 261,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\habits\\HabitDetailScreen.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 119,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\habits\\HabitsScreen.tsx",
+          "interactiveElements": 4,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 91,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 110,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 159,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 190,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 157,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 163,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 179,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\journal\\JournalScreen.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 109,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 115,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\media\\AddMediaScreen.tsx",
+          "interactiveElements": 7,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 113,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 148,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 184,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 285,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 303,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 308,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 381,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\media\\MediaAnalyticsScreen.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 26,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 55,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 72,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 130,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 163,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 168,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\media\\MediaScreen.tsx",
+          "interactiveElements": 4,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 74,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 77,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 87,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 100,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\mood\\MoodScreen.tsx",
+          "interactiveElements": 4,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 160,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 199,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 218,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 244,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+          "interactiveElements": 6,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 229,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 301,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 319,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 364,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 372,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 386,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\routines\\RoutinesScreen.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "Button",
+              "line": 90,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 96,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 120,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 126,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 149,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 117,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 147,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 173,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 223,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 257,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+          "interactiveElements": 9,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 249,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 262,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 279,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 296,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 388,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 408,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 416,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 437,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 492,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "interactiveElements": 9,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 155,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 168,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 181,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 243,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 269,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 293,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 299,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 307,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 313,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\settings\\ProfileScreen.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 72,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 81,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 95,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 209,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 216,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\settings\\SettingsScreen.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 241,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 296,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 271,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+          "interactiveElements": 9,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 131,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 168,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 188,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 225,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 237,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 255,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 283,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 288,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 349,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\screens\\todos\\TodosScreen.tsx",
+          "interactiveElements": 4,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 80,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 96,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 106,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 116,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        }
+      ],
+      "worstComponents": [
+        {
+          "file": "src\\components\\animated\\AnimatedButton.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 191,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\animated\\AnimatedListItem.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 143,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 199,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\coach\\ChatInput.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 48,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "line": 32,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "interactiveElements": 5,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 122,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 180,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 228,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 273,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "Button",
+              "line": 281,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\coach\\CoachInsights.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 94,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 62,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 75,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\common\\Button.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "Button",
+              "line": 27,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 155,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\common\\Card.tsx",
+          "interactiveElements": 1,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 92,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\common\\ErrorBoundary.tsx",
+          "interactiveElements": 2,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 111,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 115,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        },
+        {
+          "file": "src\\components\\common\\Header.tsx",
+          "interactiveElements": 3,
+          "elementsWithLabels": 0,
+          "coverage": 0,
+          "issues": [
+            {
+              "element": "TouchableOpacity",
+              "line": 68,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 105,
+              "issue": "Missing accessibility label"
+            },
+            {
+              "element": "TouchableOpacity",
+              "line": 122,
+              "issue": "Missing accessibility label"
+            }
+          ]
+        }
+      ]
+    },
+    "semantic": {
+      "usage": 100,
+      "semanticUsage": {
+        "headers": 0,
+        "buttons": 302,
+        "links": 0,
+        "images": 11,
+        "lists": 28,
+        "total": 341
+      },
+      "issues": [
+        {
+          "file": "src\\components\\animated\\AnimatedButton.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\animated\\AnimatedListItem.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\coach\\ChatInput.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\coach\\ChatInterface.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 5,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\coach\\CoachInsights.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\common\\Button.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\common\\Card.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\common\\ErrorBoundary.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\common\\Header.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\common\\Input.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\common\\NetworkStatus.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 5,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\common\\OfflineIndicator.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\dashboard\\RecentActivity.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\dashboard\\UpcomingTasks.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\finance\\AccountCard.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\finance\\BudgetCard.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\finance\\BudgetForm.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 5,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\finance\\FinanceCharts.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\finance\\QuickEntry.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\finance\\ReceiptCapture.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\finance\\SubscriptionCard.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 5,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\finance\\TransactionForm.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 6,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\finance\\TransactionHistory.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\goals\\GoalForm.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\goals\\GoalItem.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\goals\\MilestoneForm.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\habits\\HabitInsights.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\habits\\HabitItem.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\journal\\AIAnalysis.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\journal\\CategoryTags.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 12,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\journal\\JournalItem.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\journal\\JournalList.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\journal\\JournalSearch.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 10,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\journal\\MoodExtraction.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\journal\\PhotoAttachment.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 6,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\media\\ExternalMediaSearch.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\media\\MediaCard.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\media\\MediaFilter.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\media\\MediaList.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\media\\MediaProgressTracker.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 6,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\media\\MediaRecommendations.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\media\\MediaSearch.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 5,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\mood\\MoodHistory.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\mood\\MoodSelector.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\performance\\OptimizedImage.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\performance\\VirtualizedList.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\routines\\RoutineBuilder.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 9,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\routines\\RoutineItem.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\routines\\RoutineTemplates.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\settings\\AvatarSelection.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 7,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\settings\\NotificationPreferences.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\settings\\PrivacySettings.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 5,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\settings\\SyncPreferences.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\todos\\FloatingActionButton.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\todos\\TodoFilter.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\todos\\TodoItem.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 5,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\todos\\TodoList.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\todos\\TodoSearch.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\todos\\TodoStats.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\components\\__tests__\\VirtualizedList.test.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 7,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\auth\\LoginScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\auth\\RegisterScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\coach\\CoachScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\dashboard\\AnalyticsScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\dashboard\\DashboardScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\finance\\BudgetsScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\finance\\FinanceScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\goals\\GoalDetailScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 5,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\goals\\GoalsScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\habits\\HabitDetailScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 1,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\habits\\HabitsScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\journal\\JournalScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\media\\AddMediaScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 7,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\media\\MediaAnalyticsScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 3,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\media\\MediaScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\mood\\MoodScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 6,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\routines\\RoutinesScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 6,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 5,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 9,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 9,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\settings\\ProfileScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 6,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\settings\\SettingsScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 2,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 9,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\screens\\todos\\TodosScreen.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 4,
+          "withRoles": 0
+        },
+        {
+          "file": "src\\__tests__\\performance\\RenderPerformance.test.tsx",
+          "issue": "Low usage of accessibilityRole attributes",
+          "elements": 5,
+          "withRoles": 0
+        }
+      ],
+      "totalIssues": 99
+    },
+    "focus": {
+      "issues": 19,
+      "focusIssues": [
+        {
+          "file": "src\\components\\coach\\ChatInput.tsx",
+          "type": "keyboard-dismissal",
+          "issue": "No keyboard dismissal handling"
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "type": "form-focus",
+          "issue": "TextInput without proper focus flow configuration"
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "type": "keyboard-dismissal",
+          "issue": "No keyboard dismissal handling"
+        },
+        {
+          "file": "src\\components\\common\\Input.tsx",
+          "type": "form-focus",
+          "issue": "TextInput without proper focus flow configuration"
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "type": "form-focus",
+          "issue": "TextInput without proper focus flow configuration"
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "type": "keyboard-dismissal",
+          "issue": "No keyboard dismissal handling"
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "type": "form-focus",
+          "issue": "TextInput without proper focus flow configuration"
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "type": "keyboard-dismissal",
+          "issue": "No keyboard dismissal handling"
+        },
+        {
+          "file": "src\\components\\media\\MediaSearch.tsx",
+          "type": "keyboard-dismissal",
+          "issue": "No keyboard dismissal handling"
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "type": "form-focus",
+          "issue": "TextInput without proper focus flow configuration"
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "type": "keyboard-dismissal",
+          "issue": "No keyboard dismissal handling"
+        },
+        {
+          "file": "src\\components\\routines\\RoutineTemplates.tsx",
+          "type": "modal-focus",
+          "issue": "Modal without proper focus management"
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "type": "modal-focus",
+          "issue": "Modal without proper focus management"
+        },
+        {
+          "file": "src\\components\\todos\\FloatingActionButton.tsx",
+          "type": "form-focus",
+          "issue": "TextInput without proper focus flow configuration"
+        },
+        {
+          "file": "src\\components\\todos\\FloatingActionButton.tsx",
+          "type": "keyboard-dismissal",
+          "issue": "No keyboard dismissal handling"
+        },
+        {
+          "file": "src\\screens\\routines\\RoutinesScreen.tsx",
+          "type": "modal-focus",
+          "issue": "Modal without proper focus management"
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "type": "form-focus",
+          "issue": "TextInput without proper focus flow configuration"
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "type": "keyboard-dismissal",
+          "issue": "No keyboard dismissal handling"
+        },
+        {
+          "file": "src\\screens\\settings\\ProfileScreen.tsx",
+          "type": "modal-focus",
+          "issue": "Modal without proper focus management"
+        }
+      ],
+      "byType": {
+        "keyboard-dismissal": [
+          {
+            "file": "src\\components\\coach\\ChatInput.tsx",
+            "type": "keyboard-dismissal",
+            "issue": "No keyboard dismissal handling"
+          },
+          {
+            "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+            "type": "keyboard-dismissal",
+            "issue": "No keyboard dismissal handling"
+          },
+          {
+            "file": "src\\components\\journal\\JournalEditor.tsx",
+            "type": "keyboard-dismissal",
+            "issue": "No keyboard dismissal handling"
+          },
+          {
+            "file": "src\\components\\media\\MediaRatingReview.tsx",
+            "type": "keyboard-dismissal",
+            "issue": "No keyboard dismissal handling"
+          },
+          {
+            "file": "src\\components\\media\\MediaSearch.tsx",
+            "type": "keyboard-dismissal",
+            "issue": "No keyboard dismissal handling"
+          },
+          {
+            "file": "src\\components\\mood\\ActivitySelector.tsx",
+            "type": "keyboard-dismissal",
+            "issue": "No keyboard dismissal handling"
+          },
+          {
+            "file": "src\\components\\todos\\FloatingActionButton.tsx",
+            "type": "keyboard-dismissal",
+            "issue": "No keyboard dismissal handling"
+          },
+          {
+            "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+            "type": "keyboard-dismissal",
+            "issue": "No keyboard dismissal handling"
+          }
+        ],
+        "form-focus": [
+          {
+            "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+            "type": "form-focus",
+            "issue": "TextInput without proper focus flow configuration"
+          },
+          {
+            "file": "src\\components\\common\\Input.tsx",
+            "type": "form-focus",
+            "issue": "TextInput without proper focus flow configuration"
+          },
+          {
+            "file": "src\\components\\journal\\JournalEditor.tsx",
+            "type": "form-focus",
+            "issue": "TextInput without proper focus flow configuration"
+          },
+          {
+            "file": "src\\components\\media\\MediaRatingReview.tsx",
+            "type": "form-focus",
+            "issue": "TextInput without proper focus flow configuration"
+          },
+          {
+            "file": "src\\components\\mood\\ActivitySelector.tsx",
+            "type": "form-focus",
+            "issue": "TextInput without proper focus flow configuration"
+          },
+          {
+            "file": "src\\components\\todos\\FloatingActionButton.tsx",
+            "type": "form-focus",
+            "issue": "TextInput without proper focus flow configuration"
+          },
+          {
+            "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+            "type": "form-focus",
+            "issue": "TextInput without proper focus flow configuration"
+          }
+        ],
+        "modal-focus": [
+          {
+            "file": "src\\components\\routines\\RoutineTemplates.tsx",
+            "type": "modal-focus",
+            "issue": "Modal without proper focus management"
+          },
+          {
+            "file": "src\\components\\sync\\SyncStatus.tsx",
+            "type": "modal-focus",
+            "issue": "Modal without proper focus management"
+          },
+          {
+            "file": "src\\screens\\routines\\RoutinesScreen.tsx",
+            "type": "modal-focus",
+            "issue": "Modal without proper focus management"
+          },
+          {
+            "file": "src\\screens\\settings\\ProfileScreen.tsx",
+            "type": "modal-focus",
+            "issue": "Modal without proper focus management"
+          }
+        ]
+      }
+    },
+    "liveRegions": {
+      "totalIssues": 117,
+      "issues": [
+        {
+          "file": "src\\components\\animated\\AnimatedButton.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\animated\\AnimatedListItem.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\animated\\LoadingAnimation.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\charts\\ProductivityChart.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\coach\\ChatInput.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\coach\\CoachInsights.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\coach\\CoachSummary.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\common\\Button.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\common\\ErrorBoundary.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\common\\Input.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\common\\NetworkStatus.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\common\\OfflineIndicator.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\dashboard\\UpcomingTasks.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\finance\\AccountCard.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\finance\\BudgetAnalysis.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\finance\\BudgetCard.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\finance\\BudgetForm.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\finance\\FinanceCharts.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\finance\\NetWorthCard.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\finance\\QuickEntry.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\finance\\ReceiptCapture.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\finance\\SubscriptionCard.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\finance\\TransactionForm.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\finance\\TransactionHistory.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\goals\\GoalForm.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\goals\\GoalItem.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\goals\\GoalProgress.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\goals\\GoalStats.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\goals\\MilestoneForm.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\habits\\HabitAnalytics.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\habits\\HabitInsights.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\habits\\HabitItem.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\habits\\HabitProgress.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\journal\\AIAnalysis.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\journal\\JournalItem.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\journal\\JournalList.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\journal\\JournalSearch.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\journal\\MoodExtraction.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\journal\\PhotoAttachment.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\media\\ExternalMediaSearch.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\media\\MediaAnalytics.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\media\\MediaCard.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\media\\MediaFilter.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\media\\MediaList.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\media\\MediaProgressTracker.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\media\\MediaRecommendations.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\media\\MediaSearch.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\mood\\MoodHistory.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\mood\\MoodSelector.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\performance\\OptimizedImage.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\performance\\VirtualizedList.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\routines\\RoutineBuilder.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\routines\\RoutineItem.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\settings\\AvatarSelection.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\settings\\NotificationPreferences.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\settings\\PrivacySettings.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\settings\\SyncPreferences.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\todos\\FloatingActionButton.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\todos\\TodoFilter.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\todos\\TodoItem.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\todos\\TodoSearch.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\todos\\TodoStats.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\components\\__tests__\\OptimizedImage.test.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\components\\__tests__\\VirtualizedList.test.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\contexts\\AuthContext.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\contexts\\OfflineContext.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\contexts\\ThemeContext.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\contexts\\__tests__\\AuthContext.test.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\auth\\LoginScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\auth\\RegisterScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\coach\\CoachScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\screens\\dashboard\\AnalyticsScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\dashboard\\DashboardScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\finance\\AddTransactionScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\finance\\BudgetsScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\finance\\FinanceScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\finance\\TransactionHistoryScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\goals\\AddGoalScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\goals\\GoalDetailScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\screens\\goals\\GoalsScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\habits\\HabitAnalyticsScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\habits\\HabitDetailScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\habits\\HabitsScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\journal\\JournalScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\media\\AddMediaScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\screens\\media\\MediaAnalyticsScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\screens\\media\\MediaScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\screens\\mood\\MoodScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\screens\\routines\\RoutinesScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\settings\\ProfileScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\settings\\SettingsScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\screens\\todos\\TodosScreen.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": true,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\utils\\LazyLoader.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\__tests__\\integration\\AuthFlow.test.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\__tests__\\integration\\AuthIntegration.test.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\__tests__\\integration\\BasicIntegration.test.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\__tests__\\integration\\FullAppIntegration.test.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": false,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        },
+        {
+          "file": "src\\__tests__\\integration\\HabitFlow.test.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": false
+        },
+        {
+          "file": "src\\__tests__\\integration\\SyncIntegration.test.tsx",
+          "issue": "Dynamic content without live region announcements",
+          "hasDynamicContent": true,
+          "hasToast": false,
+          "hasStatusUpdates": true
+        }
+      ]
+    },
+    "score": 25
+  },
+  "keyboardNavigation": {
+    "tabOrder": {
+      "issues": 9,
+      "tabOrderIssues": [
+        {
+          "file": "src\\components\\coach\\ChatInput.tsx",
+          "type": "form-navigation",
+          "issue": "Form inputs without proper navigation flow"
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "type": "form-navigation",
+          "issue": "Form inputs without proper navigation flow"
+        },
+        {
+          "file": "src\\components\\common\\Input.tsx",
+          "type": "form-navigation",
+          "issue": "Form inputs without proper navigation flow"
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "type": "form-navigation",
+          "issue": "Form inputs without proper navigation flow"
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "type": "skip-navigation",
+          "issue": "Many interactive elements without skip navigation"
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "type": "form-navigation",
+          "issue": "Form inputs without proper navigation flow"
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "type": "form-navigation",
+          "issue": "Form inputs without proper navigation flow"
+        },
+        {
+          "file": "src\\components\\todos\\FloatingActionButton.tsx",
+          "type": "form-navigation",
+          "issue": "Form inputs without proper navigation flow"
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "type": "form-navigation",
+          "issue": "Form inputs without proper navigation flow"
+        }
+      ],
+      "byType": {
+        "form-navigation": [
+          {
+            "file": "src\\components\\coach\\ChatInput.tsx",
+            "type": "form-navigation",
+            "issue": "Form inputs without proper navigation flow"
+          },
+          {
+            "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+            "type": "form-navigation",
+            "issue": "Form inputs without proper navigation flow"
+          },
+          {
+            "file": "src\\components\\common\\Input.tsx",
+            "type": "form-navigation",
+            "issue": "Form inputs without proper navigation flow"
+          },
+          {
+            "file": "src\\components\\journal\\JournalEditor.tsx",
+            "type": "form-navigation",
+            "issue": "Form inputs without proper navigation flow"
+          },
+          {
+            "file": "src\\components\\media\\MediaRatingReview.tsx",
+            "type": "form-navigation",
+            "issue": "Form inputs without proper navigation flow"
+          },
+          {
+            "file": "src\\components\\mood\\ActivitySelector.tsx",
+            "type": "form-navigation",
+            "issue": "Form inputs without proper navigation flow"
+          },
+          {
+            "file": "src\\components\\todos\\FloatingActionButton.tsx",
+            "type": "form-navigation",
+            "issue": "Form inputs without proper navigation flow"
+          },
+          {
+            "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+            "type": "form-navigation",
+            "issue": "Form inputs without proper navigation flow"
+          }
+        ],
+        "skip-navigation": [
+          {
+            "file": "src\\components\\journal\\JournalEditor.tsx",
+            "type": "skip-navigation",
+            "issue": "Many interactive elements without skip navigation"
+          }
+        ]
+      }
+    },
+    "shortcuts": {
+      "filesWithShortcuts": 0,
+      "shortcuts": []
+    },
+    "focusIndicators": {
+      "coverage": 2,
+      "totalInteractiveElements": 311,
+      "elementsWithFocusStyles": 5,
+      "issues": [
+        {
+          "file": "src\\components\\animated\\AnimatedButton.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\animated\\AnimatedListItem.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\components\\coach\\ChatInput.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 5
+        },
+        {
+          "file": "src\\components\\coach\\CoachInsights.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\components\\common\\Button.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\components\\common\\Card.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\common\\ErrorBoundary.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\components\\common\\Header.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\common\\NetworkStatus.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 5
+        },
+        {
+          "file": "src\\components\\common\\OfflineIndicator.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\dashboard\\RecentActivity.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\dashboard\\UpcomingTasks.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\components\\finance\\AccountCard.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\finance\\BudgetCard.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\finance\\BudgetForm.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 5
+        },
+        {
+          "file": "src\\components\\finance\\FinanceCharts.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\components\\finance\\QuickEntry.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 4
+        },
+        {
+          "file": "src\\components\\finance\\ReceiptCapture.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\finance\\SubscriptionCard.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 4
+        },
+        {
+          "file": "src\\components\\finance\\TransactionForm.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 6
+        },
+        {
+          "file": "src\\components\\finance\\TransactionHistory.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\goals\\GoalForm.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\components\\goals\\GoalItem.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\goals\\MilestoneForm.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\habits\\HabitInsights.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\habits\\HabitItem.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\journal\\AIAnalysis.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\journal\\CategoryTags.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 13
+        },
+        {
+          "file": "src\\components\\journal\\JournalItem.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 4
+        },
+        {
+          "file": "src\\components\\journal\\JournalSearch.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 10
+        },
+        {
+          "file": "src\\components\\journal\\MoodExtraction.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\journal\\PhotoAttachment.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 4
+        },
+        {
+          "file": "src\\components\\media\\ExternalMediaSearch.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\media\\MediaCard.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\media\\MediaFilter.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\media\\MediaProgressTracker.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 6
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 5
+        },
+        {
+          "file": "src\\components\\media\\MediaRecommendations.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\media\\MediaSearch.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 6
+        },
+        {
+          "file": "src\\components\\mood\\MoodHistory.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\mood\\MoodSelector.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\components\\routines\\RoutineBuilder.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 9
+        },
+        {
+          "file": "src\\components\\routines\\RoutineItem.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 4
+        },
+        {
+          "file": "src\\components\\routines\\RoutineTemplates.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\settings\\AvatarSelection.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 5
+        },
+        {
+          "file": "src\\components\\settings\\NotificationPreferences.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 4
+        },
+        {
+          "file": "src\\components\\settings\\PrivacySettings.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 5
+        },
+        {
+          "file": "src\\components\\settings\\SyncPreferences.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\components\\todos\\FloatingActionButton.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 5
+        },
+        {
+          "file": "src\\components\\todos\\TodoFilter.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\components\\todos\\TodoItem.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 5
+        },
+        {
+          "file": "src\\components\\todos\\TodoStats.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\screens\\auth\\LoginScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\screens\\auth\\RegisterScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\screens\\coach\\CoachScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\screens\\dashboard\\AnalyticsScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\screens\\dashboard\\DashboardScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\screens\\finance\\BudgetsScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\screens\\finance\\FinanceScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 4
+        },
+        {
+          "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\screens\\goals\\GoalDetailScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 5
+        },
+        {
+          "file": "src\\screens\\goals\\GoalsScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 4
+        },
+        {
+          "file": "src\\screens\\habits\\HabitDetailScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 1
+        },
+        {
+          "file": "src\\screens\\habits\\HabitsScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 4
+        },
+        {
+          "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\screens\\journal\\JournalScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\screens\\media\\AddMediaScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 7
+        },
+        {
+          "file": "src\\screens\\media\\MediaAnalyticsScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 3
+        },
+        {
+          "file": "src\\screens\\media\\MediaScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 4
+        },
+        {
+          "file": "src\\screens\\mood\\MoodScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 4
+        },
+        {
+          "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 6
+        },
+        {
+          "file": "src\\screens\\routines\\RoutinesScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 5
+        },
+        {
+          "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 5
+        },
+        {
+          "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 9
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 9
+        },
+        {
+          "file": "src\\screens\\settings\\ProfileScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 5
+        },
+        {
+          "file": "src\\screens\\settings\\SettingsScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 2
+        },
+        {
+          "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 9
+        },
+        {
+          "file": "src\\screens\\todos\\TodosScreen.tsx",
+          "issue": "Interactive elements without focus indicators",
+          "elements": 4
+        }
+      ],
+      "totalIssues": 89
+    },
+    "score": 27
+  },
+  "colorContrast": {
+    "theme": {
+      "colorsFound": 19,
+      "colors": {
+        "#007AFF": 1,
+        "#5856D6": 1,
+        "#34C759": 1,
+        "#FF9500": 1,
+        "#FF3B30": 2,
+        "#5AC8FA": 1,
+        "#F2F2F7": 1,
+        "#FFFFFF": 3,
+        "#000000": 2,
+        "#8E8E93": 2,
+        "#E5E5EA": 1,
+        "#0A84FF": 1,
+        "#5E5CE6": 1,
+        "#30D158": 1,
+        "#FF9F0A": 1,
+        "#FF453A": 2,
+        "#64D2FF": 1,
+        "#1C1C1E": 2,
+        "#38383A": 1
+      },
+      "contrastIssues": [],
+      "totalIssues": 0
+    },
+    "textContrast": {
+      "totalTextElements": 832,
+      "contrastIssues": [
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "issue": "Potentially low contrast text color: #96CEB4",
+          "color": "#96CEB4"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "issue": "Potentially low contrast text color: #FFEAA7",
+          "color": "#FFEAA7"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "issue": "Potentially low contrast text color: #DDA0DD",
+          "color": "#DDA0DD"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "issue": "Potentially low contrast text color: #98D8C8",
+          "color": "#98D8C8"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "issue": "Potentially low contrast text color: #F7DC6F",
+          "color": "#F7DC6F"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "issue": "Potentially low contrast text color: #85C1E9",
+          "color": "#85C1E9"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "issue": "Potentially low contrast text color: #F8C471",
+          "color": "#F8C471"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "issue": "Potentially low contrast text color: #82E0AA",
+          "color": "#82E0AA"
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "issue": "Potentially low contrast text color: #FFC107",
+          "color": "#FFC107"
+        },
+        {
+          "file": "src\\components\\mood\\MoodSelector.tsx",
+          "issue": "Potentially low contrast text color: #FFB74D",
+          "color": "#FFB74D"
+        }
+      ],
+      "totalIssues": 10
+    },
+    "interactiveContrast": {
+      "totalInteractiveElements": 302,
+      "contrastIssues": [
+        {
+          "file": "src\\components\\animated\\AnimatedButton.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\animated\\AnimatedListItem.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\coach\\ChatInput.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\coach\\ChatInput.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\coach\\ChatInterface.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\coach\\CoachingCheckIns.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\coach\\CoachInsights.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\coach\\ProactiveCoaching.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\common\\Button.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\common\\Card.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\common\\ErrorBoundary.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\common\\Header.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\common\\Input.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\common\\NetworkStatus.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\common\\OfflineIndicator.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\common\\OfflineIndicator.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\dashboard\\RecentActivity.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\dashboard\\UpcomingTasks.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\finance\\AccountCard.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\finance\\AccountCard.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetCard.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetCard.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\finance\\BudgetForm.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\finance\\FinanceCharts.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\finance\\QuickEntry.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\finance\\ReceiptCapture.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\finance\\SubscriptionCard.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionCategories.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionForm.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\finance\\TransactionHistory.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\goals\\GoalForm.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\goals\\GoalForm.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\goals\\GoalItem.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\goals\\MilestoneForm.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\habits\\HabitInsights.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\habits\\HabitItem.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\journal\\AIAnalysis.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\journal\\CategoryTags.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\journal\\JournalEditor.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\journal\\JournalItem.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\journal\\JournalPrompts.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\journal\\JournalSearch.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\journal\\MoodExtraction.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\journal\\PhotoAttachment.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\journal\\PhotoAttachment.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\media\\ExternalMediaSearch.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\media\\MediaCard.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\media\\MediaFilter.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\media\\MediaProgressTracker.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\media\\MediaRatingReview.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\media\\MediaRecommendations.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\media\\MediaSearch.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\mood\\ActivitySelector.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\mood\\MoodHistory.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\mood\\MoodSelector.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\routines\\RoutineBuilder.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\routines\\RoutineItem.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\routines\\RoutineTemplates.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\settings\\AvatarSelection.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\settings\\AvatarSelection.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\settings\\NotificationPreferences.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\settings\\PrivacySettings.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\settings\\SyncPreferences.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\sync\\ConflictResolutionModal.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\sync\\SyncStatus.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\todos\\FloatingActionButton.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\components\\todos\\FloatingActionButton.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\todos\\TodoFilter.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\todos\\TodoItem.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\components\\todos\\TodoStats.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\auth\\LoginScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\auth\\RegisterScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\coach\\CoachScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\dashboard\\AnalyticsScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\dashboard\\DashboardScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\finance\\BudgetsScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\finance\\FinanceScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\finance\\SubscriptionsScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\goals\\GoalDetailScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\goals\\GoalsScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\habits\\AddHabitScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\habits\\HabitDetailScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\habits\\HabitsScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\journal\\JournalEntryScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\journal\\JournalScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\media\\AddMediaScreen.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\screens\\media\\AddMediaScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\media\\MediaAnalyticsScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\screens\\media\\MediaDetailScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\media\\MediaScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\mood\\MoodScreen.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\screens\\mood\\MoodScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\routines\\RoutineExecutionScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\routines\\RoutinesScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\screens\\settings\\ChangePasswordScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\settings\\DataManagementScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\screens\\settings\\DeleteAccountScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\settings\\ProfileScreen.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\screens\\settings\\ProfileScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\settings\\SettingsScreen.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\screens\\settings\\SettingsScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+          "issue": "Disabled elements may not have sufficient contrast indication"
+        },
+        {
+          "file": "src\\screens\\todos\\AddTodoScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        },
+        {
+          "file": "src\\screens\\todos\\TodosScreen.tsx",
+          "issue": "Interactive elements without focus state styling"
+        }
+      ],
+      "totalIssues": 112
+    },
+    "score": 33
+  },
+  "wcagCompliance": {
+    "levelA": {
+      "score": 64,
+      "totalCriteria": 11,
+      "passedCriteria": 7,
+      "results": [
+        {
+          "id": "1.1.1",
+          "name": "Non-text Content",
+          "result": {
+            "passed": false,
+            "details": "0/315 elements have alt text"
+          }
+        },
+        {
+          "id": "1.3.1",
+          "name": "Info and Relationships",
+          "result": {
+            "passed": true,
+            "details": "100% semantic markup usage"
+          }
+        },
+        {
+          "id": "1.3.2",
+          "name": "Meaningful Sequence",
+          "result": {
+            "passed": true,
+            "details": "No major sequence issues detected"
+          }
+        },
+        {
+          "id": "1.4.1",
+          "name": "Use of Color",
+          "result": {
+            "passed": true,
+            "details": "0 color-only information issues"
+          }
+        },
+        {
+          "id": "2.1.1",
+          "name": "Keyboard",
+          "result": {
+            "passed": false,
+            "details": "27% keyboard accessibility score"
+          }
+        },
+        {
+          "id": "2.1.2",
+          "name": "No Keyboard Trap",
+          "result": {
+            "passed": false,
+            "details": "9 keyboard trap issues"
+          }
+        },
+        {
+          "id": "2.4.1",
+          "name": "Bypass Blocks",
+          "result": {
+            "passed": true,
+            "details": "Mobile app - bypass blocks not applicable"
+          }
+        },
+        {
+          "id": "2.4.2",
+          "name": "Page Titled",
+          "result": {
+            "passed": true,
+            "details": "Screen titles present"
+          }
+        },
+        {
+          "id": "3.1.1",
+          "name": "Language of Page",
+          "result": {
+            "passed": true,
+            "details": "Language properly configured"
+          }
+        },
+        {
+          "id": "4.1.1",
+          "name": "Parsing",
+          "result": {
+            "passed": true,
+            "details": "React Native handles parsing"
+          }
+        },
+        {
+          "id": "4.1.2",
+          "name": "Name, Role, Value",
+          "result": {
+            "passed": false,
+            "details": "0% elements have proper name/role/value"
+          }
+        }
+      ]
+    },
+    "levelAA": {
+      "score": 85,
+      "totalCriteria": 13,
+      "passedCriteria": 11,
+      "results": [
+        {
+          "id": "1.2.4",
+          "name": "Captions (Live)",
+          "result": {
+            "passed": true,
+            "details": "Live captions not applicable"
+          }
+        },
+        {
+          "id": "1.2.5",
+          "name": "Audio Description (Prerecorded)",
+          "result": {
+            "passed": true,
+            "details": "Audio description not applicable"
+          }
+        },
+        {
+          "id": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "result": {
+            "passed": false,
+            "details": "33% contrast compliance"
+          }
+        },
+        {
+          "id": "1.4.4",
+          "name": "Resize text",
+          "result": {
+            "passed": true,
+            "details": "React Native supports text scaling"
+          }
+        },
+        {
+          "id": "1.4.5",
+          "name": "Images of Text",
+          "result": {
+            "passed": true,
+            "details": "No images of text detected"
+          }
+        },
+        {
+          "id": "2.4.5",
+          "name": "Multiple Ways",
+          "result": {
+            "passed": true,
+            "details": "Multiple navigation methods available"
+          }
+        },
+        {
+          "id": "2.4.6",
+          "name": "Headings and Labels",
+          "result": {
+            "passed": true,
+            "details": "100% proper heading/label usage"
+          }
+        },
+        {
+          "id": "2.4.7",
+          "name": "Focus Visible",
+          "result": {
+            "passed": false,
+            "details": "2% focus indicators present"
+          }
+        },
+        {
+          "id": "3.1.2",
+          "name": "Language of Parts",
+          "result": {
+            "passed": true,
+            "details": "Single language app"
+          }
+        },
+        {
+          "id": "3.2.3",
+          "name": "Consistent Navigation",
+          "result": {
+            "passed": true,
+            "details": "Consistent navigation structure"
+          }
+        },
+        {
+          "id": "3.2.4",
+          "name": "Consistent Identification",
+          "result": {
+            "passed": true,
+            "details": "Consistent component identification"
+          }
+        },
+        {
+          "id": "3.3.3",
+          "name": "Error Suggestion",
+          "result": {
+            "passed": true,
+            "details": "Error suggestions implemented"
+          }
+        },
+        {
+          "id": "3.3.4",
+          "name": "Error Prevention (Legal, Financial, Data)",
+          "result": {
+            "passed": true,
+            "details": "Error prevention implemented"
+          }
+        }
+      ]
+    },
+    "levelAAA": {
+      "score": 83,
+      "totalCriteria": 12,
+      "passedCriteria": 10,
+      "results": [
+        {
+          "id": "1.4.6",
+          "name": "Contrast (Enhanced)",
+          "result": {
+            "passed": false,
+            "details": "33% enhanced contrast compliance"
+          }
+        },
+        {
+          "id": "1.4.8",
+          "name": "Visual Presentation",
+          "result": {
+            "passed": true,
+            "details": "Visual presentation guidelines followed"
+          }
+        },
+        {
+          "id": "2.1.3",
+          "name": "Keyboard (No Exception)",
+          "result": {
+            "passed": false,
+            "details": "27% complete keyboard access"
+          }
+        },
+        {
+          "id": "2.4.8",
+          "name": "Location",
+          "result": {
+            "passed": true,
+            "details": "Location information available"
+          }
+        },
+        {
+          "id": "2.4.9",
+          "name": "Link Purpose (Link Only)",
+          "result": {
+            "passed": true,
+            "details": "Link purposes are clear"
+          }
+        },
+        {
+          "id": "2.4.10",
+          "name": "Section Headings",
+          "result": {
+            "passed": true,
+            "details": "100% proper section headings"
+          }
+        },
+        {
+          "id": "3.1.3",
+          "name": "Unusual Words",
+          "result": {
+            "passed": true,
+            "details": "No unusual words detected"
+          }
+        },
+        {
+          "id": "3.1.4",
+          "name": "Abbreviations",
+          "result": {
+            "passed": true,
+            "details": "Abbreviations properly handled"
+          }
+        },
+        {
+          "id": "3.1.5",
+          "name": "Reading Level",
+          "result": {
+            "passed": true,
+            "details": "Appropriate reading level"
+          }
+        },
+        {
+          "id": "3.2.5",
+          "name": "Change on Request",
+          "result": {
+            "passed": true,
+            "details": "Changes occur on user request"
+          }
+        },
+        {
+          "id": "3.3.5",
+          "name": "Help",
+          "result": {
+            "passed": true,
+            "details": "Help system available"
+          }
+        },
+        {
+          "id": "3.3.6",
+          "name": "Error Prevention (All)",
+          "result": {
+            "passed": true,
+            "details": "Comprehensive error prevention"
+          }
+        }
+      ]
+    },
+    "overallScore": 74
+  },
+  "recommendations": [
+    {
+      "type": "screen-reader",
+      "severity": "high",
+      "message": "Screen reader support score is 25%",
+      "action": "Add accessibility labels and improve semantic markup"
+    },
+    {
+      "type": "keyboard-navigation",
+      "severity": "high",
+      "message": "Keyboard navigation score is 27%",
+      "action": "Improve focus management and add keyboard shortcuts"
+    },
+    {
+      "type": "color-contrast",
+      "severity": "medium",
+      "message": "Color contrast score is 33%",
+      "action": "Improve color contrast ratios and avoid color-only information"
+    },
+    {
+      "type": "wcag-level-a",
+      "severity": "high",
+      "message": "WCAG Level A compliance is 64%",
+      "action": "Address Level A accessibility requirements"
+    }
+  ]
+}

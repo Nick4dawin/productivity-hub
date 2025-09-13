@@ -24,7 +24,7 @@ export const CoachButton = () => {
                 {isChatOpen ? (
                     <ChevronDown className="h-8 w-8 text-white stroke-2" />
                 ) : (
-                    <span className="text-3xl">✨</span>
+                    <span className="text-2xl flex items-center justify-center">✨</span>
                 )}
             </Button>
             {isChatOpen && <CoachChat onClose={() => setIsChatOpen(false)} />}

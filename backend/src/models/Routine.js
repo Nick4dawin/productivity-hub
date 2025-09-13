@@ -23,10 +23,23 @@ const routineSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Habit',
   }],
+  timeBlocks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'TimeBlock',
+  }],
   type: {
     type: String,
-    enum: ['Morning', 'Evening', 'Custom'],
+    enum: ['Morning', 'Evening', 'Custom', 'Daily'],
     default: 'Custom',
+  },
+  scheduleType: {
+    type: String,
+    enum: ['weekday', 'weekend', 'both'],
+    default: 'both',
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
   }
 }, {
   timestamps: true,
@@ -34,4 +47,4 @@ const routineSchema = new mongoose.Schema({
 
 const Routine = mongoose.model('Routine', routineSchema);
 
-module.exports = Routine; 
+module.exports = Routine;

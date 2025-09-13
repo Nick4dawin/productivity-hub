@@ -26,6 +26,35 @@ router.post('/journal-prompt', auth, syncUser, async (req, res) => {
   }
 });
 
+// Generate multiple journal prompts with AI-generated titles
+router.post('/journal-prompts-with-titles', auth, syncUser, async (req, res) => {
+  try {
+    const { todos, moods, habits, media, count = 5 } = req.body;
+    
+    const result = await aiService.generateMultiplePromptsWithTitles({ 
+      todos, 
+      moods, 
+      habits, 
+      media,
+      userId: req.user._id 
+    }, count);
+    
+    res.json(result);
+  } catch (error) {
+    console.error('Error generating multiple prompts with titles:', error);
+    res.status(500).json({ 
+      message: 'Error generating prompts',
+      prompts: [
+        {
+          title: "Daily Reflection",
+          prompt: "Start writing your journal entry...",
+          category: "growth"
+        }
+      ]
+    });
+  }
+});
+
 // Analyze journal content (without saving to database)
 router.post('/analyze-journal', auth, syncUser, async (req, res) => {
   try {
@@ -56,4 +85,4 @@ router.post('/coach-feedback', auth, syncUser, async (req, res) => {
   }
 });
 
-module.exports = router; 
+module.exports = router;

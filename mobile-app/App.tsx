@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -9,6 +9,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { AppNavigator } from '@/navigation/AppNavigator';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
+import { configureGoogleSignIn } from '@/config/googleSignIn';
 
 // Create a client
 const queryClient = new QueryClient({
@@ -25,6 +26,11 @@ const queryClient = new QueryClient({
 });
 
 const App: React.FC = () => {
+  useEffect(() => {
+    // Configure Google Sign-In on app startup
+    configureGoogleSignIn();
+  }, []);
+
   return (
     <ErrorBoundary>
       <GestureHandlerRootView style={{ flex: 1 }}>

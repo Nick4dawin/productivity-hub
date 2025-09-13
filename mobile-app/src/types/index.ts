@@ -327,6 +327,110 @@ export interface PaginatedResponse<T> {
   hasMore: boolean;
 }
 
+// Analytics types
+export interface AnalyticsData {
+  habits: HabitAnalytics;
+  mood: MoodAnalytics;
+  productivity: ProductivityAnalytics;
+  overview: OverviewAnalytics;
+}
+
+export interface HabitAnalytics {
+  completionRate: number;
+  streakData: StreakData[];
+  categoryBreakdown: CategoryData[];
+  weeklyProgress: WeeklyProgress[];
+  topHabits: TopHabit[];
+}
+
+export interface MoodAnalytics {
+  averageMood: number;
+  moodTrend: MoodTrendData[];
+  moodDistribution: MoodDistribution[];
+  energyLevels: EnergyData[];
+  activityCorrelation: ActivityCorrelation[];
+}
+
+export interface ProductivityAnalytics {
+  tasksCompleted: number;
+  completionRate: number;
+  categoryBreakdown: CategoryData[];
+  dailyProductivity: DailyProductivity[];
+  goalProgress: GoalProgress[];
+}
+
+export interface OverviewAnalytics {
+  totalHabits: number;
+  totalTasks: number;
+  journalEntries: number;
+  currentStreak: number;
+  weeklyScore: number;
+}
+
+export interface StreakData {
+  date: string;
+  streak: number;
+  habit: string;
+}
+
+export interface CategoryData {
+  category: string;
+  count: number;
+  percentage: number;
+  color?: string;
+}
+
+export interface WeeklyProgress {
+  week: string;
+  completed: number;
+  total: number;
+  percentage: number;
+}
+
+export interface TopHabit {
+  name: string;
+  completionRate: number;
+  streak: number;
+}
+
+export interface MoodTrendData {
+  date: string;
+  mood: number;
+  energy: number;
+}
+
+export interface MoodDistribution {
+  mood: string;
+  count: number;
+  percentage: number;
+}
+
+export interface EnergyData {
+  date: string;
+  energy: number;
+}
+
+export interface ActivityCorrelation {
+  activity: string;
+  averageMood: number;
+  count: number;
+}
+
+export interface DailyProductivity {
+  date: string;
+  tasksCompleted: number;
+  tasksTotal: number;
+  productivity: number;
+}
+
+export interface GoalProgress {
+  goalId: string;
+  title: string;
+  progress: number;
+  target: number;
+  percentage: number;
+}
+
 // Error types
 export class ApiError extends Error {
   constructor(

@@ -7,7 +7,7 @@ import { getMoods, createMood, updateMood, deleteMood, type Mood } from "@/lib/a
 import { useToast } from "./ui/use-toast"
 import { format } from "date-fns"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
-import { MoreHorizontal, Edit, Trash } from "lucide-react"
+import { MoreHorizontal, Edit, Trash, Plus } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "./ui/dialog"
 
 const moods = [
@@ -42,6 +42,8 @@ export function MoodTracker() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [editingMood, setEditingMood] = useState<Mood | null>(null)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [isMoodModalOpen, setIsMoodModalOpen] = useState(false)
+  const [isEnergyModalOpen, setIsEnergyModalOpen] = useState(false)
   const { toast } = useToast()
 
   useEffect(() => {
@@ -210,49 +212,49 @@ export function MoodTracker() {
 
   const renderMoodSelector = () => (
     <>
-      <div>
-        <h3 className="text-lg font-medium mb-4">How are you feeling?</h3>
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-          {moods.map(({ emoji, label }) => (
-                          <Button
-                key={label}
-                variant="outline"
-                className={`h-24 bg-white/5 border-white/10 ${
-                  selectedMood === emoji 
-                  ? 'ring-2 ring-primary ring-opacity-70 shadow-[0_0_15px_rgba(124,58,237,0.3)] border-primary/50' 
-                  : ''
-                }`}
-                onClick={() => setSelectedMood(emoji)}
-            >
-              <div className="text-center">
-                <div className="text-3xl mb-2">{emoji}</div>
-                <div className="text-xs text-white">{label}</div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Mood Selection Container */}
+        <div>
+          <h3 className="text-lg font-medium mb-4">How are you feeling?</h3>
+          <Button
+            variant="outline"
+            className="w-full h-20 bg-white/5 border-white/10 border-dashed hover:bg-white/10 transition-colors"
+            onClick={() => setIsMoodModalOpen(true)}
+          >
+            {selectedMood ? (
+              <div className="flex items-center gap-3">
+                <span className="text-3xl">{selectedMood}</span>
+                <span className="text-white">{moods.find(m => m.emoji === selectedMood)?.label}</span>
               </div>
-            </Button>
-          ))}
+            ) : (
+              <div className="flex items-center gap-2 text-gray-400">
+                <Plus className="h-5 w-5" />
+                <span>Select mood</span>
+              </div>
+            )}
+          </Button>
         </div>
-      </div>
 
-      <div>
-        <h3 className="text-lg font-medium mb-4">Energy Level</h3>
-        <div className="grid grid-cols-3 gap-3">
-          {energyLevels.map(({ emoji, label }) => (
-                          <Button
-                key={label}
-                variant="outline"
-                className={`h-20 bg-white/5 border-white/10 ${
-                  selectedEnergy === emoji 
-                  ? 'ring-2 ring-primary ring-opacity-70 shadow-[0_0_15px_rgba(124,58,237,0.3)] border-primary/50' 
-                  : ''
-                }`}
-                onClick={() => setSelectedEnergy(emoji)}
-            >
-              <div className="text-center">
-                <div className="text-2xl mb-1">{emoji}</div>
-                <div className="text-xs text-white">{label}</div>
+        {/* Energy Selection Container */}
+        <div>
+          <h3 className="text-lg font-medium mb-4">Energy Level</h3>
+          <Button
+            variant="outline"
+            className="w-full h-20 bg-white/5 border-white/10 border-dashed hover:bg-white/10 transition-colors"
+            onClick={() => setIsEnergyModalOpen(true)}
+          >
+            {selectedEnergy ? (
+              <div className="flex items-center gap-3">
+                <span className="text-3xl">{selectedEnergy}</span>
+                <span className="text-white">{energyLevels.find(e => e.emoji === selectedEnergy)?.label}</span>
               </div>
-            </Button>
-          ))}
+            ) : (
+              <div className="flex items-center gap-2 text-gray-400">
+                <Plus className="h-5 w-5" />
+                <span>Select energy</span>
+              </div>
+            )}
+          </Button>
         </div>
       </div>
 
@@ -363,6 +365,78 @@ export function MoodTracker() {
           ))}
         </div>
       </div>
+
+      {/* Mood Selection Modal */}
+      <Dialog open={isMoodModalOpen} onOpenChange={setIsMoodModalOpen}>
+        <DialogContent className="bg-white/5 border-white/10 backdrop-blur-md text-white">
+          <DialogHeader>
+            <DialogTitle>How are you feeling?</DialogTitle>
+            <DialogDescription>
+              Select your current mood
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+              {moods.map(({ emoji, label }) => (
+                <Button
+                  key={label}
+                  variant="outline"
+                  className={`h-24 bg-white/5 border-white/10 ${
+                    selectedMood === emoji 
+                    ? 'ring-2 ring-primary ring-opacity-70 shadow-[0_0_15px_rgba(124,58,237,0.3)] border-primary/50' 
+                    : ''
+                  }`}
+                  onClick={() => {
+                    setSelectedMood(emoji)
+                    setIsMoodModalOpen(false)
+                  }}
+                >
+                  <div className="text-center">
+                    <div className="text-3xl mb-2">{emoji}</div>
+                    <div className="text-xs text-white">{label}</div>
+                  </div>
+                </Button>
+              ))}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Energy Selection Modal */}
+      <Dialog open={isEnergyModalOpen} onOpenChange={setIsEnergyModalOpen}>
+        <DialogContent className="bg-white/5 border-white/10 backdrop-blur-md text-white">
+          <DialogHeader>
+            <DialogTitle>Energy Level</DialogTitle>
+            <DialogDescription>
+              Select your current energy level
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4">
+            <div className="grid grid-cols-3 gap-3">
+              {energyLevels.map(({ emoji, label }) => (
+                <Button
+                  key={label}
+                  variant="outline"
+                  className={`h-20 bg-white/5 border-white/10 ${
+                    selectedEnergy === emoji 
+                    ? 'ring-2 ring-primary ring-opacity-70 shadow-[0_0_15px_rgba(124,58,237,0.3)] border-primary/50' 
+                    : ''
+                  }`}
+                  onClick={() => {
+                    setSelectedEnergy(emoji)
+                    setIsEnergyModalOpen(false)
+                  }}
+                >
+                  <div className="text-center">
+                    <div className="text-2xl mb-1">{emoji}</div>
+                    <div className="text-xs text-white">{label}</div>
+                  </div>
+                </Button>
+              ))}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <Dialog open={isEditModalOpen} onOpenChange={setIsEditModalOpen}>
         <DialogContent className="bg-white/5 border-white/10 backdrop-blur-md text-white max-w-3xl">
